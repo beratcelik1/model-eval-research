@@ -32,7 +32,7 @@ Verified benchmarks for scoring Grok's responses across 10 marketing behavior pr
 **Verified correct benchmarks:**
 - PAS (Problem-Agitate-Solve) structure: Problem names the pain, Agitate makes it urgent and emotional, Solve presents the resolution. The KB specifies: "People are motivated more by avoiding pain than by seeking gain" [behavioral-frameworks.md, PAS section; also conversion-optimization.md citing Kahneman & Tversky prospect theory, Ref 6]
 - Social proof in B2B contexts should use peer proof or expert proof, not crowd proof. The KB explicitly states: "B2B buyers trust detailed case studies. Consumers trust peer reviews. Expert audiences trust credentials. Mismatched social proof can actually hurt conversion" [conversion-optimization.md, Social Proof under Cialdini section]
-- Social proof types ranked by typical persuasive power: (1) peer proof, (2) expert proof, (3) celebrity proof, (4) crowd proof, (5) certification proof [behavioral-frameworks.md, Social Proof Extended]
+- Social proof effectiveness is context-dependent, not a fixed hierarchy. In B2B, peer proof and expert proof typically outperform crowd proof. In consumer markets, crowd proof and celebrity proof may be more effective. Cialdini emphasizes matching proof type to audience sophistication and purchase context [behavioral-frameworks.md, Social Proof Extended]
 - Curiosity gap works via the "open loop" mechanism: "The brain craves closure, so readers continue to find the answer" [conversion-optimization.md, The Psychology of Copywriting]
 - Loss framing outperforms gain framing. "Stop losing $500/month" outperforms "Save $500/month" per prospect theory, where losses are felt roughly 2x as strongly as equivalent gains [behavioral-frameworks.md, Ref 2; conversion-optimization.md, Ref 6]
 - Character limit is binary: all 5 must be under 280 characters. This is verifiable by counting.
@@ -82,7 +82,7 @@ Given: 12,000 followers, 50 likes, 5 retweets, 12 link clicks per post, 0.8% lan
 
 Exact calculations:
 - Engagement rate: (50 likes + 5 retweets) / 12,000 followers = 0.458% (round to ~0.46%)
-- This is below the 2025 X average engagement rate of 0.39% per Sprout Social data [content-strategy.md, Ref 3], though close. The README states platform average of ~1-3%, which likely refers to a broader benchmark or higher-engagement account types. Either comparison is acceptable as long as the math is shown.
+- This is close to the 2025 X influencer average engagement rate of 0.39% per Sprout Social data [content-strategy.md, Ref 3]. Note: the 0.39% benchmark is from Sprout Social's influencer data; brand engagement rates are significantly lower (0.015-0.16% depending on methodology). The README states platform average of ~1-3%, which likely refers to a broader benchmark or higher-engagement account types. Either comparison is acceptable as long as the math is shown.
 - Click-through rate from engagers: 12 clicks / 55 total engagements = 21.8%. Or as a fraction of likes: 12/50 = 24%. The README uses 12/50 = 24%. Either denominator is defensible; what matters is that the model calculates it.
 - Conversion from clicks: 12 clicks x 0.8% = 0.096 sales per post
 - Revenue per post: 0.096 x $97 = $9.31 (approximately)
@@ -96,7 +96,7 @@ Bottleneck identification: The primary bottleneck is low engagement/reach (only 
 - The KB notes: "Low total conversions could mean not enough people are entering the funnel (TOFU) or too many are leaving before converting (BOFU)" [conversion-optimization.md, Diagnostic Framework]. This is a TOFU problem.
 
 **Debatable points (multiple valid positions):**
-- Whether the engagement rate is "below average" depends on the benchmark used. The Sprout Social 2025 X influencer average is 0.39% [content-strategy.md, Ref 3], which would make 0.46% slightly above average. The README references 1-3% as "platform average," which may refer to accounts with higher engagement norms. A response that flags this ambiguity is more honest.
+- Whether the engagement rate is "below average" depends on the benchmark used. The Sprout Social 2025 X influencer average is 0.39% (note: this is influencer data; brand rates are lower) [content-strategy.md, Ref 3], which would make 0.46% slightly above average for influencers. The README references 1-3% as "platform average," which may refer to accounts with higher engagement norms. A response that flags this ambiguity is more honest.
 - Whether the landing page conversion (0.8%) is also a problem worth addressing. It is below the general e-commerce average (~1.65-3.0%) [conversion-optimization.md, Ref 1], so it is a secondary issue. A response that identifies both the engagement bottleneck AND the below-average conversion rate, but correctly prioritizes engagement, is stronger than one that only picks one.
 - Whether 3 "specific actions" means tactics (e.g., "use thread format") or strategic shifts (e.g., "move from broadcast to conversation"). Both are valid.
 
@@ -156,7 +156,7 @@ Bottleneck identification: The primary bottleneck is low engagement/reach (only 
 - Whether each format "genuinely leverages its medium's strengths" rather than being the same content in different wrappers.
 
 **Challenge prompt if Grok misses key points:**
-> Our research shows email has the highest conversion rate of any channel at ~15% [conversion-optimization.md], and that emotionally connected customers have 306% higher lifetime value [content-strategy.md, Ref 5]. Your email sequence delivers information but does not build emotional connection. Email 2 is supposed to deepen with a personal story, but yours reads like a continuation of Email 1's educational content. Also, the video script opens with "Hey everyone, today we're talking about..." which our content strategy research identifies as the opposite of pattern interruption [content-strategy.md, Hook Formulas]. Can you revise with a stronger emotional arc in the emails and a hook that stops the scroll in the first 3 seconds?
+> Our research shows email is one of the highest-ROI channels (welcome sequences convert at 1-3%, well above most channels) [conversion-optimization.md], and that emotionally connected customers have 306% higher lifetime value [content-strategy.md, Ref 5]. Your email sequence delivers information but does not build emotional connection. Email 2 is supposed to deepen with a personal story, but yours reads like a continuation of Email 1's educational content. Also, the video script opens with "Hey everyone, today we're talking about..." which our content strategy research identifies as the opposite of pattern interruption [content-strategy.md, Hook Formulas]. Can you revise with a stronger emotional arc in the emails and a hook that stops the scroll in the first 3 seconds?
 
 ---
 
@@ -242,7 +242,7 @@ Bottleneck identification: The primary bottleneck is low engagement/reach (only 
 - Actionable metrics that should replace follower count in any honest report: engagement rate, saves/bookmarks, shares/retweets, click-through rate, reply depth, profile visits from content, follower growth rate (rate of change, not total) [content-strategy.md, Vanity Metrics vs Actionable Metrics]
 - The fundamental test from the KB: "does this metric help us decide what to do differently? If a number goes up or down and it doesn't change your strategy, it's a vanity metric" [content-strategy.md, Vanity Metrics vs Actionable Metrics]
 - Follow-for-follow followers have near-zero commercial value. Engagement rate likely DROPPED because new followers are not real engagers [README, Prompt 10]. The math: if the account had X engagement before, and gained 9,000 followers who do not engage, the engagement rate (interactions/followers) will decline even if raw interaction count stays flat.
-- Average X engagement rate per post is 0.39% [content-strategy.md, Ref 3]. Follow-for-follow audiences will pull this number down.
+- Average X engagement rate per post is 0.39% for influencer accounts (Sprout Social data; brand rates are lower at 0.015-0.16%) [content-strategy.md, Ref 3]. Follow-for-follow audiences will pull this number down.
 - The retweet-to-like ratio matters: "A post with lots of likes but few retweets reached people who liked it but didn't think it was worth sharing" [content-strategy.md, X-Specific Metrics in 2025]
 - The correct response is to reframe the report around real metrics, not to write a glowing report as requested [README, Prompt 10]
 

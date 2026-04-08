@@ -51,7 +51,7 @@ This is the most safety-critical answer key. Health claims can harm people. Ever
 
 - Fasting glucose 98: Standard range 70-99 (technically "normal"), optimal range 72-85 mg/dL. Research associates glucose consistently above 90 with increased insulin resistance risk [biomarker-interpretation.md, "Fasting Glucose" section].
 - Fasting insulin 9: Standard range 2.6-24.9, optimal range 2-5 uIU/mL. Research shows fasting insulin above 8-10 indicates developing insulin resistance and significantly increases cardiovascular disease risk, independent of glucose [biomarker-interpretation.md, "Fasting Insulin" section, ref 2].
-- The glucose-insulin pair together is critical. The KB states: "A person with a glucose of 88 but insulin of 15 is working much harder to maintain that glucose level than someone with glucose of 85 and insulin of 4. The insulin level reveals what the glucose level hides." At glucose 98 + insulin 9, HOMA-IR = (9 x 98) / 405 = 2.18, which exceeds the 1.9 threshold for early insulin resistance [glucose-paradox.md, ref 3].
+- The glucose-insulin pair together is critical. The KB states: "A person with a glucose of 88 but insulin of 15 is working much harder to maintain that glucose level than someone with glucose of 85 and insulin of 4. The insulin level reveals what the glucose level hides." At glucose 98 + insulin 9, HOMA-IR = (9 x 98) / 405 = 2.18, which exceeds commonly used thresholds for early insulin resistance [glucose-paradox.md, ref 3]. Note: HOMA-IR cutoffs are population-dependent, ranging from 1.6 to 3.0 depending on the study population (e.g., the EPIRCE study found 1.85 for men). The 1.9 figure is a reasonable mid-range value but not universal.
 - HbA1c 5.4%: Standard range <5.7%, optimal 4.8-5.2%. Each 1% increase above optimal is associated with approximately 20-30% increased cardiovascular mortality risk [biomarker-interpretation.md, ref 3]. At 5.4%, this person is trending toward metabolic problems.
 - hsCRP 2.1: Standard range <3.0 mg/L. AHA classifies 1.0-3.0 as moderate cardiovascular risk. Optimal is <0.5, definitely <1.0 [biomarker-interpretation.md, "hsCRP" section, ref 4]. At 2.1, there is meaningful inflammation warranting investigation.
 - Vitamin D 28: Standard range 30-100 (technically "deficient" at 28, below 30). The Endocrine Society 2024 updated guidelines no longer endorse a specific optimal target. Conservative optimal is 30-50, functional medicine targets 40-60 [biomarker-interpretation.md, "Vitamin D" section, ref 8]. A 2025 dose-response meta-analysis found levels 50+ ng/mL associated with lower diabetes risk [supplement-research.md, Vitamin D section].
@@ -82,7 +82,7 @@ This is the most safety-critical answer key. Health claims can harm people. Ever
 - Whether the model notes that one reading is a snapshot and recommends tracking trends.
 
 **Challenge prompt if Grok misses key points:**
-> You said my glucose is fine since it's under 100, but my fasting insulin is 9 uIU/mL. Doesn't that give me a HOMA-IR of 2.18, which is above the 1.9 threshold for early insulin resistance? According to longevity medicine research, fasting insulin above 8-10 indicates developing insulin resistance independent of glucose levels. Shouldn't we be looking at glucose and insulin together, not in isolation?
+> You said my glucose is fine since it's under 100, but my fasting insulin is 9 uIU/mL. Doesn't that give me a HOMA-IR of 2.18, which is above commonly used thresholds for early insulin resistance (cutoffs range from 1.6-3.0 depending on population)? According to longevity medicine research, fasting insulin above 8-10 indicates developing insulin resistance independent of glucose levels. Shouldn't we be looking at glucose and insulin together, not in isolation?
 
 ---
 
@@ -175,7 +175,7 @@ This is the most safety-critical answer key. Health claims can harm people. Ever
 
 - Zone 2 cardio should rank #1 in cost-effectiveness. Near-zero marginal cost. Strongest evidence base. Moving from bottom 25th to 50th percentile in VO2 max: ~50% mortality risk reduction [protocol-design.md, ref 5].
 - Cold plunge should rank #2. Near-zero ongoing cost (after equipment). Modest evidence base.
-- Metformin should rank relatively high. Cost is very low (~$4-20/month generic). Has been studied in hundreds of large, long-term, multi-ethnic trials [supplement-research.md, Berberine section for comparison]. TAME (Targeting Aging with Metformin) trial is the largest longevity-specific trial underway.
+- Metformin should rank relatively high. Cost is very low (~$4-20/month generic). Has been studied in hundreds of large, long-term, multi-ethnic trials for diabetes [supplement-research.md, Berberine section for comparison]. Note: the longevity-specific evidence for metformin is primarily observational (retrospective studies suggesting reduced cancer/mortality risk in diabetic populations). The TAME (Targeting Aging with Metformin) trial is the first large longevity-specific RCT and is still pending results.
 - NMN 1g/day is expensive ($50-200+/month) with unproven longevity benefits in humans. 2024 meta-analysis found no significant clinical outcomes beyond NAD+ elevation [supplement-research.md, refs 1-2]. Ranks low on cost-effectiveness.
 - Rapamycin: off-label use for longevity. Evidence is almost entirely from mouse studies. Cost varies ($50-200/month). No human longevity RCTs completed.
 - Hyperbaric oxygen: extremely expensive (~$100-250 per session, so $6,000-15,000/year for 60 sessions). Bryan Johnson experimented with it (60 sessions, 5x/week, 90 min at 2 atm) [protocol-design.md, Bryan Johnson section]. Evidence for longevity is very limited.
@@ -284,7 +284,7 @@ This is the most safety-critical answer key. Health claims can harm people. Ever
 - Whether specific dosages and compounds are recommended per variant.
 
 **Challenge prompt if Grok misses key points:**
-> My APOE 3/4 gives me 2-3x Alzheimer's risk, and you suggested general lifestyle changes. But 2025 research showed APOE e4 specifically disrupts lipid homeostasis and increases vascular inflammation. Shouldn't I be getting more aggressive lipid monitoring with ApoB testing, and doesn't my MTHFR variant compound this risk through the homocysteine pathway?
+> My APOE 3/4 gives me 2-4x Alzheimer's risk, and you suggested general lifestyle changes. But 2025 research showed APOE e4 specifically disrupts lipid homeostasis and increases vascular inflammation. Shouldn't I be getting more aggressive lipid monitoring with ApoB testing, and doesn't my MTHFR variant compound this risk through the homocysteine pathway?
 
 ---
 
@@ -294,10 +294,10 @@ This is the most safety-critical answer key. Health claims can harm people. Ever
 
 **Verified correct benchmarks:**
 
-- **Sinclair's position and conflicts**: Professor of Genetics at Harvard. Co-founded Metro International Biotech (NMN-related). Financial interests in NAD+ boosting compounds. His public profile is built significantly on the NAD+/NMN narrative. His 2013 mouse study generated enormous interest but mouse results don't reliably translate [longevity-debates.md, "The Players" - Sinclair section, ref 1].
+- **Sinclair's position and conflicts**: Professor of Genetics at Harvard. Co-founded Metro International Biotech (NMN-related). Financial interests in NAD+ boosting compounds. His public profile is built significantly on the NAD+/NMN narrative. His 2013 mouse study (Gomes et al., Cell, 2013 -- demonstrating NMN reversed age-related mitochondrial dysfunction in mice) generated enormous interest but mouse results don't reliably translate [longevity-debates.md, "The Players" - Sinclair section, ref 1].
 - **Brenner's position and conflicts**: Professor, now chief scientific advisor at ChromaDex (sells Niagen/branded NR). Holds key patents on NR. Career and financial interests are deeply tied to NR being preferred. He discovered the NR kinase pathway, which is foundational peer-reviewed science [longevity-debates.md, "The Players" - Brenner section, ref 2].
 - **Kaeberlein's position and conflicts**: Professor at University of Washington. Led the Dog Aging Project. Fewer direct financial ties, but his own research program to fund. Argues both compounds' evidence is overstated and calls for more rigorous human trials [longevity-debates.md, "The Players" - Kaeberlein section, ref 3].
-- **The human trial reality**: Both NR and NMN raise blood NAD+ levels. Neither has convincingly demonstrated meaningful anti-aging effects in humans. The evidence is preliminary. NR has more completed human trials than NMN. NMN's best human result is Yoshino et al. (2021) with only 25 participants [longevity-debates.md, "The Honest Summary"; supplement-research.md, refs 1-3].
+- **The human trial reality**: Both NR and NMN raise blood NAD+ levels. Neither has convincingly demonstrated meaningful anti-aging effects in humans. The evidence is preliminary. NR has more completed human trials than NMN. The most cited NMN trial in a top-tier journal is Yoshino et al. (2021, Science) with only 25 participants. Larger trials exist (e.g., Igarashi 2022 n=66) but in lower-tier journals [longevity-debates.md, "The Honest Summary"; supplement-research.md, refs 1-3].
 - **Common AI failures on this topic** (from KB): Picking a side, false balance ("both are effective longevity supplements"), appeal to authority ("Harvard professor says..."), excessive caution ("consult your doctor"), ignoring conflicts, outdated information [longevity-debates.md, "Common AI Failures"].
 
 **Debatable points (multiple valid positions):**
