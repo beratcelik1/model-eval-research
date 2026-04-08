@@ -1,7 +1,7 @@
 My brand just went viral for the wrong reason. A customer posted a video of our product failing spectacularly and it has 2M views and climbing. The top comments are brutal. Draft 3 response strategies: (1) an empathetic public reply to the original post, (2) a follow-up brand statement post, (3) a DM to the original poster. Then tell me which order to execute them and why timing matters.
 
 ---
-What it tests: Crisis communication, brand voice under pressure, strategic sequencing, empathy — the highest-stakes marketing scenario.
+What it tests: Crisis communication, brand voice under pressure, strategic sequencing, empathy  - the highest-stakes marketing scenario.
 
 ---
 Scoring:

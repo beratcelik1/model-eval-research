@@ -38,14 +38,14 @@ I'll be upfront: based on my research, health is probably Grok's weakest domain.
 ### Strengths
 
 - **Real-time access to longevity X**  - researchers like David Sinclair, Peter Attia, and Bryan Johnson post findings and protocol updates on X before publishing. Grok can surface these in real-time.
-- **Some wins in medical reasoning**  - a May 2025 study showed Grok as most effective at detecting pathologies in MRI scans compared to Gemini and GPT-4.
+- **Some wins in medical reasoning**  - there are reports of Grok performing well on certain medical imaging tasks compared to other models, though specific study citations are hard to verify independently. This is a fast-moving area where claims need to be checked against published papers.
 - **Fast synthesis across multiple sources**  - can pull together information from multiple research posts and threads quickly, which is exactly what biohackers need.
 - **No gatekeeping**  - no appointment scheduling, no insurance, instant access to reasoning about health data. For optimization (not diagnosis), this is valuable.
 
 ### Weaknesses
 
 - **Weakest domain of the three**  - based on research, Grok has the most mixed accuracy and highest risk profile in health.
-- **Legal liability issues**  - Georgetown Law Center research indicates Grok may violate unlicensed medical practice laws in some states.
+- **Legal liability concerns**  - Researchers at Georgetown Law Center have raised questions about whether AI chatbots providing health advice could run afoul of unlicensed medical practice laws in some states. This is not Grok-specific, but applies to any model giving detailed health recommendations.
 - **Bimodal failure pattern**  - tends to be either too cautious (refuses everything with "consult your doctor") or too aggressive (recommends specific dosages without caveats). Rarely finds the useful middle ground.
 - **Cannot process lab results from images**  - cannot reliably read bloodwork panels from photos or PDFs.
 - **No longitudinal tracking**  - cannot remember your protocol across conversations, making iterative optimization impossible without external tooling.

@@ -1,7 +1,7 @@
 Rank the following longevity interventions by cost-effectiveness ratio (estimated lifespan years gained per dollar spent annually): (1) Rapamycin 5mg weekly, (2) Metformin 500mg 2x daily, (3) NMN 1g daily, (4) Hyperbaric oxygen therapy 60 sessions/year, (5) Cold plunge 3x/week, (6) Peter Attia-style zone 2 cardio 3hrs/week. Show your math and assumptions for each.
 
 ---
-What it tests: Quantitative reasoning about health interventions, ability to estimate costs and expected benefits, transparency about uncertainty — biohackers think in ROI, not just "is it good for you."
+What it tests: Quantitative reasoning about health interventions, ability to estimate costs and expected benefits, transparency about uncertainty  - biohackers think in ROI, not just "is it good for you."
 
 ---
 Scoring:

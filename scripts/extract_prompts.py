@@ -37,7 +37,7 @@ def extract_prompts_from_readme(readme_path: Path) -> list[dict[str, str]]:
 
     # Split by prompt headers
     prompt_pattern = re.compile(
-        r"####\s+PROMPT\s+(\d+)\s*[—–-]+\s*(.+?)(?:\n|$)",
+        r"####\s+PROMPT\s+(\d+)\s*[ -–-]+\s*(.+?)(?:\n|$)",
         re.IGNORECASE,
     )
 

@@ -28,8 +28,38 @@ MAX_RETRIES = 2
 RETRY_BACKOFF = 3.0
 
 
+def extract_prompt_only(text: str) -> str:
+    """Extract only the prompt text from a prompt .md file.
+
+    Prompt files have the format:
+        <prompt text>
+        ---
+        What it tests: ...
+        ---
+        Scoring: ...
+        ---
+        Category: ...
+
+    We take everything BEFORE the first '---' separator. This prevents
+    evaluation contamination - the model never sees the scoring rubric,
+    category labels, or what the prompt is testing.
+    """
+    parts = text.strip().split("\n---")
+    prompt_text = parts[0].strip()
+
+    if not prompt_text:
+        print("  WARNING: Empty prompt text extracted, sending full file")
+        return text.strip()
+
+    return prompt_text
+
+
 def load_prompts(area: str) -> list[dict[str, str]]:
-    """Load all prompt .md files from areas/{area}/prompts/, sorted by name."""
+    """Load all prompt .md files from areas/{area}/prompts/, sorted by name.
+
+    Only the actual prompt text is extracted. Scoring rubrics and metadata
+    are stripped to prevent evaluation contamination.
+    """
     prompts_dir = PROJECT_ROOT / "areas" / area / "prompts"
     if not prompts_dir.exists():
         print(f"Error: prompts directory not found: {prompts_dir}")
@@ -43,11 +73,13 @@ def load_prompts(area: str) -> list[dict[str, str]]:
 
     prompts = []
     for pf in prompt_files:
-        text = pf.read_text().strip()
+        full_text = pf.read_text().strip()
+        prompt_text = extract_prompt_only(full_text)
         prompts.append(
             {
                 "file": pf.name,
-                "text": text,
+                "full_text": full_text,
+                "text": prompt_text,
             }
         )
     return prompts

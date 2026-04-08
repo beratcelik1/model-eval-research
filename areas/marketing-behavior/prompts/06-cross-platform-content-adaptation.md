@@ -1,7 +1,7 @@
 Here's my best-performing X thread concept: "7 cognitive biases that make you waste money, and how to use each one to save instead." Convert this into: (1) a 3-email welcome sequence for new newsletter subscribers, (2) a 60-second TikTok/Reels script. Email 1 delivers core value, Email 2 deepens with a personal story, Email 3 makes a soft CTA to a $47 product. The video should hook in the first 3 seconds.
 
 ---
-What it tests: Cross-platform content adaptation, email copywriting, video scripting, funnel sequencing — can Grok think in multiple formats, not just tweets?
+What it tests: Cross-platform content adaptation, email copywriting, video scripting, funnel sequencing  - can Grok think in multiple formats, not just tweets?
 
 ---
 Scoring:

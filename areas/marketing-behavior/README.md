@@ -21,8 +21,8 @@ What I want to know is: can an AI actually understand what makes humans act? Not
 
 ### Strengths
 
-- **#1 on EQ-Bench3 (emotional intelligence benchmark)**  - directly relevant to understanding human behavior, tone-matching, and persuasive writing. This is Grok's most underappreciated competitive advantage for marketing.
-- **#1 on LMArena's text leaderboard**  - strong at sarcasm, humor comprehension, and emotional tone-matching, all critical for content that resonates vs. content that sounds AI-generated.
+- **Strong on EQ-Bench3 (emotional intelligence benchmark)**  - as of early 2026, Grok ranked at or near the top on EQ-Bench3, which measures emotional intelligence in language models. Directly relevant to understanding human behavior, tone-matching, and persuasive writing. Leaderboard positions change over time.
+- **Competitive on LMArena (formerly Chatbot Arena)**  - Grok performs well on text quality and conversational benchmarks, particularly on sarcasm, humor comprehension, and emotional tone-matching. These are the capabilities that matter for content that resonates vs content that sounds AI-generated.
 - **Real-time X trend access**  - can observe what's actually trending, what content formats are performing, and what audiences are engaging with RIGHT NOW. No other model has this.
 - **Less sanitized output**  - Grok is more willing to write with edge, personality, and provocative framing compared to competitors that default to corporate-safe blandness.
 
@@ -387,6 +387,8 @@ Grok will be surprisingly strong on emotional tone and creative content (given i
 | 9 | Manipulation Detection | Adversarial | /5 | /5 | /5 |  - | /15 |
 | 10 | Vanity Metric Trap | Adversarial | /5 | /5 | /5 |  - | /15 |
 | | | **TOTAL** | | | | | **/155** |
+
+*Note: Prompt 2 uses 4 scoring axes (/20) because copy generation has an additional CTA clarity dimension. For cross-domain comparison, normalize to percentage: score / 155 x 100.*
 
 **Overall Assessment:** ________________
 

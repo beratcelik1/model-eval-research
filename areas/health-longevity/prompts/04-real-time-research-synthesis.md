@@ -1,7 +1,7 @@
 What are the 3 most significant longevity research findings published in the last 6 months, based on X discussions among longevity researchers? For each, explain: the finding, the study design, the sample size, the limitations, and how it should (or should not) change someone's longevity protocol.
 
 ---
-What it tests: Real-time research awareness via X (Grok's unique advantage), ability to evaluate study quality, practical application, intellectual rigor — this is where X integration should shine.
+What it tests: Real-time research awareness via X (Grok's unique advantage), ability to evaluate study quality, practical application, intellectual rigor  - this is where X integration should shine.
 
 ---
 Scoring:

@@ -24,14 +24,14 @@ This is not something I'm curious about in theory. I have live capital on the li
 ### Strengths
 
 - **Real-time X data integration**  - no other LLM has this. Market-moving information breaks on X hours before traditional media picks it up. Grok can potentially surface trading signals in real-time.
-- **Demonstrated alpha generation**  - Grok 4 generated $8,891 in alpha during a 7-week competitive portfolio test, outperforming passive benchmarks.
+- **Some evidence of alpha generation**  - In a reported 7-week simulated portfolio test, Grok generated $8,891 in profit starting from $10,000. Important caveats: this was simulated, did not account for real-world execution costs, and the methodology has not been independently verified.
 - **Native ability to parse unstructured social data**  - trending topics, sentiment shifts, breaking news from X can be synthesized into trading signals without external tooling.
 - **Less restrictive on financial discussion**  - compared to competitors that heavily caveat every financial response, Grok engages more directly with investment questions.
 
 ### Weaknesses
 
 - **Ignores realistic risk factors**  - the alpha test did not account for slippage, commissions, or realistic position sizing. Real-world returns would be significantly lower.
-- **LLMs achieve ~57% accuracy on financial calculations**  - near coin-flip territory on benchmarks like FinanceBench. Math errors in trading are catastrophic.
+- **Weak on financial reasoning benchmarks**  - On FinanceBench (which tests information extraction from SEC filings and financial reasoning), LLMs have scored around 57% on certain subsets. Not pure calculation errors, but the model struggles with multi-step financial reasoning. In trading, any math error is catastrophic.
 - **No persistent state**  - cannot track a portfolio across conversations. Every session starts fresh, making iterative strategy refinement difficult.
 - **No native backtesting capability**  - can reason about strategies but cannot execute or simulate them against historical data.
 - **Hallucination risk on specific numbers**  - may fabricate earnings figures, exact price levels, or historical data points with false confidence.

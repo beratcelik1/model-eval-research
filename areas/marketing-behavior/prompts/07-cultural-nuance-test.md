@@ -1,7 +1,7 @@
 Write a product launch tweet for a premium matcha brand. Write three versions for three completely different audiences: (1) Gen Z women in the US, (2) millennial men in Japan, (3) Boomer retirees in the UK. Same product, three completely different approaches. Explain why each version works for its specific audience.
 
 ---
-What it tests: Cultural sensitivity, audience adaptation beyond language, demographic-specific persuasion — whether Grok truly understands different audiences or just swaps slang.
+What it tests: Cultural sensitivity, audience adaptation beyond language, demographic-specific persuasion  - whether Grok truly understands different audiences or just swaps slang.
 
 ---
 Scoring:
