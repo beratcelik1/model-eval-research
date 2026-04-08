@@ -47,6 +47,7 @@
 I tested Grok (\texttt{grok-4.20-0309-reasoning}) across three domains where I have direct experience and where wrong answers cost something real: investment decisions, marketing strategy, and health optimization. The evaluation used 30 expert-written prompts scored against answer keys built from knowledge bases with 150+ academic references. A challenge-response protocol tested whether Grok could update its reasoning when presented with evidence it initially missed. The overall score was 40.7\% across all 30 prompts. Grok scored 95\% on pure arithmetic (P\&L calculation) and 60--70\% on structured analytical tasks (genetic interpretation, audience psychographics) but fell below 30\% on prompts requiring academic research depth, real-time data, or ethical reasoning. The most concerning findings were safety-critical: Grok normalized a 30x supraphysiological melatonin dose, fabricated a paper retraction for a real researcher, and repeatedly dismissed verified 2025--2026 studies as ``fabricated'' due to training cutoff limitations. When challenged, Grok showed it knew far more than it initially volunteered - but a model that only gives you the right answer after you argue with it is not yet useful for real work.
 \end{abstract}
 
+\newpage
 \tableofcontents
 \newpage
 
@@ -388,6 +389,6 @@ The most dangerous failure is not ignorance but false certainty. Grok's repeated
 
 These problems are fixable. Domain-specific training, calibrated uncertainty at knowledge boundaries, mandatory tool use for real-time queries, and nuanced safety responses would address the majority of what I found. The model is not fundamentally broken - it is undertrained in specific domains, over-reinforced for confident pushback, and under-equipped with tools for real-time verification.
 
-I will continue testing. The prompts, answer keys, and raw responses are public at \href{https://github.com/beratcelik1/model-eval-research}{github.com/beratcelik1/model-eval-research}. If xAI or anyone else wants to use them as a benchmark, they are free to do so. The point was never to prove Grok is bad. It was to find out exactly where it fails, why it fails, and what would fix it.
+I will continue testing. The prompts, answer keys, and raw responses are available in the \href{https://github.com/beratcelik1/model-eval-research}{public GitHub repository}. The point was never to prove Grok is bad. It was to find out exactly where it fails, why it fails, and what would fix it.
 
 \end{document}
