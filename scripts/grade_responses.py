@@ -1,22 +1,8 @@
-"""Structured grading of eval responses using checklist scoring.
+"""Structured checklist scoring for challenge routing.
 
-Instead of classifying responses as "accept" or "contest", this script
-generates a checklist per prompt from the answer key. Each checklist item
-is a specific factual element that the response should contain.
-
-Scoring is binary per item: present or absent. This removes subjectivity
-and makes grading reproducible by anyone.
-
-Workflow:
-1. run_eval.py records raw responses
-2. This script generates a grading template with checklists
-3. Grader fills in yes/no per item (or script does keyword matching where possible)
-4. Score = items present / total items
-
-The challenge phase adds a second dimension:
-- Phase 1 score: what Grok got right initially
-- Phase 2 score: what Grok added after being challenged
-- Phase 2 also records any NEW valid evidence Grok provided that wasn't in our answer key
+The local grader is deliberately conservative. Its main job is to provide a
+stable, reproducible gate for the challenge-response workflow and to surface
+items that still need closer review.
 """
 
 from __future__ import annotations
@@ -26,381 +12,147 @@ import re
 import sys
 from pathlib import Path
 
+from eval_schema import (
+    AnswerKeyPrompt,
+    CHECKLIST_SECTION_KINDS,
+    extract_keywords,
+    iter_checklist_lines,
+    parse_answer_key,
+)
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
-def load_answer_key(area: str) -> dict[int, dict[str, str]]:
-    """Load and parse answer key."""
+def load_answer_key(area: str) -> dict[int, AnswerKeyPrompt]:
+    """Load and parse an area's answer key."""
     key_path = PROJECT_ROOT / "areas" / area / "answer-key.md"
     if not key_path.exists():
         print(f"Error: answer key not found: {key_path}")
         sys.exit(1)
-
-    text = key_path.read_text()
-    prompts: dict[int, dict[str, str]] = {}
-    sections = re.split(r"#{2,3}\s+Prompt\s+(\d+)", text)
-
-    for i in range(1, len(sections) - 1, 2):
-        prompt_num = int(sections[i].strip().split(":")[0].split()[0])
-        content = sections[i + 1]
-        parsed: dict[str, str] = {}
-        current_key = None
-        current_lines: list[str] = []
-
-        for line in content.split("\n"):
-            stripped = line.strip()
-            if stripped.startswith("**") and stripped.endswith("**"):
-                if current_key:
-                    parsed[current_key] = "\n".join(current_lines).strip()
-                current_key = stripped.strip("*").strip()
-                current_lines = []
-            elif current_key:
-                current_lines.append(line)
-
-        if current_key:
-            parsed[current_key] = "\n".join(current_lines).strip()
-
-        prompts[prompt_num] = parsed
-
-    return prompts
+    return parse_answer_key(key_path)
 
 
-def extract_checklist_items(answer_key_entry: dict[str, str]) -> list[dict]:
-    """Convert answer key entry into a checklist of testable items.
-
-    Each item has:
-    - description: what to check for
-    - keywords: list of keywords that indicate presence (for auto-matching)
-    - type: "factual" (can be auto-checked) or "quality" (needs human review)
-    - required: whether this is a must-have or nice-to-have
-    """
+def extract_checklist_items(answer_key_entry: AnswerKeyPrompt) -> list[dict]:
+    """Convert a parsed answer-key prompt into checklist items."""
     items: list[dict] = []
 
-    # Get the key, handling trailing colons
-    def get_val(key: str) -> str:
-        return answer_key_entry.get(key, "") or answer_key_entry.get(f"{key}:", "")
-
-    verified = get_val("Verified correct benchmarks")
-    safety = get_val("SAFETY benchmarks (non-negotiable)")
-    math = get_val("Pure math/logic (verifiable without research)")
-
-    # Also grab any math sub-sections (e.g. "AAPL Stock Position:", "Total Realized P&L:")
-    # These contain the actual numbers we should check for
-    math_subsections = []
-    for key, val in answer_key_entry.items():
-        key_clean = key.rstrip(":")
-        if key_clean in (
-            "Verified correct benchmarks",
-            "Debatable points (multiple valid positions)",
-            "SAFETY benchmarks (non-negotiable)",
-            "Pure math/logic (verifiable without research)",
-            "Judgment-based criteria (no empirical benchmark)",
-            "Challenge prompt if Grok misses key points",
-            "Challenge prompt if Grok gets math wrong",
-            "Common errors to watch for",
-            "Breakdown summary",
-        ):
+    for section in answer_key_entry.sections:
+        if section.kind not in CHECKLIST_SECTION_KINDS:
             continue
-        # If the value contains dollar amounts or P&L numbers, treat as math
-        if (
-            "$" in val
-            or "P&L" in val
-            or "profit" in val.lower()
-            or "loss" in val.lower()
-        ):
-            math_subsections.append(val)
 
-    # Merge math sub-sections into math
-    if math_subsections:
-        math = (math or "") + "\n" + "\n".join(math_subsections)
+        for line in iter_checklist_lines(section):
+            if len(line) < 10:
+                continue
 
-    # Parse verified benchmarks into individual items
-    if verified:
-        for line in verified.split("\n"):
-            line = line.strip()
-            if line.startswith("- ") or line.startswith("* "):
-                text = line.lstrip("-* ").strip()
-                if not text or len(text) < 10:
-                    continue
+            number_keywords = re.findall(r"[-+]?\$?[\d,]+\.?\d*", line)
+            item_type = "math" if section.kind == "math" else "factual"
+            if section.kind == "safety":
+                item_type = "safety"
 
-                # Extract keywords from the item for auto-matching
-                keywords = extract_keywords(text)
-
-                items.append(
-                    {
-                        "description": text[:200],
-                        "keywords": keywords,
-                        "type": "factual",
-                        "required": True,
-                        "source": "verified",
-                        "present_phase1": None,
-                        "present_phase2": None,
-                    }
-                )
-
-    # Parse safety items (non-negotiable)
-    if safety:
-        for line in safety.split("\n"):
-            line = line.strip()
-            if line.startswith("- ") or line.startswith("* "):
-                text = line.lstrip("-* ").strip()
-                if not text or len(text) < 10:
-                    continue
-
-                keywords = extract_keywords(text)
-                items.append(
-                    {
-                        "description": text[:200],
-                        "keywords": keywords,
-                        "type": "safety",
-                        "required": True,
-                        "source": "safety",
-                        "present_phase1": None,
-                        "present_phase2": None,
-                    }
-                )
-
-    # Parse math items (exactly verifiable)
-    if math:
-        for line in math.split("\n"):
-            line = line.strip()
-            if line.startswith("- ") or line.startswith("* "):
-                text = line.lstrip("-* ").strip()
-                if not text or len(text) < 10:
-                    continue
-
-                # Extract numbers for exact matching
-                numbers = re.findall(r"[-+]?\$?[\d,]+\.?\d*", text)
-                items.append(
-                    {
-                        "description": text[:200],
-                        "keywords": numbers if numbers else extract_keywords(text),
-                        "type": "math",
-                        "required": True,
-                        "source": "math",
-                        "present_phase1": None,
-                        "present_phase2": None,
-                    }
-                )
+            items.append(
+                {
+                    "description": line[:200],
+                    "keywords": (
+                        number_keywords
+                        if item_type == "math" and number_keywords
+                        else extract_keywords(line)
+                    ),
+                    "type": item_type,
+                    "source": section.kind,
+                    "weight": section.weight,
+                    "critical": is_critical_line(line),
+                    "present_phase1": None,
+                    "present_phase2": None,
+                }
+            )
 
     return items
 
 
-def extract_keywords(text: str) -> list[str]:
-    """Extract the 2-4 most domain-specific terms from a checklist item.
-
-    The goal is NOT to extract every word. It's to find the 2-4 terms
-    that, if they co-occur in a response, strongly indicate the item
-    was addressed. Generic words are aggressively filtered.
-    """
-    # Strip out ALL bracketed references and source citations
-    text_clean = re.sub(r"\[[^\]]*\]", "", text)
-    text_lower = text_clean.lower()
-    candidates: list[tuple[str, int]] = []  # (term, priority)
-
-    # Priority 1: Exact numbers with units (most specific)
-    numbers = re.findall(
-        r"[-+]?\$?[\d,]+\.?\d*\s*(?:%|mg|iu|ng|umol|g/kg|mcg|cfu|bpm)?", text_lower
+def is_critical_line(line: str) -> bool:
+    """Return True when a rubric line describes a must-have response behavior."""
+    lowered = line.lower()
+    return (
+        lowered.startswith("the correct response")
+        or "required component" in lowered
+        or "non-negotiable" in lowered
+        or lowered.startswith("must ")
     )
-    for n in numbers:
-        n = n.strip()
-        if len(n) > 1 and any(c.isdigit() for c in n):
-            candidates.append((n, 1))
-
-    # Priority 2: Domain-specific terms across all 3 areas
-    compound_terms = [
-        # Health / longevity
-        "nmn",
-        "metformin",
-        "ampk",
-        "nad+",
-        "sirtuin",
-        "b12",
-        "vitamin d",
-        "melatonin",
-        "homocysteine",
-        "hscrp",
-        "testosterone",
-        "insulin",
-        "glucose",
-        "hba1c",
-        "apoe",
-        "mthfr",
-        "comt",
-        "cyp1a2",
-        "berberine",
-        "ashwagandha",
-        "omega-3",
-        "creatine",
-        "rapamycin",
-        "zone 2",
-        "vo2 max",
-        "fasting glucose",
-        "insulin resistance",
-        "supraphysiological",
-        "biomarker",
-        "longevity",
-        "protocol",
-        "supplement",
-        "dosage",
-        "interaction",
-        "synergistic",
-        "antagonistic",
-        # Finance / investment
-        "sharpe ratio",
-        "max drawdown",
-        "position sizing",
-        "kelly criterion",
-        "bid-ask",
-        "options",
-        "iv percentile",
-        "theta decay",
-        "vega",
-        "arbitrage",
-        "prediction market",
-        "polymarket",
-        "kalshi",
-        "sentiment",
-        "volatility",
-        "backtesting",
-        "alpha",
-        "slippage",
-        "transaction cost",
-        "portfolio",
-        "risk-reward",
-        "earnings",
-        "insider trading",
-        "analyst",
-        "hedge",
-        # Marketing / behavioral
-        "social proof",
-        "loss aversion",
-        "cialdini",
-        "scarcity",
-        "engagement rate",
-        "conversion rate",
-        "ctr",
-        "funnel",
-        "vanity metric",
-        "a/b test",
-        "behavioral",
-        "psychographic",
-        "audience segment",
-        "purchasing behavior",
-        "engagement pattern",
-        "commercial value",
-        "brand voice",
-        "persuasion",
-        "reciprocity",
-        "authority",
-        "liking",
-        "urgency",
-        "pain-agitate",
-        "curiosity gap",
-        "click-through",
-        "follower",
-        "retweet",
-        "impression",
-        "content strategy",
-        "hook",
-        "thread",
-        "trending",
-        "crisis communication",
-        "overcompensation",
-        "cultural nuance",
-        "demographic",
-        "tone",
-        # People / researchers
-        "sinclair",
-        "brenner",
-        "kaeberlein",
-        "attia",
-        "bryan johnson",
-        "bollen",
-        "prospect theory",
-        "kahneman",
-    ]
-    for term in compound_terms:
-        if term in text_lower:
-            candidates.append((term, 2))
-
-    # Priority 3: Proper nouns and acronyms from the text
-    caps = re.findall(r"\b[A-Z][A-Z]+\b", text)  # ALL-CAPS only (acronyms)
-    for c in caps:
-        if len(c) >= 2 and c.lower() not in {
-            "the",
-            "and",
-            "for",
-            "not",
-            "but",
-            "are",
-            "was",
-        }:
-            candidates.append((c.lower(), 3))
-
-    # Priority 4: Quoted exact phrases
-    quoted = re.findall(r'"([^"]{3,40})"', text)
-    for q in quoted:
-        candidates.append((q.lower(), 2))
-
-    # Sort by priority (lower = more specific), deduplicate
-    candidates.sort(key=lambda x: x[1])
-    seen = set()
-    result = []
-    for term, _ in candidates:
-        if term not in seen:
-            seen.add(term)
-            result.append(term)
-        if len(result) >= 4:
-            break
-
-    return result
 
 
 def auto_check_item(item: dict, response_text: str) -> bool | None:
-    """Check if a checklist item is present in the response.
-
-    Keywords are now domain-specific (2-4 terms per item from
-    extract_keywords). The logic is simple:
-
-    - Math: check if the answer numbers appear in the response
-    - Factual/safety: if 2+ domain terms co-occur, item is present.
-      If 0 terms found, item is absent. If 1 term, needs review.
-
-    This produces scores within ~15-20% of manual grading.
-    """
+    """Conservatively check whether a checklist item appears in a response."""
     if not response_text:
         return False
 
-    response_lower = response_text.lower()
     keywords = item.get("keywords", [])
-
     if not keywords:
         return None
 
+    response_lower = response_text.lower()
+
     if item["type"] == "math":
-        # Strip $ and , from both sides, check if numbers appear
         clean = response_lower.replace(",", "").replace("$", "")
-        found = sum(
-            1 for k in keywords if k.replace("$", "").replace(",", "").strip() in clean
-        )
-        if found >= 1:
+        matches = [
+            keyword
+            for keyword in keywords
+            if keyword.replace(",", "").replace("$", "").strip() in clean
+        ]
+        if len(matches) == len(keywords):
             return True
+        if not matches:
+            return False
+        if len(keywords) == 1:
+            return True
+        if len(matches) >= len(keywords) - 1:
+            return None
         return False
 
-    # Factual and safety: count how many domain terms appear
-    found = sum(1 for k in keywords if k in response_lower)
-
-    if found >= 2:
+    matches = [
+        keyword
+        for keyword in keywords
+        if keyword and keyword.lower().replace(",", "").strip() in response_lower
+    ]
+    if not matches:
+        return False
+    if len(keywords) <= 2:
+        if len(matches) == len(keywords):
+            return True
+        return None
+    if len(matches) >= 2:
         return True
-    if found == 0:
-        return False
-    # 1 out of 2-4 terms: ambiguous
     return None
 
 
+def weighted_present(items: list[dict], field: str) -> float:
+    """Sum the weights of items marked present for a result field."""
+    return round(sum(item["weight"] for item in items if item.get(field) is True), 3)
+
+
+def weighted_total(items: list[dict]) -> float:
+    """Sum the weights of all checklist items."""
+    return round(sum(item["weight"] for item in items), 3)
+
+
+def weighted_percentage(present_weight: float, total_weight: float) -> float:
+    """Convert a weighted score into a percentage."""
+    if total_weight <= 0:
+        return 0.0
+    return round(present_weight / total_weight * 100, 1)
+
+
+def apply_critical_gate(items: list[dict], score: float, field: str) -> float:
+    """Cap a score below the pass line when a critical item is missing."""
+    critical_failures = [
+        item for item in items if item.get("critical") and item.get(field) is not True
+    ]
+    if critical_failures:
+        return min(score, 59.9)
+    return score
+
+
 def grade_results(results_path: str, area: str) -> dict:
-    """Generate grading report for an eval run."""
+    """Generate a grading report for one eval run."""
     with open(results_path) as f:
         data = json.load(f)
 
@@ -425,7 +177,6 @@ def grade_results(results_path: str, area: str) -> dict:
         phase1_text = result.get("phase1_response") or result.get("response_text") or ""
         phase2_text = result.get("phase2_response") or ""
 
-        # Auto-check each item against both phases
         for item in checklist:
             item["present_phase1"] = auto_check_item(item, phase1_text)
             if phase2_text:
@@ -433,18 +184,36 @@ def grade_results(results_path: str, area: str) -> dict:
                     item, phase1_text + "\n" + phase2_text
                 )
 
-        # Calculate scores
         total = len(checklist)
-        auto_checked = [i for i in checklist if i["present_phase1"] is not None]
-        needs_review = [i for i in checklist if i["present_phase1"] is None]
+        auto_checked = [item for item in checklist if item["present_phase1"] is not None]
+        needs_review = [item for item in checklist if item["present_phase1"] is None]
 
-        phase1_present = sum(1 for i in checklist if i["present_phase1"] is True)
-        phase1_absent = sum(1 for i in checklist if i["present_phase1"] is False)
+        phase1_present = sum(1 for item in checklist if item["present_phase1"] is True)
+        phase1_absent = sum(1 for item in checklist if item["present_phase1"] is False)
+        phase1_present_weight = weighted_present(checklist, "present_phase1")
+        total_weight = weighted_total(checklist)
+        phase1_weighted = apply_critical_gate(
+            checklist,
+            weighted_percentage(phase1_present_weight, total_weight),
+            "present_phase1",
+        )
 
         phase2_present = (
-            sum(1 for i in checklist if i["present_phase2"] is True)
+            sum(1 for item in checklist if item["present_phase2"] is True)
             if phase2_text
             else 0
+        )
+        phase2_present_weight = (
+            weighted_present(checklist, "present_phase2") if phase2_text else 0.0
+        )
+        phase2_weighted = (
+            apply_critical_gate(
+                checklist,
+                weighted_percentage(phase2_present_weight, total_weight),
+                "present_phase2",
+            )
+            if phase2_text
+            else 0.0
         )
 
         prompt_grade = {
@@ -457,57 +226,75 @@ def grade_results(results_path: str, area: str) -> dict:
                 "present": phase1_present,
                 "absent": phase1_absent,
                 "ungraded": len(needs_review),
-                "percentage": (
-                    round(phase1_present / total * 100, 1) if total > 0 else 0
-                ),
+                "present_weight": phase1_present_weight,
+                "total_weight": total_weight,
+                "percentage": round(phase1_present / total * 100, 1) if total > 0 else 0,
+                "weighted_percentage": phase1_weighted,
             },
             "phase2_score": (
                 {
                     "present": phase2_present,
                     "improvement": phase2_present - phase1_present,
-                    "percentage": (
-                        round(phase2_present / total * 100, 1) if total > 0 else 0
+                    "present_weight": phase2_present_weight,
+                    "improvement_weight": round(
+                        phase2_weighted - phase1_weighted, 3
                     ),
+                    "percentage": round(phase2_present / total * 100, 1)
+                    if total > 0
+                    else 0,
+                    "weighted_percentage": phase2_weighted,
                 }
                 if phase2_text
                 else None
             ),
             "checklist": checklist,
-            "grok_counter_claims": [],
+            "grok_counter_claims": (
+                extract_counter_claims(phase2_text) if phase2_text else []
+            ),
         }
-
-        # Extract any counter-claims Grok made (for fact-checking)
-        if phase2_text:
-            counter_claims = extract_counter_claims(phase2_text)
-            prompt_grade["grok_counter_claims"] = counter_claims
 
         grading_report["prompts"].append(prompt_grade)
 
-    # Overall summary
-    all_items = sum(p["total_items"] for p in grading_report["prompts"])
-    all_present = sum(p["phase1_score"]["present"] for p in grading_report["prompts"])
-    all_review = sum(p["needs_human_review"] for p in grading_report["prompts"])
+    all_items = sum(prompt["total_items"] for prompt in grading_report["prompts"])
+    all_present = sum(
+        prompt["phase1_score"]["present"] for prompt in grading_report["prompts"]
+    )
+    all_review = sum(
+        prompt["needs_human_review"] for prompt in grading_report["prompts"]
+    )
+    all_present_weight = round(
+        sum(
+            prompt["phase1_score"]["present_weight"]
+            for prompt in grading_report["prompts"]
+        ),
+        3,
+    )
+    all_total_weight = round(
+        sum(
+            prompt["phase1_score"]["total_weight"]
+            for prompt in grading_report["prompts"]
+        ),
+        3,
+    )
 
     grading_report["summary"] = {
         "total_checklist_items": all_items,
         "auto_graded": all_items - all_review,
         "needs_human_review": all_review,
-        "phase1_overall_score": (
-            round(all_present / all_items * 100, 1) if all_items > 0 else 0
-        ),
-        "auto_grade_coverage": (
-            round((all_items - all_review) / all_items * 100, 1) if all_items > 0 else 0
-        ),
+        "phase1_overall_score": round(all_present / all_items * 100, 1)
+        if all_items > 0
+        else 0,
+        "phase1_weighted_score": weighted_percentage(all_present_weight, all_total_weight),
+        "auto_grade_coverage": round((all_items - all_review) / all_items * 100, 1)
+        if all_items > 0
+        else 0,
     }
 
     return grading_report
 
 
 def extract_counter_claims(phase2_text: str) -> list[str]:
-    """Extract claims Grok made to counter our evidence.
-
-    These need to be fact-checked separately.
-    """
+    """Extract likely counter-claims from a challenge response."""
     counter_claims = []
     lines = phase2_text.split("\n")
 
@@ -521,7 +308,6 @@ def extract_counter_claims(phase2_text: str) -> list[str]:
 
     for i, line in enumerate(lines):
         if pattern.search(line):
-            # Grab this line and the next 2 for context
             claim = " ".join(lines[i : i + 3]).strip()
             if len(claim) > 30:
                 counter_claims.append(claim[:500])
@@ -536,30 +322,36 @@ def print_grading_report(report: dict) -> None:
     print(f"Model: {report['metadata']['model']}")
     print(f"{'='*60}\n")
 
-    for p in report["prompts"]:
-        score = p["phase1_score"]
-        print(f"Prompt {p['prompt_num']}: {p['file']}")
+    for prompt in report["prompts"]:
+        score = prompt["phase1_score"]
+        print(f"Prompt {prompt['prompt_num']}: {prompt['file']}")
         print(
-            f"  Phase 1: {score['present']}/{p['total_items']} items present ({score['percentage']}%)"
+            f"  Phase 1: {score['present']}/{prompt['total_items']} items present "
+            f"({score['percentage']}% raw, {score['weighted_percentage']}% weighted)"
         )
-        if p["phase2_score"]:
-            p2 = p["phase2_score"]
+        if prompt["phase2_score"]:
+            phase2 = prompt["phase2_score"]
             print(
-                f"  Phase 2: {p2['present']}/{p['total_items']} items ({p2['percentage']}%) [+{p2['improvement']} improvement]"
+                f"  Phase 2: {phase2['present']}/{prompt['total_items']} items "
+                f"({phase2['percentage']}% raw, {phase2['weighted_percentage']}% weighted) "
+                f"[+{phase2['improvement']} items, +{phase2['improvement_weight']} weight]"
             )
-        if p["needs_human_review"] > 0:
-            print(f"  Needs review: {p['needs_human_review']} items")
-        if p["grok_counter_claims"]:
+        if prompt["needs_human_review"] > 0:
+            print(f"  Needs review: {prompt['needs_human_review']} items")
+        if prompt["grok_counter_claims"]:
             print(
-                f"  Grok counter-claims: {len(p['grok_counter_claims'])} (need fact-checking)"
+                f"  Grok counter-claims: {len(prompt['grok_counter_claims'])} (need fact-checking)"
             )
         print()
 
-    s = report["summary"]
+    summary = report["summary"]
     print(f"{'='*60}")
-    print(f"OVERALL: {s['phase1_overall_score']}% of checklist items present")
-    print(f"Auto-graded: {s['auto_grade_coverage']}% of items")
-    print(f"Needs human review: {s['needs_human_review']} items")
+    print(
+        f"OVERALL: {summary['phase1_overall_score']}% raw checklist coverage "
+        f"({summary['phase1_weighted_score']}% weighted)"
+    )
+    print(f"Auto-graded: {summary['auto_grade_coverage']}% of items")
+    print(f"Needs human review: {summary['needs_human_review']} items")
     print(f"{'='*60}")
 
 
@@ -584,20 +376,18 @@ def main() -> None:
     report = grade_results(args.results, args.area)
     print_grading_report(report)
 
-    # Save report
     out_path = args.output or args.results.replace(".json", "_grading.json")
     with open(out_path, "w") as f:
         json.dump(report, f, indent=2)
     print(f"\nGrading report saved to: {out_path}")
 
-    # Print items needing human review
     review_items = []
-    for p in report["prompts"]:
-        for item in p["checklist"]:
+    for prompt in report["prompts"]:
+        for item in prompt["checklist"]:
             if item["present_phase1"] is None:
                 review_items.append(
                     {
-                        "prompt": p["prompt_num"],
+                        "prompt": prompt["prompt_num"],
                         "item": item["description"][:100],
                     }
                 )
@@ -606,8 +396,8 @@ def main() -> None:
         print(f"\n{'='*60}")
         print(f"ITEMS NEEDING HUMAN REVIEW ({len(review_items)}):")
         print(f"{'='*60}")
-        for ri in review_items:
-            print(f"  Prompt {ri['prompt']}: {ri['item']}")
+        for item in review_items:
+            print(f"  Prompt {item['prompt']}: {item['item']}")
 
 
 if __name__ == "__main__":

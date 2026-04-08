@@ -7,7 +7,7 @@
 
 ## 1. Why I'm Interested in This Area
 
-I have an AI agent running my X account (@beratcelik0) right now. It's an OpenClaw agent and its job is to grow my following by creating interesting technical content. I started at 123 followers. I'm still at 123 followers.
+I have an AI agent running my X account (@beratcelik0) right now. It's an OpenClaw agent running on GPT-5.4, and its job is to grow my following by creating interesting technical content. I started at 123 followers. I'm still at 123 followers.
 
 That failure is actually the whole reason I care about this area. The agent produces content that reads fine. It's coherent, technically accurate, well-structured. But nobody engages with it. Nobody follows. The content doesn't make people do anything. And that gap between "sounds good" and "makes humans act" is the entire problem worth solving.
 
@@ -38,7 +38,29 @@ What I want to know is: can an AI actually understand what makes humans act? Not
 
 Grok will be surprisingly strong on emotional tone and creative content (given its EQ-Bench ranking) but will struggle with strategic marketing thinking  - funnel math, bottleneck diagnosis, audience psychographics, and predicting what will actually convert vs. what merely sounds good.
 
-*Post-testing observations will be added here after running the evaluation protocol.*
+Final published results for this area are summarized in `experiments/final/final_grades.md` and the report in `report/main.pdf`.
+
+---
+
+## Research Notes
+
+### Representative Grok conversation artifacts
+
+- Representative marketing conversations are summarized in `report/main.pdf` and reflected in the final score summary.
+- Best prompt for eval design signal: Prompt 8 (negative virality / crisis response)
+- Most useful failure prompts: Prompt 3 (real-time trend hijacking), Prompt 4 (funnel diagnosis), Prompt 10 (vanity-metric truth-telling)
+
+### How I'd build evals from this area
+
+- Separate "sounds good" from "would actually convert" with explicit bottleneck and business-objective scoring
+- Include ethical pushback prompts where the right answer is useful honesty, not cheerful compliance
+- Treat trend prompts as live-tool evals and copy prompts as behavioral-reasoning evals
+
+### 3 X profiles I'd want feedback from
+
+- George Mack for sharp audience psychology and high-signal writing instincts
+- Dickie Bush for creator-system workflows and conversion-minded content packaging
+- Katelyn Bourgoin for behavioral-marketing framing and whether the model is identifying real buying triggers
 
 ---
 
@@ -52,7 +74,8 @@ Grok will be surprisingly strong on emotional tone and creative content (given i
   - 2 adversarial cases (15%)  - ethical traps and vanity metric manipulation
 - **Multi-axis scoring**  - each prompt scored on 3-4 specific dimensions (1-5 scale)
 - **Key evaluation question for every prompt:** Does Grok produce output that a marketer could actually use, or does it produce output that merely sounds like marketing?
-- Run in a **fresh Grok conversation**  - separate from other area tests
+- Run each prompt in a **fresh Grok conversation**
+- If using challenge mode, keep Phase 2 in the **same prompt-level thread** so the revision stays tied to that prompt only
 
 ---
 
@@ -465,44 +488,11 @@ This is what makes this approach different from every other benchmark:
 
 ---
 
-## 5. Power Users on X
+## 5. Power Users for Next Eval Iteration
 
-### 1. @ThisIsSethsBlog  - Seth Godin
-
-**Who:** Godfather of permission marketing. Author of "Purple Cow," "This is Marketing," "Tribes." 30+ years defining how marketing should work.
-
-**Why he's valuable for evals:** His frameworks (Purple Cow, Permission Marketing, Tribes) are the gold standard for testing whether an AI understands marketing strategy vs. marketing tactics. He distinguishes between "getting attention" and "earning trust"  - the exact distinction most marketing AI fails at. Evaluating Grok's output against his principles reveals whether the model is generating attention-grabbing noise or trust-building content.
-
-**What to watch for:** His posts about why most marketing fails  - he articulates the exact failure modes we should be testing for.
-
-### 2. @peeplaja  - Peep Laja
-
-**Who:** Founder of CXL, the leading conversion rate optimization (CRO) education platform. Voted "#1 most influential CRO expert."
-
-**Why he's valuable for evals:** He posts data-driven marketing insights with specific conversion benchmarks and A/B test results. His content provides the kind of ground-truth data that evals need  - he'll say "we tested X vs. Y and X won by 23%." Grok's recommendations could be evaluated against his publicly shared test results to see if the model would have predicted the winner.
-
-**What to watch for:** His A/B test results and conversion benchmarks  - these are eval datasets hiding in plain sight.
-
-### 3. @hnshah  - Hiten Shah
-
-**Who:** Co-founder of KISSmetrics and Crazy Egg (both analytics tools). Serial SaaS founder. Posts about product-led growth and user psychology.
-
-**Why he's valuable for evals:** He bridges product and marketing  - understanding why users do what they do, not just how to write ads. His perspective tests whether Grok can think about the full user journey (product experience → word of mouth → growth) rather than just isolated marketing tactics. He represents the modern marketer who thinks in systems, not campaigns.
-
-**What to watch for:** His takes on why products grow vs. why marketing campaigns succeed  - often different answers.
-
----
-
-## 6. Appendix
-
-### Grok Conversation Link
-*To be added after testing*
-
-### Testing Date
-*To be added*
-
-### Notes
-*To be added after testing*
+- **George Mack** - Audience psychology, pattern recognition in viral content, conversion-minded framing
+- **Dickie Bush** - Content strategy at scale, thread mechanics, what separates growth from noise
+- **Katelyn Bourgoin** - Buying triggers, customer research methodology, behavioral diagnosis
 
 ### Post-Testing Adjustments
 *To be added - how did actual results change the eval proposal?*

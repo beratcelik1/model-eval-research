@@ -1,0 +1,27 @@
+digraph G {
+  graph [bgcolor="white", pad=0.1, nodesep=0.45, ranksep=0.7, splines=ortho];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=20, penwidth=2, color="#4b5563", fontcolor="#1f2937", margin="0.18,0.10"];
+  edge [color="#4b5563", penwidth=2, arrowsize=0.8, fontname="Helvetica", fontsize=16, fontcolor="#6b7280"];
+
+  FR [label=<<B>Final Run</B><BR/><FONT POINT-SIZE="16">grok-4.20-0309-reasoning</FONT>>, fillcolor="#fef3c7", group=1];
+  P1 [label=<<B>Phase 1 Review</B><BR/><FONT POINT-SIZE="16">score cold response</FONT>>, fillcolor="#fee2e2", group=2];
+  DEC [label=<<B>Challenge</B><BR/><B>needed?</B>>, shape=diamond, fillcolor="#ede9fe", group=3, margin="0.16,0.08"];
+  CP [label=<<B>Challenge Prompt</B><BR/><FONT POINT-SIZE="16">evidence-backed,<BR/>anti-sycophancy</FONT>>, fillcolor="#fef3c7", group=4];
+  PUB [label=<<B>Published Score</B><BR/><FONT POINT-SIZE="16">75% phase 1<BR/>+ 25% challenge</FONT>>, fillcolor="#fee2e2", group=3];
+  CR [label=<<B>Challenge Review</B><BR/><FONT POINT-SIZE="16">did Grok improve?</FONT>>, fillcolor="#fee2e2", group=4];
+  DOM [label=<<B>Domain Score</B><BR/><FONT POINT-SIZE="16">area and overall<BR/>aggregation</FONT>>, fillcolor="#f3f4f6", group=3];
+
+  { rank=same; FR; P1; DEC; CP }
+  { rank=same; PUB; CR }
+  { rank=same; DOM }
+
+  FR -> P1;
+  P1 -> DEC;
+  DEC -> CP;
+  DEC -> PUB;
+  CP -> CR;
+  CR -> PUB;
+  PUB -> DOM;
+
+  PUB -> CR [style=invis, weight=20];
+}

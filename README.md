@@ -4,6 +4,43 @@ A research project evaluating how useful Grok is across three high-value domains
 
 Grok is the primary model under evaluation, with comparisons to other models where data exists. Each domain has its own Karpathy-style knowledge base (research wiki), a structured evaluation protocol, and a proposed evaluation framework.
 
+## Repo Map
+
+This repo is organized so a reader can quickly understand the target user groups, the evaluation method, the final runs, and the main conclusions.
+
+- **Three priority-ordered areas of usefulness**
+  - [Investment Decisions](/Users/beratcelik/Desktop/xai/areas/investment-decisions/README.md)
+  - [Marketing Behavior](/Users/beratcelik/Desktop/xai/areas/marketing-behavior/README.md)
+  - [Health Longevity](/Users/beratcelik/Desktop/xai/areas/health-longevity/README.md)
+- **Why I care about each area + how good I think Grok is there**
+  - At the top of each area README
+- **Representative Grok conversation artifacts and eval-building direction**
+  - Summarized in the area READMEs and the final report
+- **Power-user X profiles to guide future eval work**
+  - Listed in each area README
+- **Final research report**
+  - [report/main.pdf](/Users/beratcelik/Desktop/xai/report/main.pdf)
+
+## Canonical Results
+
+The canonical conclusion of this repo is based on the **April 8, 2026 final run**.
+
+- Each prompt has **one published score**
+- That score is computed as **75% cold-response usefulness + 25% challenge review** when a challenge is issued
+- Unchallenged prompts keep their cold-response score
+- Published domain usefulness scores:
+  - Investment Decisions: `56.2/100`
+  - Marketing Behavior: `54.1/100`
+  - Health Longevity: `61.4/100`
+  - Overall: `57.2/100`
+- The report also preserves the Phase 1 baseline (`54.2/100` overall) so the reader can see what Grok volunteered before challenge
+
+Canonical artifacts:
+
+- [report/main.pdf](/Users/beratcelik/Desktop/xai/report/main.pdf)
+- [report/main.tex](/Users/beratcelik/Desktop/xai/report/main.tex)
+- [final_grades.md](/Users/beratcelik/Desktop/xai/experiments/final/final_grades.md)
+
 ## Structure
 
 ```
@@ -43,14 +80,11 @@ Grok is the primary model under evaluation, with comparisons to other models whe
 1. **Research first** - Build domain knowledge bases before writing evals. Understand what's out there, what other models do, what benchmarks exist.
 2. **Design evals** - 10 test prompts per area (60% core, 25% edge cases, 15% adversarial) with multi-axis scoring rubrics.
 3. **Ground in research** - Every "correct answer" is backed by cited research from the knowledge base. Answer keys provide verified benchmarks with sources.
-4. **Validate cheap** - Run prompts against cheaper models to check prompt quality and rubric clarity.
-5. **Test expensive** - Run final evaluations on production models with response recording.
-6. **Challenge-response** - When Grok misses something, present our evidence with sources and see if Grok accepts the correction or pushes back with counter-evidence. Three outcomes:
-   - **PASS** - Grok's answer aligns with our research
-   - **FAIL-ACCEPTED** - Grok missed something, accepted correction when shown evidence
-   - **FAIL-CONTESTED** - Grok pushed back with different evidence (our research may be incomplete)
-7. **Fact-check** - Verify all factual claims in model responses against external sources.
-8. **Report** - Compile findings into a LaTeX research report with quantitative results.
+4. **Validate and iterate cheap** - Run prompts against cheaper models and local review to tighten wording, clarify rubrics, and catch answer-key mistakes before spending production tokens.
+5. **Fact-check the benchmark** - Verify factual claims in prompts and answer keys before trusting the final battery.
+6. **Test expensive** - Run final evaluations on the highest Grok model with response recording.
+7. **Challenge-response** - If a first answer looks weak, send a challenge in the same prompt thread and observe how Grok revises. The published prompt score weights the cold response at 75% and the challenge review at 25%, so revision can improve or worsen the final result.
+8. **Report** - Compile findings into a LaTeX research report focused on usefulness, failure modes, improvement requirements, and next steps.
 
 ## Areas of Focus
 
@@ -65,15 +99,34 @@ pip install -r requirements.txt
 cp .env.example .env
 # Add your API key to .env
 
+# Verify the local pipeline first
+python -m unittest discover -s tests -v
+python scripts/extract_prompts.py --area investment-decisions
+
 # Validate prompts on cheap model first
+python scripts/run_eval.py --mode validate --area investment-decisions --dry-run
 python scripts/run_eval.py --mode validate --area investment-decisions
 
 # Run final evaluation on production model
 python scripts/run_eval.py --mode final --area investment-decisions
 
-# Run with challenge-response (Phase 1 + Phase 2 in same conversation)
+# Run with challenge-response (Phase 1 + Phase 2 in the same prompt thread)
 python scripts/run_eval.py --mode final --area investment-decisions --challenge
 
+# Re-score an existing run with the local checklist grader
+python scripts/grade_responses.py \
+  --results experiments/final/investment-decisions_challenge_YYYYMMDD_HHMMSS.json \
+  --area investment-decisions
+
 # Fact-check responses
-python scripts/fact_check.py --run experiments/final/latest.json
+python scripts/fact_check.py \
+  --run experiments/final/investment-decisions_challenge_YYYYMMDD_HHMMSS.json
 ```
+
+## Reliability Notes
+
+- Prompt files are generated from the area README files. Use `scripts/extract_prompts.py` after editing any prompt battery.
+- Each prompt is evaluated in its own fresh conversation. In challenge mode, the follow-up stays in the same prompt-level thread so answer-key evidence does not leak into later prompts.
+- Challenge review is part of the published scoring logic. The cold response remains dominant, but second-round behavior can still move the final prompt score.
+- `python -m unittest discover -s tests -v` is the minimum local integrity check before trusting regenerated prompts or scoring output.
+- The current canonical published score is the April 8, 2026 final run result: `57.2/100` overall (`56.2` investment, `54.1` marketing, `61.4` health).

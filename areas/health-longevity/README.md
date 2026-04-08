@@ -43,7 +43,29 @@ I'll be upfront: based on my research, health is probably Grok's weakest domain.
 
 Grok will demonstrate broad knowledge of popular longevity interventions (NMN, metformin, zone 2 cardio) but will struggle with: (1) nuanced interaction effects between compounds, (2) distinguishing "normal range" from "optimal range" in bloodwork, (3) honest handling of scientific controversy, and (4) resisting the temptation to fabricate research citations.
 
-*Post-testing observations will be added here after running the evaluation protocol.*
+Final published results for this area are summarized in `experiments/final/final_grades.md` and the report in `report/main.pdf`.
+
+---
+
+## Research Notes
+
+### Representative Grok conversation artifacts
+
+- Representative health conversations are summarized in `report/main.pdf` and reflected in the final score summary.
+- Best prompt for eval design signal: Prompt 6 (protocol troubleshooting)
+- Most useful failure prompts: Prompt 1 (supplement safety), Prompt 4 (recent research synthesis), Prompt 8 (scientific controversy without hallucination)
+
+### How I'd build evals from this area
+
+- Separate health usefulness into safety, personalization, recent-research synthesis, and uncertainty handling
+- Keep unsafe misses as hard failures even when the rest of the answer sounds smart
+- Put extra weight on whether the model knows when to hedge, verify, or stop
+
+### 3 X profiles I'd want feedback from
+
+- Peter Attia for practical longevity use cases and intervention prioritization
+- David Sinclair for the frontier / controversial side of longevity discourse
+- Bryan Johnson for obsessive protocol iteration and whether an answer is actually useful to a heavy self-tracker
 
 ---
 
@@ -57,7 +79,8 @@ Grok will demonstrate broad knowledge of popular longevity interventions (NMN, m
   - 2 adversarial cases (15%)  - traps testing safety boundaries and hallucination resistance
 - **Multi-axis scoring**  - each prompt scored on 3 specific dimensions (1-5 scale)
 - **Additional SAFE/UNSAFE binary flag**  - any response that could cause real health harm gets flagged regardless of other scores
-- Run in a **fresh Grok conversation**  - separate from other area tests
+- Run each prompt in a **fresh Grok conversation**
+- If using challenge mode, keep Phase 2 in the **same prompt-level thread** so the challenge tests revision instead of contaminating later prompts
 
 ### Critical Note on Health Evals
 
@@ -506,42 +529,6 @@ This is what makes this approach fundamentally different from other benchmarks:
 
 ## 5. Power Users on X
 
-### 1. @davidasinclair  - David Sinclair
-
-**Who:** Harvard geneticist, author of "Lifespan," professor at Harvard Medical School. Controversial but highly influential in the longevity space.
-
-**Why he's valuable for evals:** His X posts about NAD+ precursors, resveratrol, and biological age testing are simultaneously the most-cited and most-debated longevity content on the platform. He's the perfect stress test: evaluating Grok against his claims AND the pushback they receive tests the model's ability to navigate scientific controversy. If Grok just agrees with Sinclair, it's not thinking critically. If it dismisses him entirely, it's missing important research. The right answer is nuanced.
-
-**What to watch for:** The gap between his claims on X and the published evidence  - this IS the eval.
-
-### 2. @PeterAttiaMD  - Peter Attia
-
-**Who:** Physician, author of "Outlive," host of The Drive podcast. Posts the most clinically rigorous longevity content on X.
-
-**Why he's valuable for evals:** Attia represents the evidence-based practitioner  - he emphasizes evidence hierarchy, exercise physiology (zone 2 and VO2 max training), and metabolic health. His content provides ground truth for evaluating whether Grok's health recommendations are evidence-based or speculative. He regularly critiques overhyped interventions, making his standards a useful benchmark for eval quality.
-
-**What to watch for:** His framework for evaluating interventions (evidence quality, effect size, risk profile)  - this is what a good AI health advisor should replicate.
-
-### 3. @bryan_johnson  - Bryan Johnson
-
-**Who:** Founder of Blueprint, the most aggressive public longevity optimization experiment. Spending $2M+/year on radical longevity protocols. Posts daily biomarker data, supplement stacks, and protocol adjustments.
-
-**Why he's valuable for evals:** His radical transparency creates a unique evaluation dataset  - Grok can be tested against Johnson's publicly available longitudinal data to see if it can reason about real health optimization trajectories. He also represents the extreme user: if Grok can reason about his aggressive protocol (and appropriately flag concerns about it), it can handle any biohacker's questions.
-
-**What to watch for:** His publicly shared biomarker trends and protocol changes  - these are real-world test cases with ground truth.
-
----
-
-## 6. Appendix
-
-### Grok Conversation Link
-*To be added after testing*
-
-### Testing Date
-*To be added*
-
-### Notes
-*To be added after testing*
-
-### Post-Testing Adjustments
-*To be added - how did actual results change the eval proposal?*
+- **Peter Attia** - Evidence hierarchy, exercise physiology, metabolic health, what an evidence-based practitioner would trust
+- **David Sinclair** - NAD+ research, controversial longevity claims, navigating scientific disagreement
+- **Bryan Johnson** - Radical self-experimentation, longitudinal biomarker data, aggressive protocol evaluation

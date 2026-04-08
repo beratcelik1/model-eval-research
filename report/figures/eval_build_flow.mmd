@@ -1,0 +1,22 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#ffffff', 'fontFamily': 'Helvetica', 'fontSize': '24px', 'lineColor': '#4b5563', 'primaryColor': '#ffffff', 'primaryTextColor': '#1f2937', 'primaryBorderColor': '#4b5563' }, 'flowchart': { 'curve': 'linear', 'nodeSpacing': 40, 'rankSpacing': 45, 'padding': 12 } }}%%
+flowchart TB
+  subgraph top[" "]
+    direction LR
+    RS["Research Sources<br/>papers, reports,<br/>X discourse"] --> KB["Knowledge Base<br/>source-backed wiki"] --> PR["Prompt + Rubric Design<br/>prompts, answer keys,<br/>challenge prompts"]
+  end
+
+  subgraph bottom[" "]
+    direction LR
+    VL["Validation Loop<br/>grok-4-1-fast-reasoning"] --> FZ["Frozen Final Set<br/>final battery"]
+  end
+
+  PR --> VL
+  VL -.-> PR
+
+  style top fill:#ffffff,stroke:#ffffff
+  style bottom fill:#ffffff,stroke:#ffffff
+  style RS fill:#dbeafe,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style KB fill:#dbeafe,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style PR fill:#dcfce7,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style VL fill:#dcfce7,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style FZ fill:#f3f4f6,stroke:#4b5563,stroke-width:2px,color:#1f2937

@@ -1,7 +1,7 @@
 Compare the current prediction market odds for the Fed cutting rates at the next FOMC meeting across Polymarket, Kalshi, and Metaculus. Identify if there's an arbitrage opportunity or a significant spread between platforms. What might explain the discrepancy?
 
 ---
-What it tests: Cross-platform data retrieval, numerical comparison, arbitrage reasoning  - directly relevant to the user's live prediction market bots.
+What it tests: Cross-platform data retrieval, numerical comparison, arbitrage reasoning  - directly relevant to my live prediction market bots.
 
 ---
 Scoring:

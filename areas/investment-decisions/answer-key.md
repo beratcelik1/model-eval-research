@@ -23,7 +23,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - None. This prompt is purely about real-time data retrieval.
 
 **Judgment-based criteria (no empirical benchmark):**
-- Whether the 10 tickers Grok lists are actually trending right now - requires manual verification on X at test time
+- Whether the 10 tickers Grok lists are actually trending right now - requires verification on X at test time
 - Whether Grok's sentiment labels are correct - requires spot-checking against actual X posts
 - Quality of catalyst identification - subjective assessment of specificity
 
@@ -88,7 +88,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - True arbitrage requires the ability to go long on one platform and short on another simultaneously - this is structurally difficult across Polymarket and Kalshi
 
 **Judgment-based criteria (no empirical benchmark):**
-- Whether the odds Grok provides are current - requires manual verification
+- Whether the odds Grok provides are current - requires verification at test time
 - Quality of explanation for why spreads exist
 - Whether Grok acknowledges data freshness limitations
 
@@ -120,7 +120,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Per-trade P&L calculation is straightforward arithmetic once entry/exit prices are known
 
 **Judgment-based criteria (no empirical benchmark):**
-- Whether Grok correctly identifies actual Musk Fed tweets from 2024 - requires manual verification
+- Whether Grok correctly identifies actual Musk Fed tweets from 2024 - requires verification at test time
 - Whether price data cited is accurate - requires checking against historical data
 - Overall quality of methodology discussion
 

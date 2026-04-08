@@ -40,7 +40,29 @@ This is not something I'm curious about in theory. I have live capital on the li
 
 Grok will excel at real-time sentiment extraction and qualitative market reasoning (leveraging X data) but will struggle with numerical precision, risk management rigor, and epistemic honesty about what it does and does not know.
 
-*Post-testing observations will be added here after running the evaluation protocol.*
+Final published results for this area are summarized in `experiments/final/final_grades.md` and the report in `report/main.pdf`.
+
+---
+
+## Research Notes
+
+### Representative Grok conversation artifacts
+
+- Representative investment conversations are summarized in `report/main.pdf` and reflected in the final score summary.
+- Best prompt for eval design signal: Prompt 9 (exact financial math)
+- Most useful failure prompts: Prompt 1 (real-time X signal extraction), Prompt 3 (prediction-market spread reasoning), Prompt 10 (hallucination resistance)
+
+### How I'd build evals from this area
+
+- Split finance usefulness into separate buckets: live-data retrieval, market-structure reasoning, exact math, and epistemic honesty
+- Keep first-pass scoring strict for any prompt that could move money in the real world
+- Treat current-data prompts as tool-use evals, not pure reasoning evals
+
+### 3 X profiles I'd want feedback from
+
+- Kalshi traders and market-structure operators around the Kalshi ecosystem
+- Nate Silver for prediction-market calibration and probabilistic reasoning
+- Matt Levine for market-mechanics clarity and whether the model is actually useful to a fast reader of finance
 
 ---
 
@@ -54,7 +76,8 @@ Grok will excel at real-time sentiment extraction and qualitative market reasoni
   - 2 adversarial cases (15%)  - traps designed to expose failure modes
 - **Multi-axis scoring**  - each prompt scored on 3 specific dimensions (1-5 scale)
 - **Prompts are designed to test capabilities that matter for real trading**, not academic finance knowledge
-- Run all 10 prompts in a **single fresh Grok conversation**  - do not provide additional context between prompts
+- Run each prompt in a **fresh Grok conversation**
+- If using challenge mode, keep Phase 2 in the **same prompt-level thread** so the model can revise without leaking answer-key context into later prompts
 
 ---
 
@@ -452,44 +475,8 @@ No benchmark tests whether an AI can:
 
 ---
 
-## 5. Power Users on X
+## 5. Power Users for Next Eval Iteration
 
-### 1. @LindaRaschke  - Linda Raschke
-
-**Who:** 30+ year professional futures trader. Featured in Market Wizards. Still actively trades and posts real-time market analysis.
-
-**Why she's valuable for evals:** Her posts are testable  - she states specific price levels, timeframes, and directional calls. This means Grok could be evaluated by comparing its analysis against her calls and their outcomes. She represents the expert trader who would use Grok as a thought partner, not a replacement.
-
-**What to watch for:** How she talks about risk management and position sizing  - this is where most AI falls short.
-
-### 2. @nntaleb  - Nassim Nicholas Taleb
-
-**Who:** Author of "The Black Swan," "Antifragile," and "Fooled by Randomness." Risk theorist, former options trader, probability researcher.
-
-**Why he's valuable for evals:** His entire thesis is about model fragility and tail risk  - exactly the areas where LLMs are weakest in finance. His X posts focus on where models break, not where they work. Following his thinking provides a rubric for evaluating whether Grok handles uncertainty honestly or overconfidently. He would be the hardest user to satisfy and the most valuable to please.
-
-**What to watch for:** His criticisms of overconfident probabilistic claims  - the exact failure mode of LLMs in finance.
-
-### 3. @VitalikButerin  - Vitalik Buterin
-
-**Who:** Ethereum co-founder. Actively advocates for prediction markets as information tools. Posts about mechanism design, crypto economics, and market microstructure.
-
-**Why he's valuable for evals:** His content bridges traditional finance and crypto prediction markets  - directly relevant to my live prediction market bots. He thinks about markets as information systems, not just trading venues. Evaluating Grok against his posts about prediction market design would test the model's ability to reason about market microstructure and incentive alignment.
-
-**What to watch for:** His posts about prediction market accuracy vs. polls and traditional forecasting methods.
-
----
-
-## 6. Appendix
-
-### Grok Conversation Link
-*To be added after testing*
-
-### Testing Date
-*To be added*
-
-### Notes
-*To be added after testing*
-
-### Post-Testing Adjustments
-*To be added - how did actual results change the eval proposal?*
+- **Tarek Mansour** - Kalshi ecosystem, prediction market structure, calibration under live conditions
+- **Nate Silver** - Probabilistic reasoning, forecast quality, what counts as useful uncertainty handling
+- **Matt Levine** - Market structure judgment, financial writing clarity, what an informed reader would actually trust

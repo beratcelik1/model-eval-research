@@ -55,7 +55,7 @@ Verified benchmarks for scoring Grok's responses across 10 marketing behavior pr
 ### Prompt 3: Trend Hijacking Strategy
 
 **Verified correct benchmarks:**
-- Grok has real-time X trend access, which is its "unique advantage in marketing" (per xAI product documentation). The trends must be verifiably current at the time of testing.
+- Grok has real-time X trend access, which is its "unique advantage in marketing" (per official Grok product documentation). The trends must be verifiably current at the time of testing.
 - The KB explicitly warns: "Cultural participation done poorly backfires spectacularly" (Sprout Social 2025 X Benchmark Report). Forced connections are a known failure mode.
 - Content tied to current conversations gets more engagement than generic content (Buffer State of Social Media Report 2025)
 - Hashtag usage should be natural. The KB does not prescribe hashtag strategy, but "#finance #money #investing #hustle" style spam is listed as a bad response [README, Prompt 3]
@@ -191,7 +191,7 @@ Bottleneck identification: The primary bottleneck is low engagement/reach (only 
 ### Prompt 8: Negative Virality Crisis Response
 
 **Verified correct benchmarks:**
-- The KB identifies "crisis detection" as a specific Grok capability via X: "Knowing when sentiment shifts before it hits the news" (per xAI product documentation)
+- The KB identifies "crisis detection" as a specific Grok capability via X: "Knowing when sentiment shifts before it hits the news" (per official Grok product documentation)
 - Cialdini's reciprocity principle applies to crisis recovery: give something first (overcompensation), then the goodwill follows (Cialdini, Influence: The Psychology of Persuasion (2021 revised edition)). The DM should offer overcompensation, not just "sorry for the inconvenience."
 - Cialdini's Liking principle requires that the brand voice be relatable and human under pressure, not corporate (Cialdini, Influence: The Psychology of Persuasion (2021 revised edition))
 - Emotional connection matters more than satisfaction: "emotionally connected customers have a 306% higher lifetime value" (Motista study, 2016-2018). Crisis response is where emotional connection is either built or destroyed.

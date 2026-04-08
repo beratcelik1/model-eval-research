@@ -1,0 +1,19 @@
+digraph G {
+  graph [bgcolor="white", pad=0.1, nodesep=0.5, ranksep=0.7, splines=ortho];
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=20, penwidth=2, color="#4b5563", fontcolor="#1f2937", margin="0.18,0.10"];
+  edge [color="#4b5563", penwidth=2, arrowsize=0.8, fontname="Helvetica", fontsize=16, fontcolor="#6b7280"];
+
+  RS [label=<<B>Research Sources</B><BR/><FONT POINT-SIZE="16">papers, reports,<BR/>X discourse</FONT>>, fillcolor="#dbeafe", group=1];
+  KB [label=<<B>Knowledge Base</B><BR/><FONT POINT-SIZE="16">source-backed wiki</FONT>>, fillcolor="#dbeafe", group=2];
+  PR [label=<<B>Prompt + Rubric Design</B><BR/><FONT POINT-SIZE="16">prompts, answer keys,<BR/>challenge prompts</FONT>>, fillcolor="#dcfce7", group=3];
+  VL [label=<<B>Validation Loop</B><BR/><FONT POINT-SIZE="16">grok-4-1-fast-reasoning</FONT>>, fillcolor="#dcfce7", group=3];
+  FZ [label=<<B>Frozen Final Set</B><BR/><FONT POINT-SIZE="16">final battery</FONT>>, fillcolor="#f3f4f6", group=4];
+
+  { rank=same; RS; KB; PR }
+  { rank=same; VL; FZ }
+
+  RS -> KB -> PR;
+  PR -> VL;
+  VL -> FZ;
+  VL -> PR [style=dashed];
+}

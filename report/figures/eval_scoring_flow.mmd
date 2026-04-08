@@ -1,0 +1,28 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#ffffff', 'fontFamily': 'Helvetica', 'fontSize': '24px', 'lineColor': '#4b5563', 'primaryColor': '#ffffff', 'primaryTextColor': '#1f2937', 'primaryBorderColor': '#4b5563' }, 'flowchart': { 'curve': 'linear', 'nodeSpacing': 40, 'rankSpacing': 50, 'padding': 12 } }}%%
+flowchart TB
+  subgraph top[" "]
+    direction LR
+    FR["Final Run<br/>grok-4.20-0309-reasoning"] --> P1["Phase 1 Review<br/>score cold response"] --> DEC{"Challenge<br/>needed?"} --> CP["Challenge Prompt<br/>evidence-backed,<br/>anti-sycophancy"]
+  end
+
+  subgraph middle[" "]
+    direction LR
+    PUB["Published Score<br/>75% phase 1<br/>+ 25% challenge"] ~~~ CR["Challenge Review<br/>did Grok improve?"]
+  end
+
+  DOM["Domain Score<br/>area and overall<br/>aggregation"]
+
+  DEC -- No --> PUB
+  CP --> CR
+  CR --> PUB
+  PUB --> DOM
+
+  style top fill:#ffffff,stroke:#ffffff
+  style middle fill:#ffffff,stroke:#ffffff
+  style FR fill:#fef3c7,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style P1 fill:#fee2e2,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style DEC fill:#ede9fe,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style CP fill:#fef3c7,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style PUB fill:#fee2e2,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style CR fill:#fee2e2,stroke:#4b5563,stroke-width:2px,color:#1f2937
+  style DOM fill:#f3f4f6,stroke:#4b5563,stroke-width:2px,color:#1f2937
