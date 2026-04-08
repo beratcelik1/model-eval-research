@@ -120,9 +120,9 @@ Two Grok models were tested:
 
 \subsection{Scoring and Grading}
 
-Phase 1 responses were auto-scored by the framework against checklist items from the answer key. Phase 2 responses were manually graded using LLMs to web search and fact-check every counter-claim Grok made. Each claim Grok disputed was independently verified against primary sources.
+Each response was graded against a checklist derived from the answer key. Every checklist item was verified using LLM-assisted web search and fact-checking against primary sources. The grading process also fact-checked Grok's own counter-claims when it pushed back during the challenge phase, to determine whether Grok's objections were valid.
 
-Note on auto-scoring: the auto-scorer uses keyword matching as a first pass, which can understate performance on prompts where the model demonstrates understanding through different phrasing. For example, investment prompt 9 (P\&L calculation) was initially scored 0\% by the auto-scorer despite Grok getting every calculation perfectly correct, because the scorer was checking for meta-commentary rather than the actual math. This was identified and corrected during the grading iteration. Where auto-scores and manual grades diverge, I report both and explain why.
+An automated scoring tool was used during the test run to decide in real time whether to send the challenge follow-up (threshold: below 70\% of checklist items present). The final scores reported in this paper are from the full manual evaluation, not the automated tool.
 
 \subsection{Testing Pipeline}
 
