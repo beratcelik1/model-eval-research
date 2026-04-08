@@ -481,7 +481,7 @@ def main() -> None:
         "--mode",
         choices=["validate", "final"],
         required=True,
-        help="validate = grok-3-mini, final = grok-3",
+        help="validate = grok-4-1-fast-reasoning, final = grok-4.20-0309-reasoning",
     )
     parser.add_argument(
         "--area",
