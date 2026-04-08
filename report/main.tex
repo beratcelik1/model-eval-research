@@ -1,0 +1,268 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{AI Model Usefulness Evaluation}
+\lhead{Research Report}
+\rfoot{Page \thepage}
+
+\title{
+    \vspace{-1cm}
+    \textbf{Evaluating AI Model Usefulness Across High-Value Domains} \\
+    \large A Structured Assessment of Model Capabilities in Investment Decision-Making, Marketing Strategy, and Health Optimization
+}
+\author{Berat Celik}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report presents a structured evaluation of AI model capabilities across three domains where usefulness translates directly to economic value: investment decision-making, marketing strategy, and personalized health optimization. For each domain, we designed a 10-prompt evaluation protocol following established eval methodology (60\% core scenarios, 25\% edge cases, 15\% adversarial tests) with multi-axis scoring rubrics. We tested these prompts against current production models, recorded and fact-checked responses, and identified specific capability gaps. Based on our findings, we propose three novel evaluation frameworks -- FinReason-X, PersuasionBench-X, and LongevityBench -- each designed to measure real-world utility rather than academic knowledge. Our key finding: the gap between ``model knows about this domain'' and ``model is actually useful in this domain'' is significant and measurable, and closing it requires domain-specific evals built by people who work in these fields.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Introduction}
+% ============================================================
+
+\subsection{Motivation}
+
+Most AI benchmarks test what a model knows. Very few test whether a model is actually useful. This distinction matters because knowledge and usefulness are different things. A model can score well on financial exam questions and still give terrible trading advice. It can write grammatically perfect marketing copy that nobody clicks on. It can recite medical facts and still recommend a dangerous supplement combination.
+
+This project started from a simple question: if I'm going to trust an AI model with decisions that involve real money, real business outcomes, and real health consequences, how do I evaluate whether it's actually good enough?
+
+I picked three domains where I have direct experience and where AI usefulness creates measurable economic value:
+
+\begin{enumerate}
+    \item \textbf{Investment Decision-Making} -- I build and run AI-powered trading systems. I've seen firsthand where models help and where they fail when real money is on the line.
+    \item \textbf{Marketing Strategy} -- I run an AI agent that manages content on X. It's been a useful experiment in understanding the gap between ``sounds good'' and ``actually converts.''
+    \item \textbf{Health Optimization} -- I follow an AI-designed longevity protocol. I've experienced the benefits and also the uncertainty about whether the model's reasoning is actually sound.
+\end{enumerate}
+
+\subsection{Approach}
+
+For each domain, I followed a consistent methodology:
+
+\begin{enumerate}
+    \item Built a knowledge base on existing benchmarks and evaluation methodology
+    \item Designed 10 test prompts (6 core, 2 edge cases, 2 adversarial)
+    \item Validated prompt quality on cheaper models first
+    \item Ran final evaluations on production models
+    \item Scored responses using multi-axis rubrics
+    \item Fact-checked all factual claims in responses
+    \item Proposed a domain-specific evaluation framework based on findings
+\end{enumerate}
+
+\subsection{What This Report Is Not}
+
+This is not an academic benchmark paper. It's a practitioner's evaluation. The prompts come from real tasks I've tried to accomplish with AI models. The scoring rubrics reflect what actually matters when you're using these models for real work, not what looks good on a leaderboard.
+
+% ============================================================
+\section{Methodology}
+% ============================================================
+
+\subsection{Evaluation Design Principles}
+
+Our evaluation protocol follows established best practices in LLM evaluation design:
+
+\begin{itemize}
+    \item \textbf{60/25/15 distribution}: 60\% core scenarios that represent everyday use, 25\% edge cases that test reasoning depth, 15\% adversarial prompts that test failure modes
+    \item \textbf{Multi-axis scoring}: Each prompt scored on 3-4 specific dimensions rather than a single quality score. A response can be factually accurate but overconfident, or creative but mathematically wrong. Single scores hide these tradeoffs.
+    \item \textbf{Defined benchmarks}: Every prompt has a pre-defined ``good response'' and ``bad response'' description. This is what separates an evaluation from a vibe check.
+    \item \textbf{Adversarial testing}: Prompts specifically designed to trigger known failure modes (hallucination, false confidence, unsafe recommendations)
+\end{itemize}
+
+\subsection{Testing Pipeline}
+
+\begin{enumerate}
+    \item \textbf{Prompt validation}: All prompts tested against a cheaper model to catch poorly constructed prompts, ambiguity issues, and confirm the scoring rubric works
+    \item \textbf{Final evaluation}: Prompts run against the production model with responses recorded
+    \item \textbf{Fact-checking}: All factual claims in responses verified against external sources
+    \item \textbf{Scoring}: Each response scored immediately using the rubric
+\end{enumerate}
+
+% ============================================================
+\section{Area 1: Investment Decision-Making}
+% ============================================================
+
+\subsection{Why This Area}
+
+% [TO BE FILLED: Personal motivation, trading bot experience, prediction market bots]
+
+\subsection{Pre-Testing Assessment}
+
+% [TO BE FILLED: What we expected before testing]
+
+\subsection{Evaluation Results}
+
+% [TO BE FILLED: 10 prompt results with scores]
+
+\begin{table}[H]
+\centering
+\caption{Investment Decision-Making Evaluation Results}
+\begin{tabular}{@{}clcccc@{}}
+\toprule
+\# & Prompt & Category & Axis 1 & Axis 2 & Axis 3 & Total \\
+\midrule
+1 & Real-Time Signal Extraction & Core & /5 & /5 & /5 & /15 \\
+2 & Options Risk-Reward & Core & /5 & /5 & /5 & /15 \\
+3 & Prediction Market Arbitrage & Core & /5 & /5 & /5 & /15 \\
+4 & Social Signal Backtest & Core & /5 & /5 & /5 & /15 \\
+5 & Earnings Surprise Signal & Core & /5 & /5 & /5 & /15 \\
+6 & Portfolio Construction & Core & /5 & /5 & /5 & /15 \\
+7 & Black Swan Crisis & Edge & /5 & /5 & /5 & /15 \\
+8 & Contradictory Signals & Edge & /5 & /5 & /5 & /15 \\
+9 & Numerical Manipulation & Adversarial & /5 & /5 & /5 & /15 \\
+10 & Hallucination Trap & Adversarial & /5 & /5 & /5 & /15 \\
+\midrule
+& & \textbf{Total} & & & & \textbf{/150} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Key Findings}
+
+% [TO BE FILLED: What surprised us, biggest strengths, biggest weaknesses]
+
+\subsection{Proposed Eval Framework: FinReason-X}
+
+% [TO BE FILLED: From area doc]
+
+% ============================================================
+\section{Area 2: Marketing and Human Behavior}
+% ============================================================
+
+\subsection{Why This Area}
+
+% [TO BE FILLED]
+
+\subsection{Pre-Testing Assessment}
+
+% [TO BE FILLED]
+
+\subsection{Evaluation Results}
+
+% [TO BE FILLED: Same table format as Area 1]
+
+\subsection{Key Findings}
+
+% [TO BE FILLED]
+
+\subsection{Proposed Eval Framework: PersuasionBench-X}
+
+% [TO BE FILLED]
+
+% ============================================================
+\section{Area 3: Health Optimization and Longevity}
+% ============================================================
+
+\subsection{Why This Area}
+
+% [TO BE FILLED]
+
+\subsection{Pre-Testing Assessment}
+
+% [TO BE FILLED]
+
+\subsection{Evaluation Results}
+
+% [TO BE FILLED: Same table format + SAFE/UNSAFE column]
+
+\subsection{Key Findings}
+
+% [TO BE FILLED]
+
+\subsection{Proposed Eval Framework: LongevityBench}
+
+% [TO BE FILLED]
+
+% ============================================================
+\section{Cross-Domain Analysis}
+% ============================================================
+
+\subsection{Common Patterns}
+
+% [TO BE FILLED: What failure modes appeared across all three domains?]
+
+\subsection{Domain-Specific Differences}
+
+% [TO BE FILLED: How did model performance differ by domain?]
+
+\subsection{The Usefulness Gap}
+
+% [TO BE FILLED: The gap between knowledge and usefulness, quantified]
+
+% ============================================================
+\section{Proposed Evaluation Frameworks}
+% ============================================================
+
+\subsection{Summary of Three Frameworks}
+
+\begin{table}[H]
+\centering
+\caption{Proposed Evaluation Frameworks}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Framework & Domain & Key Innovation & Dataset Size \\
+\midrule
+FinReason-X & Finance & Real-time social signal evaluation & 500 cases \\
+PersuasionBench-X & Marketing & Live deployment with real engagement metrics & 400 cases \\
+LongevityBench & Health & Binary SAFE/UNSAFE flag that zeros score & 450 cases \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Implementation Priorities}
+
+% [TO BE FILLED: What should be built first and why]
+
+% ============================================================
+\section{Conclusion}
+% ============================================================
+
+% [TO BE FILLED: Summary of findings, what this means for model improvement]
+
+% ============================================================
+\section{Appendix}
+% ============================================================
+
+\subsection{Full Prompt Text}
+
+% [Reference to area docs]
+
+\subsection{Raw Model Responses}
+
+% [Reference to experiments/final/ directory]
+
+\subsection{Fact-Check Results}
+
+% [Reference to fact-check reports]
+
+\end{document}

@@ -1,0 +1,9 @@
+.env
+!.env.example
+__pycache__/
+*.pyc
+.DS_Store
+experiments/**/*.json
+node_modules/
+.claude/
+*.log
