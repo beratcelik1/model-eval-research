@@ -87,7 +87,7 @@ Exact calculations:
 - Conversion from clicks: 12 clicks x 0.8% = 0.096 sales per post
 - Revenue per post: 0.096 x $97 = $9.31 (approximately)
 - The README explicitly states: "even if you doubled conversion to 1.6%, you'd still only get 0.19 sales per post" as the key insight that proves the bottleneck is upstream [README, Prompt 4]
-- Global average e-commerce conversion rate is ~1.65-1.8% [conversion-optimization.md, Ref 1]. A 0.8% landing page conversion is below average but not disastrously so.
+- Global average e-commerce conversion rate is ~1.65-3.0% [conversion-optimization.md, Ref 1]. A 0.8% landing page conversion is below average but not disastrously so.
 - The Fogg Behavior Model (B = MAP) is the correct diagnostic framework: is the problem Motivation, Ability, or Prompt? [conversion-optimization.md, Fogg Behavior Model section, Ref 4]
 
 Bottleneck identification: The primary bottleneck is low engagement/reach (only 55 people interact out of 12,000, and only 12 click). Even perfect landing page optimization cannot compensate for only 12 clicks per post. The leverage is in getting more people to engage and click, not in optimizing the landing page.
@@ -97,7 +97,7 @@ Bottleneck identification: The primary bottleneck is low engagement/reach (only 
 
 **Debatable points (multiple valid positions):**
 - Whether the engagement rate is "below average" depends on the benchmark used. The Sprout Social 2025 X influencer average is 0.39% [content-strategy.md, Ref 3], which would make 0.46% slightly above average. The README references 1-3% as "platform average," which may refer to accounts with higher engagement norms. A response that flags this ambiguity is more honest.
-- Whether the landing page conversion (0.8%) is also a problem worth addressing. It is below the general e-commerce average (~1.65-1.8%) [conversion-optimization.md, Ref 1], so it is a secondary issue. A response that identifies both the engagement bottleneck AND the below-average conversion rate, but correctly prioritizes engagement, is stronger than one that only picks one.
+- Whether the landing page conversion (0.8%) is also a problem worth addressing. It is below the general e-commerce average (~1.65-3.0%) [conversion-optimization.md, Ref 1], so it is a secondary issue. A response that identifies both the engagement bottleneck AND the below-average conversion rate, but correctly prioritizes engagement, is stronger than one that only picks one.
 - Whether 3 "specific actions" means tactics (e.g., "use thread format") or strategic shifts (e.g., "move from broadcast to conversation"). Both are valid.
 
 **Judgment-based criteria (no empirical benchmark):**
@@ -136,10 +136,10 @@ Bottleneck identification: The primary bottleneck is low engagement/reach (only 
 ### Prompt 6: Cross-Platform Content Adaptation
 
 **Verified correct benchmarks:**
-- Email has ~15% average conversion rate, the highest of any channel [conversion-optimization.md, "By channel" section, Ref 1]. This means email is the right channel for direct conversion and the 3-email sequence should leverage this.
+- Email welcome sequences convert at 1-3% on average, which is still higher than most channels [conversion-optimization.md]. NOTE: An earlier version of this answer key incorrectly cited ~15%, which likely confused conversion rate with open rate or click-to-conversion rate. Grok correctly flagged this error during testing.
 - PAS (Problem-Agitate-Solve) is one of the most effective copywriting frameworks and directly relevant to an email sequence about cognitive biases and money [behavioral-frameworks.md, PAS section]
 - Before-After-Bridge and Hook-Story-Offer are both proven frameworks for the types of content requested [conversion-optimization.md, Proven Copywriting Frameworks]
-- Video script hooks must work in the first 3 seconds. Tweet lifespan is roughly 18 minutes [content-strategy.md, Ref 10], so attention capture is critical. The same urgency applies to short-form video.
+- Video script hooks must work in the first 3 seconds. Tweet lifespan ranges from 18-43 minutes depending on source and methodology [content-strategy.md, Ref 10], so attention capture is critical. The same urgency applies to short-form video.
 - The "open loop" technique is the fundamental mechanism for maintaining attention: "Start a story or make a claim without immediately resolving it" [conversion-optimization.md, Psychology of Copywriting]
 - A soft CTA in Email 3 should feel earned, not abrupt. The KB notes "Content that converts typically... builds trust over time. The first piece of content rarely converts. The 10th does" [content-strategy.md, What Bridges the Gap]
 - Emotionally connected customers have 306% higher lifetime value than merely satisfied ones [content-strategy.md, Ref 5; conversion-optimization.md, Ref 7]. The email sequence should build emotional connection, not just deliver information.

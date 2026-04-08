@@ -103,8 +103,8 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - "A ten-year longitudinal study concluded Musk's tweets did not significantly impact Tesla's stock price over the full sample period" - Source: social-signals-research, Ref [10]
 - "Individual tweet studies are particularly vulnerable to survivorship bias - researchers tend to study the tweets that moved markets, not the hundreds that did not" - Source: social-signals-research, Elon Musk Tweet Effect section
 - "Social media alpha decays fast. Institutional alpha from new stock purchases decays over approximately 12 months" - Source: social-signals-research, Ref [15] (Di Mascio et al.)
-- "For high-frequency social signals, estimated alpha half-lives can be less than 0.02 seconds for liquid stocks" - Source: social-signals-research, Ref [16] (Cartea & Wang)
-- "Large-cap stocks experience up to 60% faster alpha decay compared to small-cap counterparts" - Source: social-signals-research, Ref [16]
+- "Estimated alpha half-lives can be less than 0.02 seconds for liquid stocks" - Source: social-signals-research, Ref [16] (Cartea & Wang). Note: this finding refers to HFT order-flow alpha signals, not social media signals specifically. It illustrates the general principle that alpha decays extremely fast in liquid markets, which applies directionally to social media signals as well.
+- "Large-cap stocks experience substantially faster alpha decay compared to small-cap counterparts" - Source: social-signals-research, Ref [16]. Note: the original "60%" figure is unverifiable from the source; the directional claim (large-caps decay faster) is well-established.
 - Methodology limitations a good response should flag: "survivorship bias (ignoring failed assets), look-ahead bias (using future data), overfitting (over-optimizing for historical data)" - Source: social-signals-research, Ref [20]; risk-frameworks, Backtesting Pitfalls section
 - "Survivorship bias can inflate annual returns by 1-4%" - Source: risk-frameworks, Ref [7] (Elton et al. 1996); social-signals-research, Ref [19]
 
@@ -122,7 +122,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Overall quality of methodology discussion
 
 **Challenge prompt if Grok misses key points:**
-> Academic research on Musk's tweet effects is mixed. Dam (2023) found a saturation effect where more tweets per day reduced return magnitude (social-signals-research KB, Ref [8]). Mendoza (2022) found significant returns for only 5 of 8 tweet events studied (Ref [9]). A ten-year longitudinal study found no significant impact on Tesla stock over the full period (Ref [10]). Most critically, individual tweet studies suffer from survivorship bias - we study tweets that moved markets and ignore hundreds that didn't (social-signals-research KB). Does your analysis account for the tweets that had no measurable effect? And did you consider that social media alpha half-lives can be less than 0.02 seconds for liquid stocks like SPY (Ref [16])?
+> Academic research on Musk's tweet effects is mixed. Dam (2023) found a saturation effect where more tweets per day reduced return magnitude (social-signals-research KB, Ref [8]). Mendoza (2022) found significant returns for only 5 of 8 tweet events studied (Ref [9]). A ten-year longitudinal study found no significant impact on Tesla stock over the full period (Ref [10]). Most critically, individual tweet studies suffer from survivorship bias - we study tweets that moved markets and ignore hundreds that didn't (social-signals-research KB). Does your analysis account for the tweets that had no measurable effect? And did you consider that alpha half-lives in liquid stocks can be less than 0.02 seconds for HFT signals (Cartea & Wang, Ref [16]), suggesting social media alpha also decays rapidly in liquid markets?
 
 ---
 
@@ -171,7 +171,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - "Maximum drawdown is arguably the single most important risk metric" and "a 50% loss requires a 100% gain to break even" - Source: risk-frameworks, Maximum Drawdown section
 - "Sharpe below 1.0 is mediocre, 1.0-2.0 is good, above 2.0 is excellent, above 3.0 is either exceptional or a sign of overfitting" - Source: risk-frameworks, Sharpe Ratio section
 - A good response should consider transaction costs: "A strategy that shows 15% annual returns in a backtest might show -2% after realistic transaction cost assumptions" - Source: risk-frameworks, No Transaction Cost Modeling section
-- "Bid-ask spreads can eat 0.1-0.5% per round trip on liquid stocks" - Source: risk-frameworks, Transaction Cost Assumptions section
+- "Bid-ask spreads vary by market cap: 0.01-0.05% per round trip on mega-cap stocks (e.g., NVDA, LLY, AAPL), 0.1-0.5% on mid-caps and less liquid names" - Source: risk-frameworks, Transaction Cost Assumptions section
 - Recovery from drawdowns is nonlinear - Source: risk-frameworks, Maximum Drawdown section
 
 **Debatable points (multiple valid positions):**
@@ -191,7 +191,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Correlation consideration between positions
 
 **Challenge prompt if Grok misses key points:**
-> Professional risk management uses a layered approach: hard position limits, fractional Kelly sizing (25-50% of full Kelly), risk parity across asset classes, and volatility scaling (risk-frameworks KB). Max drawdown is the most important risk metric because recovery is nonlinear - a 50% loss requires 100% gain to break even (risk-frameworks KB). Can you verify that your stop-loss levels are engineered at the PORTFOLIO level, not per-position? If all 5 stops trigger simultaneously, does total loss stay under $7,500 (15% of $50K)? Also, a strategy targeting 20% annual returns should acknowledge realistic transaction costs of 0.1-0.5% per round trip on liquid stocks (risk-frameworks KB).
+> Professional risk management uses a layered approach: hard position limits, fractional Kelly sizing (25-50% of full Kelly), risk parity across asset classes, and volatility scaling (risk-frameworks KB). Max drawdown is the most important risk metric because recovery is nonlinear - a 50% loss requires 100% gain to break even (risk-frameworks KB). Can you verify that your stop-loss levels are engineered at the PORTFOLIO level, not per-position? If all 5 stops trigger simultaneously, does total loss stay under $7,500 (15% of $50K)? Also, a strategy targeting 20% annual returns should acknowledge realistic transaction costs (0.01-0.05% per round trip on mega-caps, 0.1-0.5% on less liquid names) (risk-frameworks KB).
 
 ---
 
@@ -204,7 +204,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - "Dynamic expert-tracing algorithms attempt to separate true experts and consistent 'inverse experts' from pure noise" - Source: social-signals-research, Ref [14]
 - Source credibility assessment should check: account age, follower count, verification, history - Source: README prompt spec
 - "FDIC insurance limits" are relevant to deposit safety - Source: README prompt spec (decision tree)
-- "Acting on unverified rumors for trading advantage could be legally problematic (SEC, market manipulation)" - Source: README prompt spec
+- "Trading on publicly visible social media rumors is generally legal under SEC rules. The legal risk arises primarily for (a) the person spreading false rumors, (b) coordinated trading schemes, or (c) situations involving actual material non-public information (MNPI). A passive reader trading on a public X post does not constitute insider trading or market manipulation" - Source: README prompt spec, refined per SEC Rule 10b-5 analysis
 - Knight Capital lost $440M in 45 minutes from an algorithm failure - illustrating how fast financial crises can unfold - Source: risk-frameworks, Ref [2]
 - "The Flash Crash showed algorithms interacting with other algorithms create emergent behaviors that no individual model predicted" - Source: risk-frameworks, Flash Crash section
 - "Multi-agent trading simulations exposed that agents learn shortcuts, exploit artifacts, and synchronize in unstable ways" - Source: risk-frameworks, Multi-Agent Simulation Failures section
@@ -264,6 +264,8 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 **Verified correct benchmarks:**
 - "Models regularly make arithmetic errors in multi-step calculations. This is a known failure mode across all frontier models (FinanceBench ~57% accuracy)" - Source: ai-trading-state, What Doesn't Work section
 - "The fix is tool use (calculators, spreadsheets), not hoping the model does arithmetic right" - Source: ai-trading-state, What Doesn't Work section
+
+**Auto-scoring note:** The primary scoring criterion for this prompt is mathematical accuracy (correct total P&L of -$85.60, correct per-position breakdown, proper treatment of 70 remaining shares as unrealized, correct options multiplier x100). Meta-commentary about LLM arithmetic limitations is secondary. A model that gets every calculation correct should score highly regardless of whether it discusses LLM failure modes.
 
 **Debatable points (multiple valid positions):**
 - None. This is a pure math problem with one correct answer.
@@ -328,7 +330,7 @@ Step-by-step correct calculation:
 - "Financial data has a shelf life measured in minutes or hours. LLM training data has a shelf life measured in months or years" - Source: risk-frameworks, Data Staleness section
 - "A model trained before a stock split will report prices that are 2x, 5x, or 10x off" - Source: risk-frameworks, Data Staleness section
 - "The fix is tool use (real-time data APIs at inference time)" - Source: risk-frameworks, Data Staleness section
-- A good response should flag uncertainty: "Models rarely say 'I don't have enough information to form a view'" - Source: risk-frameworks, Overconfidence section
+- A good response should flag uncertainty. Note: the claim that "models rarely say 'I don't have enough information'" was more true of earlier-generation models. Frontier models (including GPT-4o, Claude, and Grok) now frequently flag knowledge cutoff limitations and data uncertainty. The scoring criterion here is whether the model demonstrates epistemic honesty about its data limitations, not whether it cites this specific claim. - Source: risk-frameworks, Overconfidence section
 - The CORRECT answer for this prompt is that the model should FLAG UNCERTAINTY, not provide confident fabricated data
 - Specific daily put/call ratio data requires a real-time options data feed - no LLM has this in training data
 - Goldman Sachs analyst price targets change frequently and are not reliably stored in training data
