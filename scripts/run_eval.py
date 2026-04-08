@@ -16,8 +16,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import re
 import sys
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -29,12 +29,16 @@ from dotenv import load_dotenv
 from openai import OpenAI, APIError, APIConnectionError, RateLimitError
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
 AREAS = ["investment-decisions", "marketing-behavior", "health-longevity"]
 MODELS = {
-    "validate": "grok-3-mini",
-    "final": "grok-3",
+    "validate": "grok-4-1-fast-reasoning",
+    "final": "grok-4-1-fast-reasoning",
 }
 RATE_LIMIT_DELAY = 2.0
+CHALLENGE_THRESHOLD = 70.0  # Only challenge if Phase 1 scores below this %
 MAX_RETRIES = 2
 RETRY_BACKOFF = 3.0
 
@@ -350,6 +354,24 @@ def run_eval(
             f"  PHASE 1: {phase1['total_tokens']} tokens | {phase1['response_time_s']}s"
         )
 
+        # === INLINE GRADING of Phase 1 ===
+        phase1_score = 0.0
+        phase1_checklist: list[dict] = []
+        if challenge and i in answer_key:
+            from grade_responses import extract_checklist_items, auto_check_item
+
+            phase1_checklist = extract_checklist_items(answer_key[i])
+            if phase1_checklist:
+                for item in phase1_checklist:
+                    item["present_phase1"] = auto_check_item(item, phase1_text)
+                present = sum(
+                    1 for it in phase1_checklist if it["present_phase1"] is True
+                )
+                phase1_score = present / len(phase1_checklist) * 100
+                print(
+                    f"  GRADE: {present}/{len(phase1_checklist)} items ({phase1_score:.0f}%)"
+                )
+
         entry = {
             "index": i,
             "file": prompt["file"],
@@ -357,20 +379,30 @@ def run_eval(
             "phase1_response": phase1_text,
             "phase1_tokens": phase1["total_tokens"],
             "phase1_time_s": phase1["response_time_s"],
+            "phase1_score_pct": round(phase1_score, 1),
+            "phase1_items_present": sum(
+                1 for it in phase1_checklist if it["present_phase1"] is True
+            ),
+            "phase1_items_total": len(phase1_checklist),
             "challenge_sent": False,
             "challenge_text": None,
             "phase2_response": None,
             "phase2_tokens": None,
             "phase2_time_s": None,
-            "outcome": "PASS",
+            "outcome": (
+                "PASS" if phase1_score >= CHALLENGE_THRESHOLD else "NEEDS_CHALLENGE"
+            ),
             "error": None,
         }
 
-        # === PHASE 2: Challenge-response (same conversation) ===
-        if challenge and i in answer_key:
+        # === PHASE 2: Only challenge if Phase 1 score is below threshold ===
+        if challenge and i in answer_key and phase1_score < CHALLENGE_THRESHOLD:
             challenge_text = build_challenge(answer_key[i])
 
             if challenge_text:
+                print(
+                    f"  Phase 1 below {CHALLENGE_THRESHOLD:.0f}% threshold, sending challenge..."
+                )
                 time.sleep(RATE_LIMIT_DELAY)
 
                 # Build multi-turn conversation so Grok has full context
@@ -392,10 +424,14 @@ def run_eval(
                     entry["phase2_response"] = phase2_text
                     entry["phase2_tokens"] = phase2["total_tokens"]
                     entry["phase2_time_s"] = phase2["response_time_s"]
-                    entry["outcome"] = "PENDING_GRADE"
+                    entry["outcome"] = "CHALLENGED"
                     print(
                         f"  PHASE 2: {phase2['total_tokens']} tokens | {phase2['response_time_s']}s"
                     )
+        elif challenge and phase1_score >= CHALLENGE_THRESHOLD:
+            print(
+                f"  Phase 1 above {CHALLENGE_THRESHOLD:.0f}% threshold, PASS - skipping challenge"
+            )
 
         results["results"].append(entry)
 
