@@ -148,7 +148,11 @@ def run_fact_check(results_path: str) -> dict:
         fname = entry.get("file", "unknown")
         print(f"[{idx}] {fname}")
 
-        response_text = entry.get("response_text")
+        # Support both old schema (response_text) and new challenge schema (phase1_response)
+        response_text = entry.get("response_text") or entry.get("phase1_response")
+        phase2 = entry.get("phase2_response")
+        if phase2:
+            response_text = f"{response_text}\n\n[Challenge Response]:\n{phase2}"
         if not response_text:
             print("  SKIP: no response text")
             report["checks"].append(

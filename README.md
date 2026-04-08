@@ -32,8 +32,7 @@ Grok is the primary model under evaluation, with comparisons to other models whe
 │   ├── validate/                # Cheap model prompt validation
 │   └── final/                   # Production model evaluation runs
 ├── scripts/                     # Testing and analysis tools
-│   ├── run_eval.py              # Phase 1: Run prompts against models via API
-│   ├── challenge_response.py    # Phase 2: Challenge Grok with evidence on gaps
+│   ├── run_eval.py              # Run eval with optional --challenge for Phase 2
 │   ├── fact_check.py            # Verify factual claims in responses
 │   └── extract_prompts.py       # Extract prompts from README files
 └── report/                      # Final research report (LaTeX)
@@ -73,9 +72,9 @@ python scripts/run_eval.py --mode validate --area investment-decisions
 # Run final evaluation on production model
 python scripts/run_eval.py --mode final --area investment-decisions
 
+# Run with challenge-response (Phase 1 + Phase 2 in same conversation)
+python scripts/run_eval.py --mode final --area investment-decisions --challenge
+
 # Fact-check responses
 python scripts/fact_check.py --run experiments/final/latest.json
-
-# Challenge-response: present evidence for gaps, see if Grok accepts or contests
-python scripts/challenge_response.py --results experiments/final/latest.json --area investment-decisions
 ```
