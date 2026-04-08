@@ -12,6 +12,10 @@ Research and analysis for building AI evals in the financial/investment domain.
 
 ### Signal Analysis
 - [Prediction Markets](prediction-markets.md) - How Polymarket/Kalshi work, AI applications, information advantages
+- [Social Signals Research](social-signals-research.md) - Academic research on Twitter/X sentiment, prediction market accuracy, alpha decay, retail sentiment as contrarian indicator, signal-to-noise challenges
+
+### Earnings & Fundamentals
+- [Earnings Prediction Research](earnings-prediction.md) - What predicts earnings surprises: PEAD, analyst dispersion, insider trading signals, ML approaches, social media divergence from consensus
 
 ### Risk Frameworks
 - [Risk Frameworks for AI-Assisted Trading](risk-frameworks.md) - Position sizing methods, portfolio risk measurement, AI-specific risks, backtesting pitfalls, real examples of trading failures

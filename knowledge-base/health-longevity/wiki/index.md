@@ -13,6 +13,9 @@ Research and analysis for building AI evals in the health optimization/longevity
 ### Biomarker Interpretation
 - [Biomarker Interpretation - Normal vs Optimal Ranges](biomarker-interpretation.md) - Why standard lab ranges are too wide, optimal ranges for metabolic/inflammatory/hormone/lipid markers with sources, APOE genotype and protocol decisions, how to read a panel for optimization, the controversy around optimal targets, and how AI should handle the normal vs optimal distinction
 
+### Glucose Paradox
+- [Why Fasting Glucose Can Go UP During Health Optimization](glucose-paradox.md) - Physiological insulin resistance and adaptive glucose sparing on low-carb diets, the dawn phenomenon (cortisol-driven morning spikes), HOMA-IR interpretation, metformin timing (evening vs morning dosing), HbA1c vs fasting glucose vs CGM discordance, cortisol elevation from over-optimization and rigid protocols, when elevated glucose is benign vs concerning, and how to read glucose in context of improving HRV, resting HR, and other biomarkers. 16 cited sources including Grandl 2018, Cardiovascular Health Study, and ARIC study.
+
 ### Safety and Risk
 - (Linked within ai-health-state.md)
 

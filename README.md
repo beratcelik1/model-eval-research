@@ -23,6 +23,7 @@ Grok is the primary model under evaluation, with comparisons to other models whe
 ├── areas/                       # Evaluation protocols and results
 │   ├── investment-decisions/
 │   │   ├── README.md            # Full eval protocol with 10 prompts
+│   │   ├── answer-key.md        # Verified correct benchmarks with KB citations
 │   │   ├── prompts/             # Individual prompt files for API testing
 │   │   └── results/             # Scored responses and analysis
 │   ├── marketing-behavior/
@@ -31,7 +32,8 @@ Grok is the primary model under evaluation, with comparisons to other models whe
 │   ├── validate/                # Cheap model prompt validation
 │   └── final/                   # Production model evaluation runs
 ├── scripts/                     # Testing and analysis tools
-│   ├── run_eval.py              # Run prompts against models via API
+│   ├── run_eval.py              # Phase 1: Run prompts against models via API
+│   ├── challenge_response.py    # Phase 2: Challenge Grok with evidence on gaps
 │   ├── fact_check.py            # Verify factual claims in responses
 │   └── extract_prompts.py       # Extract prompts from README files
 └── report/                      # Final research report (LaTeX)
@@ -42,11 +44,15 @@ Grok is the primary model under evaluation, with comparisons to other models whe
 
 1. **Research first** - Build domain knowledge bases before writing evals. Understand what's out there, what other models do, what benchmarks exist.
 2. **Design evals** - 10 test prompts per area (60% core, 25% edge cases, 15% adversarial) with multi-axis scoring rubrics.
-3. **Validate cheap** - Run prompts against cheaper models to check prompt quality and rubric clarity.
-4. **Test expensive** - Run final evaluations on production models with response recording.
-5. **Compare models** - Where data exists, compare across multiple models for a fair scientific assessment.
-6. **Fact-check** - Verify all factual claims in model responses against external sources.
-7. **Report** - Compile findings into a LaTeX research report with quantitative results.
+3. **Ground in research** - Every "correct answer" is backed by cited research from the knowledge base. Answer keys provide verified benchmarks with sources.
+4. **Validate cheap** - Run prompts against cheaper models to check prompt quality and rubric clarity.
+5. **Test expensive** - Run final evaluations on production models with response recording.
+6. **Challenge-response** - When Grok misses something, present our evidence with sources and see if Grok accepts the correction or pushes back with counter-evidence. Three outcomes:
+   - **PASS** - Grok's answer aligns with our research
+   - **FAIL-ACCEPTED** - Grok missed something, accepted correction when shown evidence
+   - **FAIL-CONTESTED** - Grok pushed back with different evidence (our research may be incomplete)
+7. **Fact-check** - Verify all factual claims in model responses against external sources.
+8. **Report** - Compile findings into a LaTeX research report with quantitative results.
 
 ## Areas of Focus
 
@@ -69,4 +75,7 @@ python scripts/run_eval.py --mode final --area investment-decisions
 
 # Fact-check responses
 python scripts/fact_check.py --run experiments/final/latest.json
+
+# Challenge-response: present evidence for gaps, see if Grok accepts or contests
+python scripts/challenge_response.py --results experiments/final/latest.json --area investment-decisions
 ```
