@@ -399,7 +399,7 @@ Grok will excel at real-time sentiment extraction and qualitative market reasoni
 
 ---
 
-## 4. Eval Framework Proposal: FinReason-X
+## 4. How to Build Better Evals for This Domain
 
 ### The Problem with Existing Finance Benchmarks
 
@@ -411,9 +411,9 @@ No benchmark tests whether an AI can:
 - Reason through conflicting signals from different sources
 - Distinguish credible market intelligence from pump-and-dump schemes
 
-### FinReason-X: Financial Reasoning with Real-Time Social Signals
+### Financial Reasoning with Real-Time Social Signals
 
-**Core thesis:** The most valuable financial AI capability is not knowledge  - it's judgment under uncertainty with real-time social data. FinReason-X is the first benchmark designed to evaluate this.
+**Core thesis:** The most valuable financial AI capability is not knowledge  - it's judgment under uncertainty with real-time social data. A good benchmark would need to be designed to evaluate this.
 
 ### Dataset Design
 

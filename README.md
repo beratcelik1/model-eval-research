@@ -23,9 +23,8 @@ Grok is the primary model under evaluation, with comparisons to other models whe
 ├── areas/                       # Evaluation protocols and results
 │   ├── investment-decisions/
 │   │   ├── README.md            # Full eval protocol with 10 prompts
-│   │   ├── answer-key.md        # Verified correct benchmarks with KB citations
-│   │   ├── prompts/             # Individual prompt files for API testing
-│   │   └── results/             # Scored responses and analysis
+│   │   ├── answer-key.md        # Verified correct benchmarks with real citations
+│   │   └── prompts/             # Individual prompt files for API testing
 │   ├── marketing-behavior/
 │   └── health-longevity/
 ├── experiments/                 # API test runs (gitignored JSONs)

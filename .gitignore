@@ -7,3 +7,9 @@ experiments/**/*.json
 node_modules/
 .claude/
 *.log
+*.aux
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz

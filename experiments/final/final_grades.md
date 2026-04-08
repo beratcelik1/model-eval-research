@@ -70,9 +70,9 @@ improvement factored in but Phase 1 weighted more heavily (it reflects unprompte
 | Domain | Average Grade | PASS | Best Prompt | Worst Prompt |
 |--------|--------------|------|-------------|-------------|
 | Investment Decisions | 42.5% | 1/10 | P9: P&L Calc (95%) | P5: Earnings Surprise (20%) |
-| Marketing & Behavior | 40.0% | 2/10 | P1: Psychographics (70%) | P10: Vanity Metrics (10%) |
+| Marketing & Behavior | 40.0% | 1/10 | P1: Psychographics (70%) | P10: Vanity Metrics (10%) |
 | Health & Longevity | 39.5% | 1/10 | P7: Genetics (60%) | P4: Research Synthesis (15%) |
-| **Overall** | **40.7%** | **4/30** | | |
+| **Overall** | **40.7%** | **3/30** | | |
 
 *PASS = Phase 1 response scored 60%+ on manual grading without needing challenge.
 Marketing P1 and Health P7 were incorrectly challenged by the auto-grader but their Phase 1 responses were strong enough to pass.*

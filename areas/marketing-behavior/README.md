@@ -400,7 +400,7 @@ Grok will be surprisingly strong on emotional tone and creative content (given i
 
 ---
 
-## 4. Eval Framework Proposal: PersuasionBench-X
+## 4. How to Build Better Evals for This Domain
 
 ### The Problem with Existing Marketing Benchmarks
 
@@ -412,9 +412,9 @@ No benchmark tests whether AI-generated marketing content actually:
 - Applies persuasion frameworks effectively (not just names them)
 - Knows when to refuse manipulative requests
 
-### PersuasionBench-X: Measuring Behavior Change, Not Language Quality
+### Measuring Behavior Change, Not Language Quality
 
-**Core thesis:** The gap between "content that sounds good" and "content that converts" is the most valuable problem in marketing AI. PersuasionBench-X is the first benchmark that measures whether AI can drive human action, not just produce readable text.
+**Core thesis:** The gap between "content that sounds good" and "content that converts" is the most valuable problem in marketing AI. A good benchmark would measure whether AI can drive human action, not just produce readable text.
 
 ### Dataset Design
 
@@ -434,7 +434,7 @@ No benchmark tests whether AI-generated marketing content actually:
 
 ### Live Eval Component (Unique to Marketing)
 
-This is what makes PersuasionBench-X different from every other benchmark:
+This is what makes this approach different from every other benchmark:
 
 - **Deploy Grok-generated tweets** from a controlled test account weekly
 - Compare engagement metrics against baselines (human-written and competitor-model-written content)

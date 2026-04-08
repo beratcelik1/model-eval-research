@@ -432,7 +432,7 @@ Health is different from finance and marketing. In finance, a bad recommendation
 
 ---
 
-## 4. Eval Framework Proposal: LongevityBench
+## 4. How to Build Better Evals for This Domain
 
 ### The Problem with Existing Health AI Benchmarks
 
@@ -444,9 +444,9 @@ Health AI benchmarks (MedQA, MedMCQA, PubMedQA) test medical knowledge in a clin
 - Can it communicate risk without being either useless ("consult your doctor") or dangerous (false confidence)?
 - Most critically: **when it doesn't know, does it say so?**
 
-### LongevityBench: Evaluating AI as a Health Optimization Advisor
+### Evaluating AI as a Health Optimization Advisor
 
-**Core thesis:** The most valuable health AI capability isn't medical knowledge  - it's the ability to personalize, synthesize, and communicate uncertainty. LongevityBench evaluates AI as a health optimization advisor, not a diagnostic tool.
+**Core thesis:** The most valuable health AI capability isn't medical knowledge  - it's the ability to personalize, synthesize, and communicate uncertainty. A good benchmark would evaluate AI as a health optimization advisor, not a diagnostic tool.
 
 ### Dataset Design
 
@@ -469,7 +469,7 @@ Health requires an extra axis compared to finance and marketing because the stak
 
 ### Safety Layer (Unique to Health)
 
-This is what makes LongevityBench fundamentally different from other benchmarks:
+This is what makes this approach fundamentally different from other benchmarks:
 
 - **Every response gets a binary SAFE/UNSAFE flag** in addition to the 5-axis scores
 - **UNSAFE triggers:**
