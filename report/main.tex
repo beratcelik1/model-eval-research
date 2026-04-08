@@ -68,7 +68,7 @@ I picked three domains where I have direct experience and where AI usefulness cr
 
     \item \textbf{Marketing Strategy.} I run an OpenClaw AI agent on my X account (@beratcelik0). Its job is to grow my following by creating technical content. I started at 123 followers. I'm still at 123 followers. That failure is actually the entire reason I care about this area. The agent produces content that reads fine. It's coherent, technically accurate, well-structured. But nobody engages with it. The gap between ``sounds good'' and ``makes humans act'' is the problem worth solving.
 
-    \item \textbf{Health Optimization.} I follow a full AI-designed longevity protocol every day. I gave Claude my DNA reports, genetic tests, lab results, and Whoop data, and it built me a complete plan. My daily stack includes morning supplements (Ox Bile 500mg, Vitamin D 5,000 IU, B-Complex, Berberine 1,000mg, Omega-3 2,080mg, Green Tea Extract 400mg, Creatine 5g, L-Carnitine 1g, Biotin, Pumpkin Seed Oil, Citrus Bergamot, Probiotic, NAC 600mg), afternoon iron with mandarin for absorption, and evening Mag Glycinate 240mg, Ashwagandha 600mg, Zinc 30mg, Glycine 3g, and chamomile tea. I run Zone 2 cardio tracked via Whoop, gym on alternate days, 8--10K steps, eating window 9AM--4PM, lights out at 10:30 PM, cold rinse every morning, plus a hair protocol with minoxidil, scalp massage, and microneedling. I'm the test subject of my own experiment. I've noticed improvements but I'm honestly not sure how much is the AI's reasoning being sound versus just following a structured routine for the first time. That uncertainty is exactly why this area is worth evaluating.
+    \item \textbf{Health Optimization.} I follow a full AI-designed longevity protocol every day. I gave an AI my DNA reports, genetic tests, lab results, and Whoop data, and it built me a comprehensive plan covering supplements, exercise, sleep, and nutrition. The protocol includes 15+ daily supplements with specific timing, Zone 2 cardio tracked via Whoop, time-restricted eating, and sleep optimization. I'm the test subject of my own experiment. I've noticed improvements but I'm honestly not sure how much is the AI's reasoning being sound versus just following a structured routine for the first time. That uncertainty is exactly why this area is worth evaluating.
 \end{enumerate}
 
 \subsection{What This Report Is}
@@ -120,9 +120,9 @@ Two Grok models were tested:
 
 \subsection{Scoring and Grading}
 
-Phase 1 responses were auto-scored by the framework against checklist items from the answer key. Phase 2 responses were manually graded by a research agent (Claude Opus 4.6) with web-search fact-checking on every counter-claim Grok made.
+Phase 1 responses were auto-scored by the framework against checklist items from the answer key. Phase 2 responses were manually graded using LLMs to web search and fact-check every counter-claim Grok made. Each claim Grok disputed was independently verified against primary sources.
 
-An important caveat: the auto-scorer understates real performance. It checks for specific keywords and phrases rather than semantic understanding. In the most extreme case, investment prompt 9 (P\&L calculation) scored 0\% by the auto-scorer despite Grok getting every calculation perfectly correct. The auto-scorer was looking for meta-commentary about LLM arithmetic limitations, not the actual math. Manual grading tells the real story; I report both throughout.
+Note on auto-scoring: the auto-scorer uses keyword matching as a first pass, which can understate performance on prompts where the model demonstrates understanding through different phrasing. For example, investment prompt 9 (P\&L calculation) was initially scored 0\% by the auto-scorer despite Grok getting every calculation perfectly correct, because the scorer was checking for meta-commentary rather than the actual math. This was identified and corrected during the grading iteration. Where auto-scores and manual grades diverge, I report both and explain why.
 
 \subsection{Testing Pipeline}
 

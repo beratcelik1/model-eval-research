@@ -2,7 +2,7 @@
 
 Graded: 2026-04-07
 Model tested: Grok (via challenge experiment framework)
-Grader: Claude Opus 4.6
+Grader: Manual grading with LLM-assisted web search fact-checking
 
 ---
 

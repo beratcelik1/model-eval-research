@@ -7,21 +7,9 @@
 
 ## 1. Why I'm Interested in This Area
 
-I have a full weekly health protocol that was designed by Claude. I gave it my DNA and genetic test reports, my latest lab results from the past year, and my Whoop data. It built me a complete plan to optimize body composition and lose body fat percentage. I follow it every day.
+I have a full weekly health protocol that was designed by AI. I gave it my DNA and genetic test reports, my latest lab results from the past year, and my Whoop data. It built me a complete plan to optimize body composition and lose body fat percentage. I follow it every day.
 
-Here's what my actual stack looks like:
-
-**Morning supplements:** Ox Bile 500mg, Vitamin D 5,000 IU, B-Complex 1 cap, Berberine HCL 1,000mg, Omega-3 2,080mg (2 caps), Green Tea Extract 400mg, Creatine 5g, L-Carnitine 1g, Biotin 10,000mcg, Pumpkin Seed Oil 3,000mg, Citrus Bergamot 1,200mg, Probiotic 58 CFU, NAC 600mg.
-
-**Afternoon:** Iron 25mg (taken alone with mandarin for absorption, away from tea/zinc/calcium), Psyllium Husk 10g.
-
-**Evening supplements:** Mag Glycinate 240mg, Ashwagandha 600mg, Zinc 30mg, Glycine 3,000mg, Chamomile tea.
-
-**Exercise:** Zone 2 cardio (HR 130-145 BPM tracked via Whoop) on run days, gym on other days, targeting 8-10K steps daily.
-
-**Rules:** Eating window 9AM-4PM, lactose-free dairy only, EVOO only for cooking, lights out 10:30 PM, cold rinse 30 seconds every morning.
-
-**Hair protocol:** Minoxidil 5% PM, scalp massage daily, microneedling 1mm weekly on Sundays.
+The protocol covers 15+ daily supplements with specific timing (morning, afternoon, evening), Zone 2 cardio tracked via Whoop, time-restricted eating, sleep optimization, and 8-10K daily steps.
 
 I'm basically the test subject of my own experiment. I've noticed improvements but I'm honestly not sure how much of that is the AI's reasoning being sound versus just following a structured routine for the first time. That uncertainty is exactly why this area is interesting to evaluate.
 

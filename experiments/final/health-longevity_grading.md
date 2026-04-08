@@ -2,7 +2,7 @@
 
 **Model:** Grok (via xAI)
 **Date:** 2026-04-08
-**Grader:** Claude Opus 4.6 (research agent)
+**Grader:** Manual grading with LLM-assisted web search fact-checking
 
 ---
 

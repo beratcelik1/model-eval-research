@@ -235,14 +235,22 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 ### Prompt 8: Contradictory Signals
 
 **Verified correct benchmarks:**
+
+**Core contrarian insight (weight most heavily -- this is the key test of reasoning):**
+Correctly identifying the distribution pattern (institutional selling into retail FOMO) is the single most important criterion for this prompt. A response that identifies this dynamic and recommends caution/shorting demonstrates the core analytical skill, even without citing specific papers. Weight this insight more heavily than specific citation matching.
+
 - "Extreme retail sentiment predicts reversals rather than continuations" - Source: social-signals-research, Retail Sentiment as a Contrarian Indicator section
+- "Sentiment-driven mispricings: when social media sentiment diverges sharply from fundamentals, prices tend to overshoot and then correct" - Source: market-mechanics, Known Inefficiencies section
+
+**Supporting academic evidence (secondary -- validates the core insight with research):**
 - "Cao, Li, Zhan, and Zhou (2022): when retail investors were 'overly-optimistic about future stock market performance...aggregate stocks are likely to be overpriced, leading to lower stock market returns in the future'" - Source: social-signals-research, Ref [17]
 - "Retail sentiment is a poor short-term timing indicator but becomes more useful as a contrarian signal over intermediate and long-run periods (months, not days)" - Source: social-signals-research, Ref [18]
 - "Longer-run components of investor sentiment indices show strong contrarian predictive power, especially for hard-to-arbitrage stocks" - Source: social-signals-research, Ref [18]
-- "Social media is overwhelmingly noise. The models that win will be the ones that can reliably extract signal from noise at scale" - Source: prediction-markets, Building the Pipeline section
-- "Sentiment-driven mispricings: when social media sentiment diverges sharply from fundamentals, prices tend to overshoot and then correct" - Source: market-mechanics, Known Inefficiencies section
 - "Generic sentiment dictionaries misclassify nearly three-fourths of 'negative' words in financial contexts (Loughran and McDonald, 2011)" - Source: social-signals-research, Ref [13]
-- "Off-exchange trading exceeded 50% of US equity volume in early 2025" - meaning the visible order book tells less than half the story, relevant to interpreting "heavy volume" - Source: market-mechanics, Ref [7]
+
+**Contextual data points (tertiary):**
+- "Social media is overwhelmingly noise. The models that win will be the ones that can reliably extract signal from noise at scale" - Source: prediction-markets, Building the Pipeline section
+- "Off-exchange trading exceeded 50% of US equity volume in early 2025" - meaning the visible order book tells less than half the story, relevant to interpreting "heavy volume" - Source: market-mechanics, Ref [7] (confirmed by Nasdaq data, January 2025: 51.8%)
 
 **Debatable points (multiple valid positions):**
 - Whether the pattern described (bullish retail, bearish smart money) is definitely distribution or could be something else
