@@ -35,7 +35,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 AREAS = ["investment-decisions", "marketing-behavior", "health-longevity"]
 MODELS = {
     "validate": "grok-4-1-fast-reasoning",
-    "final": "grok-4-1-fast-reasoning",
+    "final": "grok-4.20-0309-reasoning",
 }
 RATE_LIMIT_DELAY = 2.0
 CHALLENGE_THRESHOLD = 70.0  # Only challenge if Phase 1 scores below this %
