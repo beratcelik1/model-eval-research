@@ -9,9 +9,9 @@ Grok is the primary model under evaluation, with comparisons to other models whe
 This repo is organized so a reader can quickly understand the target user groups, the evaluation method, the final runs, and the main conclusions.
 
 - **Three priority-ordered areas of usefulness**
-  - [Investment Decisions](/Users/beratcelik/Desktop/xai/areas/investment-decisions/README.md)
-  - [Marketing Behavior](/Users/beratcelik/Desktop/xai/areas/marketing-behavior/README.md)
-  - [Health Longevity](/Users/beratcelik/Desktop/xai/areas/health-longevity/README.md)
+  - [Investment Decisions](areas/investment-decisions/README.md)
+  - [Marketing Behavior](areas/marketing-behavior/README.md)
+  - [Health Longevity](areas/health-longevity/README.md)
 - **Why I care about each area + how good I think Grok is there**
   - At the top of each area README
 - **Representative Grok conversation artifacts and eval-building direction**
@@ -19,7 +19,7 @@ This repo is organized so a reader can quickly understand the target user groups
 - **Power-user X profiles to guide future eval work**
   - Listed in each area README
 - **Final research report**
-  - [report/main.pdf](/Users/beratcelik/Desktop/xai/report/main.pdf)
+  - [Evaluating Grok's Usefulness (PDF)](Evaluating_Groks_Usefulness_Berat_Celik_April_2026.pdf)
 
 ## Canonical Results
 
@@ -37,9 +37,9 @@ The canonical conclusion of this repo is based on the **April 8, 2026 final run*
 
 Canonical artifacts:
 
-- [report/main.pdf](/Users/beratcelik/Desktop/xai/report/main.pdf)
-- [report/main.tex](/Users/beratcelik/Desktop/xai/report/main.tex)
-- [final_grades.md](/Users/beratcelik/Desktop/xai/experiments/final/final_grades.md)
+- [Evaluating Grok's Usefulness (PDF)](Evaluating_Groks_Usefulness_Berat_Celik_April_2026.pdf)
+- [report/main.tex](report/main.tex)
+- [final_grades.md](experiments/final/final_grades.md)
 
 ## Structure
 
