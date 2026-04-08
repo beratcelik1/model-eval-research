@@ -1,0 +1,46 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Motivation}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}What This Report Is}{3}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Methodology}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Evaluation Design Principles}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Knowledge Base Construction}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Challenge-Response Protocol}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Models Tested}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Scoring and Grading}{5}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Testing Pipeline}{5}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Area 1: Investment Decision-Making}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Why This Area}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Evaluation Results: grok-4.20-0309-reasoning}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Key Findings}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Proposed Eval Framework: FinReason-X}{7}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Area 2: Marketing and Human Behavior}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Why This Area}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Evaluation Results: grok-4.20-0309-reasoning}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Key Findings}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Proposed Eval Framework: PersuasionBench-X}{9}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Area 3: Health Optimization and Longevity}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Why This Area}{10}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Evaluation Results: grok-4.20-0309-reasoning}{10}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Key Findings}{10}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Proposed Eval Framework: LongevityBench}{11}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Cross-Domain Analysis}{12}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Model Comparison: grok-4-1-fast vs. grok-4.20}{12}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Common Failure Patterns}{12}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Domain-Specific Differences}{13}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}The Usefulness Gap, Quantified}{13}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Proposed Evaluation Frameworks}{14}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Summary of Three Frameworks}{14}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}What Makes These Different}{14}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Implementation Priorities}{14}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Conclusion}{15}{section.8}%
+\contentsline {subsection}{\numberline {8.1}What I Found}{15}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}What This Means for Grok}{15}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}What This Means for Evals}{15}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Final Thought}{15}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Appendix}{16}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Auto-Scorer Calibration Issues}{16}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Answer Key Corrections Made During Evaluation}{16}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Full Grok Counter-Claim Accuracy}{16}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Studies Grok Incorrectly Called ``Fabricated''}{17}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Methodology Details}{17}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}Raw Data}{17}{subsection.9.6}%

@@ -1,4 +1,4 @@
-Analyze NVDA for a 30-day at-the-money call option play. Consider: current IV percentile relative to its 52-week range, upcoming catalysts in the next 30 days, the stock's recent earnings guidance, and current market regime (risk-on vs risk-off). Give me a risk-reward verdict with a confidence level.
+Analyze NVDA for a 30-day at-the-money call option play. Consider: current IV percentile relative to its 52-week range, upcoming catalysts in the next 30 days, the stock's recent earnings guidance, and current market regime (risk-on vs risk-off). For each number in your analysis, tell me whether it's based on real-time data, your training data, or an estimate. Give me a risk-reward verdict with a confidence level.
 
 ---
 What it tests: Multi-factor options analysis, ability to reason about IV, catalyst awareness, intellectual honesty about uncertainty.

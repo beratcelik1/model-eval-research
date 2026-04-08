@@ -223,6 +223,16 @@ def auto_check_item(item: dict, response_text: str) -> bool | None:
     """Try to auto-check if an item is present in the response.
 
     Returns True/False if confident, None if needs human review.
+
+    IMPORTANT: This is intentionally conservative. It's better to say
+    "needs review" than to mis-score. The inline Phase 1 grading uses
+    this to decide whether to challenge - being too strict (challenging
+    more often) is better than being too lenient (missing gaps).
+
+    For math items: check if the exact answer numbers appear.
+    For factual/safety: check if key domain terms co-occur. Require
+    that the MOST IMPORTANT keyword (first in list) is present plus
+    at least one supporting term.
     """
     if not response_text:
         return False
@@ -230,28 +240,95 @@ def auto_check_item(item: dict, response_text: str) -> bool | None:
     response_lower = response_text.lower()
 
     if item["type"] == "math":
-        # For math items, check if the exact numbers appear
-        if item["keywords"]:
-            matches = sum(
-                1
-                for k in item["keywords"]
-                if k.replace("$", "").replace(",", "")
-                in response_lower.replace(",", "")
-            )
-            return matches >= len(item["keywords"]) * 0.5 if item["keywords"] else None
+        # For math: check if the exact numbers appear
+        if not item["keywords"]:
+            return None
+        # Clean both sides for comparison
+        clean_response = response_lower.replace(",", "").replace("$", "")
+        matches = sum(
+            1
+            for k in item["keywords"]
+            if k.replace("$", "").replace(",", "") in clean_response
+        )
+        # Require at least half the numbers to be present
+        if matches >= max(1, len(item["keywords"]) * 0.5):
+            return True
+        if matches == 0:
+            return False
         return None
 
     if item["type"] in ("factual", "safety"):
         if not item["keywords"]:
             return None
 
-        # Check how many keywords match
-        matches = sum(1 for k in item["keywords"] if k in response_lower)
-        ratio = matches / len(item["keywords"]) if item["keywords"] else 0
+        # Filter out generic words that match anything
+        generic = {
+            "the",
+            "a",
+            "an",
+            "is",
+            "are",
+            "was",
+            "were",
+            "this",
+            "that",
+            "it",
+            "for",
+            "in",
+            "on",
+            "at",
+            "to",
+            "of",
+            "and",
+            "or",
+            "not",
+            "no",
+            "but",
+            "if",
+            "so",
+            "as",
+            "by",
+            "be",
+            "other",
+            "more",
+            "most",
+            "some",
+            "any",
+            "all",
+            "each",
+            "specific",
+            "should",
+            "must",
+            "can",
+            "will",
+            "may",
+            "prompt",
+            "readme",
+            "ref",
+            "source",
+            "kb",
+        }
+        meaningful = [
+            k for k in item["keywords"] if k.lower() not in generic and len(k) > 2
+        ]
 
-        if ratio >= 0.6:
+        if not meaningful:
+            return None
+
+        matches = sum(1 for k in meaningful if k.lower() in response_lower)
+        ratio = matches / len(meaningful) if meaningful else 0
+
+        # More lenient: if the primary term (first meaningful keyword) is present
+        # and at least one other matches, count it
+        primary_present = (
+            meaningful[0].lower() in response_lower if meaningful else False
+        )
+
+        if primary_present and ratio >= 0.4:
             return True
-        if ratio <= 0.2:
+        if ratio >= 0.7:
+            return True
+        if ratio <= 0.1 and not primary_present:
             return False
         return None  # Ambiguous - needs human review
 

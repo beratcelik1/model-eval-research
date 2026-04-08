@@ -1,4 +1,4 @@
-What are the top 3 trending topics on X right now? For each, write a tweet from the perspective of a personal finance education brand that naturally ties into the trend without feeling forced. The brand voice is: witty, slightly irreverent, data-driven. Include appropriate hashtags.
+What are the top 3 trending topics on X right now? For each, write a tweet from the perspective of a personal finance education brand that naturally ties into the trend without feeling forced. The brand voice is: witty, slightly irreverent, data-driven. Include appropriate hashtags. Include the exact time you're checking, so I can verify whether these are actually trending right now.
 
 ---
 What it tests: Real-time trend awareness (Grok's X advantage), brand voice consistency, relevance connection  - the ability to be timely without being cringeworthy.

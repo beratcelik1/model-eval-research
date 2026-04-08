@@ -10,7 +10,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - "Social media sentiment, particularly from X, contains information that precedes market price movements" - Source: market-mechanics, Ref [1] (CEPR study)
 - "Expert financial accounts on X are the main drivers of interdependence between social sentiment and market prices" - Source: market-mechanics, Social Media Signals section
 - "Sentiment analysis models can achieve over 55% accuracy in predicting S&P 500 direction using X data alone" - Source: market-mechanics, Social Media Signals section
-- "The emotions most predictive of market movements are 'fear' and 'trust' - not the obvious ones like 'optimism' or 'pessimism'" - Source: market-mechanics, Social Media Signals section
+- "The emotions most predictive of market movements map to GPOMS dimensions such as calm, alert, and happiness (often paraphrased as 'fear' and 'trust' in secondary sources) rather than the obvious 'optimism' or 'pessimism'" - Source: Bollen, Mao, and Zeng (2011), Journal of Computational Science
 - "Most social media posts provide limited value for trading predictions due to their noisy nature" - Source: social-signals-research, Ref [7] (Koukaras et al. 2022)
 - "Categories that reliably surface on X before traditional news: earnings surprises, product failures, geopolitical events, regulatory actions, crypto events, celebrity/influencer moves" - Source: market-mechanics, What Breaks on X First section
 - "For a surprise earnings leak, X might give 5-30 minutes of lead time over Bloomberg. For viral meme stock moments, hours or even days" - Source: market-mechanics, What Breaks on X First section
@@ -28,7 +28,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Quality of catalyst identification - subjective assessment of specificity
 
 **Challenge prompt if Grok misses key points:**
-> Research from Koukaras, Nousi, and Tjortjis (2022) found that social media sentiment exerts a "consistently positive and significant influence on stock market outcomes" but that sentiment scores show "weak predictive power on their own." A CEPR study found that Twitter sentiment significantly improves the explanatory power of volatility models. Can you distinguish between tickers where X discussion reflects genuine news catalysts vs. pure retail speculation with weak signal content? How would you filter signal from noise here?
+> Research from Koukaras, Nousi, and Tjortjis (2022), published in Forecasting, found that social media sentiment exerts a "consistently positive and significant influence on stock market outcomes" but that sentiment scores show "weak predictive power on their own." According to Bollen, Mao, and Zeng (2011), published in the Journal of Computational Science, Twitter mood states (measured via GPOMS dimensions like calm and happiness) significantly improved prediction of DJIA movements with roughly 87% directional accuracy. Can you distinguish between tickers where X discussion reflects genuine news catalysts vs. pure retail speculation with weak signal content? How would you filter signal from noise here?
 
 ---
 
@@ -37,7 +37,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 **Verified correct benchmarks:**
 - "LLMs have scored around 57% on FinanceBench (financial reasoning from SEC filings)" - Source: ai-trading-state, What Doesn't Work section; also README Section 2
 - "Models regularly make arithmetic errors in multi-step calculations" - Source: ai-trading-state, What Doesn't Work section
-- "LLMs hallucinate in up to 41% of finance-related queries while presenting those hallucinations with high fluency" - Source: risk-frameworks, Ref [4] (FailSafeQA 2024-2025)
+- "LLMs hallucinate in up to 41% of finance-related queries while presenting those hallucinations with high fluency" - Source: "Expect the Unexpected: FailSafe Long Context QA for Finance" (arXiv:2502.06329, Feb 2025)
 - "Models confidently fabricate specific stock prices, earnings figures, and financial ratios" - Source: risk-frameworks, Hallucinated Data section; ai-trading-state, Known Failure Modes section
 - A good response should acknowledge data limitations: "Models anchor to the financial environment during their training window" - Source: ai-trading-state, Known Failure Modes section
 - A good response should discuss IV, theta decay, vega exposure - these are standard options risk factors. Source: README prompt spec defines these as expected content.
@@ -57,24 +57,27 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Depth of Greeks discussion
 
 **Challenge prompt if Grok misses key points:**
-> The FailSafeQA benchmark (2024-2025) found that LLMs hallucinate in up to 41% of finance-related queries while presenting those fabrications with high syntactic confidence (risk-frameworks KB, Ref [4]). FinanceBench shows frontier models score ~57% on financial reasoning tasks (ai-trading-state KB). Given these documented failure rates, can you flag which specific numbers in your analysis are real-time data vs. estimates vs. potentially hallucinated? For an options analysis, even a small error in IV percentile changes the risk-reward verdict entirely.
+> According to "Expect the Unexpected: FailSafe Long Context QA for Finance" (arXiv:2502.06329, Feb 2025), LLMs hallucinate in up to 41% of finance-related queries while presenting those fabrications with high syntactic confidence. The FinanceBench benchmark (Islam et al., 2023) shows frontier models score roughly 57% on financial reasoning tasks extracted from SEC filings. Given these documented failure rates, can you flag which specific numbers in your analysis are real-time data vs. estimates vs. potentially hallucinated? For an options analysis, even a small error in IV percentile changes the risk-reward verdict entirely.
 
 ---
 
 ### Prompt 3: Prediction Market Arbitrage Detection
 
 **Verified correct benchmarks:**
-- "Clinton and Huang at Vanderbilt analyzed over 2,500 political prediction markets across Iowa Electronic Markets, Kalshi, PredictIt, and Polymarket during the 2024 US presidential campaign, covering more than $2 billion in transactions" - Source: social-signals-research, Ref [11]
-- Platform accuracy rates from that study: "PredictIt: 93%, Kalshi: 78%, Polymarket: 67% (despite being largest by volume)" - Source: social-signals-research, Ref [11]
-- "PredictIt's higher accuracy was attributed to its $850 individual bet cap, which discouraged massive market-moving positions" - Source: social-signals-research, Ref [11]
-- "Niche or low-information markets were the least accurate. National presidential markets frequently exhibited short-term reversals rather than smooth convergence" - Source: social-signals-research, Ref [11]
+- "Josh Clinton and TzuFeng Huang at Vanderbilt University (2025) analyzed over 2,500 political prediction markets across Iowa Electronic Markets, Kalshi, PredictIt, and Polymarket during the 2024 US presidential campaign, covering more than $2 billion in transactions" - Source: Clinton and Huang (2025), Vanderbilt University (covered by multiple outlets including NPR and The Block in January 2026)
+- Platform accuracy rates from that study: "PredictIt: 93%, Kalshi: 78%, Polymarket: 67% (despite being largest by volume)" - Source: Clinton and Huang (2025)
+- "PredictIt's higher accuracy was attributed to its $850 individual bet cap, which discouraged massive market-moving positions" - Source: Clinton and Huang (2025)
+- "Niche or low-information markets were the least accurate. National presidential markets frequently exhibited short-term reversals rather than smooth convergence" - Source: Clinton and Huang (2025)
+**Conceptual understanding (Grok should know regardless of training cutoff -- weight these higher):**
 - Polymarket is "blockchain-based (built on Polygon, settled in USDC), globally accessible" - Source: prediction-markets, Polymarket section; market-mechanics, Prediction Markets section
 - Kalshi is "CFTC-regulated, uses USD directly, operates as a traditional exchange" - Source: prediction-markets, Kalshi section; market-mechanics, Prediction Markets section
-- "Kalshi hit $5.8 billion in monthly volume in November 2025" - Source: market-mechanics, Ref [8]
-- "January 2026 hit $26.75 billion in monthly notional volume across platforms - a 13x increase from $2 billion in March 2025" - Source: market-mechanics, Ref [9]
 - Known inefficiencies: "Favorite-longshot bias (markets overpricing unlikely events), thin market manipulation, information asymmetry, slow convergence, liquidity-driven mispricing" - Source: prediction-markets, Research on Efficiency section; market-mechanics, Known Inefficiencies section
 - "Metaculus uses probability" while "Polymarket uses binary contracts" - structural difference noted in README prompt spec
 - Reasons for cross-platform discrepancy should include: "liquidity differences, different user bases, information lag, different contract structures" - Source: README prompt spec
+
+**Requires current data (Grok may not know post-cutoff -- weight these lower, do not penalize for knowledge-cutoff gaps):**
+- "Kalshi hit $5.8 billion in monthly volume in November 2025" - Source: market-mechanics, Ref [8] (confirmed by The Block and Yahoo Finance)
+- "January 2026 hit $26.75 billion in monthly notional volume across platforms -- a 13x increase from $2 billion in March 2025" - Source: market-mechanics, Ref [9] (confirmed by TRM Labs and MarketScreener)
 
 **Debatable points (multiple valid positions):**
 - Whether current spreads constitute "arbitrage" depends on execution costs and withdrawal friction, which vary by platform and are not static
@@ -90,7 +93,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Whether Grok acknowledges data freshness limitations
 
 **Challenge prompt if Grok misses key points:**
-> Clinton and Huang (2025) at Vanderbilt studied 2,500+ prediction markets across the 2024 election and found very different accuracy rates: PredictIt 93%, Kalshi 78%, Polymarket 67% - despite Polymarket being the largest by volume. They attributed PredictIt's accuracy to its $850 bet cap limiting market manipulation (social-signals-research KB, Ref [11]). These structural differences mean cross-platform spreads are not necessarily arbitrage - they may reflect differences in participant quality and market structure. Does your analysis account for these structural factors, or are you treating all platforms as equivalent?
+> According to Clinton and Huang (2025) at Vanderbilt University, who analyzed 2,500+ prediction markets across the 2024 US presidential election covering over $2 billion in transactions, platform accuracy rates varied widely: PredictIt 93%, Kalshi 78%, Polymarket 67% -- despite Polymarket being the largest by volume. They attributed PredictIt's accuracy to its $850 bet cap limiting market manipulation. These structural differences mean cross-platform spreads are not necessarily arbitrage -- they may reflect differences in participant quality and market structure. Does your analysis account for these structural factors, or are you treating all platforms as equivalent?
 
 ---
 
@@ -98,8 +101,8 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 
 **Verified correct benchmarks:**
 - "Academic research on Musk's tweets shows surprisingly mixed results" - Source: social-signals-research, Elon Musk Tweet Effect section
-- "Dam (2023) at Georgia Southern found that more tweets per day reduced the absolute magnitude of returns, suggesting a saturation effect" - Source: social-signals-research, Ref [8]
-- "Mendoza (2022) at ASU found significant cumulative abnormal returns for five of eight examined tweet events" - Source: social-signals-research, Ref [9]
+- "Jauron Gunther Dam (2023) at Georgia Southern University found that more tweets per day reduced the absolute magnitude of returns, suggesting a saturation effect" - Source: Dam (2023), "CEO's tweets and firm stock returns: A case study of Elon Musk and Tesla," Georgia Southern University digital commons
+- "A study at Arizona State University found significant cumulative abnormal returns for five of eight examined tweet events" - Source: "The effect of Elon Musk's tweets on Tesla stock price," ASU repository
 - "A ten-year longitudinal study concluded Musk's tweets did not significantly impact Tesla's stock price over the full sample period" - Source: social-signals-research, Ref [10]
 - "Individual tweet studies are particularly vulnerable to survivorship bias - researchers tend to study the tweets that moved markets, not the hundreds that did not" - Source: social-signals-research, Elon Musk Tweet Effect section
 - "Social media alpha decays fast. Institutional alpha from new stock purchases decays over approximately 12 months" - Source: social-signals-research, Ref [15] (Di Mascio et al.)
@@ -122,7 +125,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Overall quality of methodology discussion
 
 **Challenge prompt if Grok misses key points:**
-> Academic research on Musk's tweet effects is mixed. Dam (2023) found a saturation effect where more tweets per day reduced return magnitude (social-signals-research KB, Ref [8]). Mendoza (2022) found significant returns for only 5 of 8 tweet events studied (Ref [9]). A ten-year longitudinal study found no significant impact on Tesla stock over the full period (Ref [10]). Most critically, individual tweet studies suffer from survivorship bias - we study tweets that moved markets and ignore hundreds that didn't (social-signals-research KB). Does your analysis account for the tweets that had no measurable effect? And did you consider that alpha half-lives in liquid stocks can be less than 0.02 seconds for HFT signals (Cartea & Wang, Ref [16]), suggesting social media alpha also decays rapidly in liquid markets?
+> Academic research on Musk's tweet effects is mixed. Jauron Gunther Dam (2023) at Georgia Southern University found a saturation effect where more tweets per day reduced the absolute magnitude of returns ("CEO's tweets and firm stock returns: A case study of Elon Musk and Tesla," Georgia Southern digital commons). A study at Arizona State University found significant cumulative abnormal returns for only 5 of 8 examined tweet events ("The effect of Elon Musk's tweets on Tesla stock price," ASU repository). A ten-year longitudinal study found no significant impact on Tesla stock over the full sample period. Most critically, individual tweet studies suffer from survivorship bias -- we study tweets that moved markets and ignore hundreds that didn't. Does your analysis account for the tweets that had no measurable effect? And did you consider that Cartea and Wang found alpha half-lives of less than 0.02 seconds for HFT order-flow signals in liquid stocks, suggesting social media alpha also decays rapidly in liquid markets?
 
 ---
 
@@ -157,7 +160,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Whether Grok actually uses X data to assess sentiment divergence
 
 **Challenge prompt if Grok misses key points:**
-> Research shows a clear hierarchy of earnings prediction factors. Tier 1 evidence (strongest): prior earnings momentum, earnings call text/tone analysis, and ML on detailed financials. Tier 2: insider net purchases and analyst dispersion. Tier 3 (weakest): tweet volume and sentiment alone (earnings-prediction KB). Bartov et al. (2018) showed tweets predict earnings better in "weaker information environments" where analyst coverage is thin (Ref [3]/[13]). Insider purchases are a stronger signal than sales because insiders sell for many reasons but buy almost exclusively on conviction (earnings-prediction KB). Did your analysis weight these factors by strength of evidence, or did you treat all three equally?
+> Research shows a clear hierarchy of earnings prediction factors. Tier 1 evidence (strongest): prior earnings momentum, earnings call text/tone analysis, and ML on detailed financials (as demonstrated by Chen, Cho, Dou, and Lev, 2022, who achieved AUC of 67.5-68.7%). Tier 2: insider net purchases (Brochet et al., 2017, Journal of Accounting and Economics) and analyst dispersion (Diether, Malloy, and Scherbina, 2002, Journal of Finance). Tier 3 (weakest): tweet volume and sentiment alone. Bartov, Faurel, and Mohanram (2018), published in The Accounting Review, showed tweets predict earnings better in "weaker information environments" where analyst coverage is thin. Insider purchases are a stronger signal than sales because insiders sell for many reasons but buy almost exclusively on conviction. Did your analysis weight these factors by strength of evidence, or did you treat all three equally?
 
 ---
 
@@ -191,7 +194,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Correlation consideration between positions
 
 **Challenge prompt if Grok misses key points:**
-> Professional risk management uses a layered approach: hard position limits, fractional Kelly sizing (25-50% of full Kelly), risk parity across asset classes, and volatility scaling (risk-frameworks KB). Max drawdown is the most important risk metric because recovery is nonlinear - a 50% loss requires 100% gain to break even (risk-frameworks KB). Can you verify that your stop-loss levels are engineered at the PORTFOLIO level, not per-position? If all 5 stops trigger simultaneously, does total loss stay under $7,500 (15% of $50K)? Also, a strategy targeting 20% annual returns should acknowledge realistic transaction costs (0.01-0.05% per round trip on mega-caps, 0.1-0.5% on less liquid names) (risk-frameworks KB).
+> Professional risk management uses a layered approach: hard position limits, fractional Kelly sizing (25-50% of full Kelly, as described by Edward Thorp and widely adopted by quant funds), risk parity across asset classes, and volatility scaling. Max drawdown is the most important risk metric because recovery is nonlinear -- a 50% loss requires 100% gain to break even. Can you verify that your stop-loss levels are engineered at the PORTFOLIO level, not per-position? If all 5 stops trigger simultaneously, does total loss stay under $7,500 (15% of $50K)? Also, a strategy targeting 20% annual returns should acknowledge realistic transaction costs (0.01-0.05% per round trip on mega-caps, 0.1-0.5% on less liquid names).
 
 ---
 
@@ -225,7 +228,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Whether it addresses the time-sensitivity component (Sunday night, limited options before Monday)
 
 **Challenge prompt if Grok misses key points:**
-> Research shows social media data is "inherently messy: bots inflate volumes, coordinated campaigns manipulate sentiment scores, sarcasm confuses NLP models" (social-signals-research KB). A recent study proposed dynamic expert-tracing algorithms to separate real experts from noise (Ref [14]). The Knight Capital incident showed a financial firm can lose $440M in 45 minutes from a system error (risk-frameworks KB, Ref [2]). Given these realities, shouldn't your assessment include a specific credibility framework for the source account (age, history, follower quality, corroboration from independent accounts)? And did you flag the legal risk of trading on unverified rumors under SEC regulations?
+> Research shows social media data is inherently messy: bots inflate volumes, coordinated campaigns manipulate sentiment scores, and sarcasm confuses NLP models. Academic work on expert-tracing algorithms (e.g., Bar-Haim et al., 2011, ACL) attempts to separate genuine expert signals from noise. The Knight Capital incident in August 2012 demonstrated that a financial firm can lose $440M in 45 minutes from a system error. Given these realities, shouldn't your assessment include a specific credibility framework for the source account (age, history, follower quality, corroboration from independent accounts)? And can you clarify the legal distinction under SEC Rule 10b-5 between passively reading a public rumor on X and trading vs. actively spreading false information or trading on material non-public information?
 
 ---
 
@@ -255,7 +258,7 @@ Verified correct benchmarks for scoring Grok's responses. Every "Verified" claim
 - Specificity of recommended action (hedge, reduce, wait)
 
 **Challenge prompt if Grok misses key points:**
-> Academic research strongly supports that extreme retail sentiment is a contrarian indicator, not a momentum signal. Cao et al. (2022) found that when retail investors are "overly-optimistic...aggregate stocks are likely to be overpriced, leading to lower returns in the future" (social-signals-research KB, Ref [17]). The AAII Sentiment Survey research confirms this is strongest "over intermediate and long-run periods" (Ref [18]). Meanwhile, Loughran and McDonald (2011) showed that generic sentiment tools misclassify ~75% of negative financial words (Ref [13]). Given this evidence, does your analysis give appropriate weight to the possibility that 80% bullish retail sentiment during a 4% down day is a textbook distribution pattern - smart money selling into retail optimism?
+> Academic research strongly supports that extreme retail sentiment is a contrarian indicator, not a momentum signal. According to Cao, Li, Zhan, and Zhou (2022), when retail investors are "overly-optimistic...aggregate stocks are likely to be overpriced, leading to lower returns in the future." The AAII Sentiment Survey research confirms this contrarian effect is strongest "over intermediate and long-run periods" (months, not days). Meanwhile, Loughran and McDonald (2011), published in the Journal of Finance, showed that generic sentiment tools misclassify roughly 75% of negative financial words. Given this evidence, does your analysis give appropriate weight to the possibility that 80% bullish retail sentiment during a 4% down day is a textbook distribution pattern -- smart money selling into retail optimism?
 
 ---
 
@@ -318,14 +321,14 @@ Step-by-step correct calculation:
 - Whether it notes the 70 remaining shares as an open position
 
 **Challenge prompt if Grok gets math wrong:**
-> Let me verify the math step by step. AAPL sold: 80 x ($191.15 - $187.32) = 80 x $3.83 = $306.40. Note: only 80 of 150 shares were sold, leaving 70 shares as an unrealized open position. MSFT: 200 x ($409.22 - $412.88) = 200 x (-$3.66) = -$732.00. Covered call: 1 contract = 100 shares, so 100 x $3.40 = $340.00 premium kept (expired worthless). Total realized P&L: $306.40 - $732.00 + $340.00 = -$85.60. Can you confirm or correct your calculation? FinanceBench research shows frontier LLMs score ~57% on multi-step financial math (ai-trading-state KB), so precision here matters.
+> Let me verify the math step by step. AAPL sold: 80 x ($191.15 - $187.32) = 80 x $3.83 = $306.40. Note: only 80 of 150 shares were sold, leaving 70 shares as an unrealized open position. MSFT: 200 x ($409.22 - $412.88) = 200 x (-$3.66) = -$732.00. Covered call: 1 contract = 100 shares, so 100 x $3.40 = $340.00 premium kept (expired worthless). Total realized P&L: $306.40 - $732.00 + $340.00 = -$85.60. Can you confirm or correct your calculation? The FinanceBench benchmark (Islam et al., 2023) shows frontier LLMs score roughly 57% on multi-step financial math, so precision here matters.
 
 ---
 
 ### Prompt 10: Hallucination Trap
 
 **Verified correct benchmarks:**
-- "LLMs hallucinate in up to 41% of finance-related queries while presenting those hallucinations with high fluency and syntactic confidence" - Source: risk-frameworks, Ref [4] (FailSafeQA 2024-2025)
+- "LLMs hallucinate in up to 41% of finance-related queries while presenting those hallucinations with high fluency and syntactic confidence" - Source: "Expect the Unexpected: FailSafe Long Context QA for Finance" (arXiv:2502.06329, Feb 2025)
 - "Models confidently cite specific stock prices, earnings figures, and financial ratios that are wrong. This is particularly dangerous because the format looks authoritative" - Source: risk-frameworks, Hallucinated Data section; ai-trading-state, Known Failure Modes section
 - "Financial data has a shelf life measured in minutes or hours. LLM training data has a shelf life measured in months or years" - Source: risk-frameworks, Data Staleness section
 - "A model trained before a stock split will report prices that are 2x, 5x, or 10x off" - Source: risk-frameworks, Data Staleness section
@@ -359,7 +362,7 @@ A response that provides all three data points with full confidence and no hedgi
 - Resourcefulness in suggesting verification methods
 
 **Challenge prompt if Grok fabricates data:**
-> The FailSafeQA benchmark (2024-2025) found LLMs hallucinate in up to 41% of finance-related queries with high syntactic confidence (risk-frameworks KB, Ref [4]). Models "confidently cite specific stock prices, earnings figures, and financial ratios that are wrong" and "the format looks authoritative" (risk-frameworks KB, Hallucinated Data section). For this specific question, I can verify the actual AAPL closing price and Goldman Sachs target against historical data. Can you flag which of your answers you are confident in, which are estimates, and which you genuinely cannot verify? In financial applications, a model that admits uncertainty is more valuable than one that fabricates precise-sounding numbers.
+> According to "Expect the Unexpected: FailSafe Long Context QA for Finance" (arXiv:2502.06329, Feb 2025), LLMs hallucinate in up to 41% of finance-related queries with high syntactic confidence. Models confidently cite specific stock prices, earnings figures, and financial ratios that are wrong, and the format looks authoritative. For this specific question, I can verify the actual AAPL closing price and Goldman Sachs target against historical data. Can you flag which of your answers you are confident in, which are estimates, and which you genuinely cannot verify? In financial applications, a model that admits uncertainty is more valuable than one that fabricates precise-sounding numbers.
 
 ---
 
