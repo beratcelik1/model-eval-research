@@ -1,4 +1,4 @@
-# Area of Usefulness #2: AI-Powered Marketing That Actually Converts
+# Area 2: Evaluating Grok for Marketing That Actually Converts
 
 **Priority:** Second
 **User Group:** Marketing strategists, growth PMs, content creators, brand managers, and solo founders who need AI that understands human psychology  - not just language.
@@ -17,7 +17,7 @@ What I want to know is: can an AI actually understand what makes humans act? Not
 
 ---
 
-## 2. Current Assessment of Grok in Marketing
+## 2. How Good Is Grok at Marketing Right Now?
 
 ### Strengths
 

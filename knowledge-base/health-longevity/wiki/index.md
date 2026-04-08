@@ -5,13 +5,13 @@ Research and analysis for building AI evals in the health optimization/longevity
 ## Pages
 
 ### Supplement Research
-- (Placeholder: supplement-research.md - coming soon)
+- [Supplement Research - What the Evidence Actually Says](supplement-research.md) - Evidence hierarchy, major longevity supplements (NMN/NR, berberine, omega-3, creatine, ashwagandha, magnesium, NAC, vitamin D) with actual trial data and sample sizes, interactions, industry funding problems, and how AI should handle the gap between "promising" and "proven"
 
 ### Protocol Design
-- (Placeholder: protocol-design.md - coming soon)
+- [Longevity Protocol Design Principles](protocol-design.md) - How Attia, Johnson, and Huberman design protocols, the four pillars ranked by evidence, zone 2 and VO2 max research, nutrition frameworks (TRE, protein, Mediterranean diet), sleep optimization, personalization via biomarkers, and cost-effectiveness rankings
 
 ### Biomarker Interpretation
-- (Placeholder: biomarker-interpretation.md - coming soon)
+- [Biomarker Interpretation - Normal vs Optimal Ranges](biomarker-interpretation.md) - Why standard lab ranges are too wide, optimal ranges for metabolic/inflammatory/hormone/lipid markers with sources, APOE genotype and protocol decisions, how to read a panel for optimization, the controversy around optimal targets, and how AI should handle the normal vs optimal distinction
 
 ### Safety and Risk
 - (Linked within ai-health-state.md)

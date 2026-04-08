@@ -197,3 +197,11 @@ Step 2 is the hardest. Social media is overwhelmingly noise. The models that win
 4. How do you handle the model being wrong? Prediction markets have binary outcomes, so an 80% confident model is wrong 20% of the time.
 5. Is the opportunity in finding mispricings or in faster reaction to new information?
 6. How do you eval an AI's prediction market capability without putting real money at risk?
+
+---
+
+## References
+
+1. Wolfers, J. & Zitzewitz, E. (2004). "Prediction Markets." Journal of Economic Perspectives, Vol. 18, No. 2, pp. 107-126. https://www.aeaweb.org/articles?id=10.1257/0895330041371321
+2. Polymarket. https://polymarket.com/ - Built on Polygon, settled in USDC.
+3. Kalshi. https://kalshi.com/ - CFTC-regulated US prediction market.

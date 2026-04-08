@@ -15,6 +15,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
+
+# Grok's API is OpenAI-compatible, so we use the openai SDK
+# pointed at api.x.ai instead of api.openai.com. This is standard
+# practice for any OpenAI-compatible provider.
 from openai import OpenAI, APIError, APIConnectionError, RateLimitError
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent

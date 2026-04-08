@@ -167,3 +167,9 @@ Long-term (training):
 - Use conversion data as RLVR signal
 - Train models that optimize for action, not just approval
 - Build models that can take calibrated creative risks
+
+---
+
+## References
+
+1. EQ-Bench3 Leaderboard. https://eqbench.com/ - Grok models ranked #1 as of early 2026. Current leader is Grok-4.1 Thinking (Elo 1586).

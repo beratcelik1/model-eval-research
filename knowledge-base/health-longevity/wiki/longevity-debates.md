@@ -188,3 +188,15 @@ Good answer: Acknowledges there is no established optimal dose, references the d
 Good answer: Notes the potential interaction (both affect NAD+ and AMPK pathways), references any relevant research, flags that the interaction is not well-studied, recommends discussing with their prescribing doctor with specific questions to ask.
 
 This debate is a microcosm of the entire health eval challenge: weighing imperfect evidence, handling conflicts of interest, expressing calibrated uncertainty, and being useful without being reckless.
+
+---
+
+## References
+
+1. Sinclair, D.A. (2019). "Lifespan: Why We Age - and Why We Don't Have To." Atria Books. Sinclair is Professor of Genetics at Harvard Medical School and co-founded Metro International Biotech.
+2. Brenner, C. Discovery of the NR kinase pathway. Brenner is chief scientific advisor at ChromaDex (Niagen). Key NR patents held by Brenner/ChromaDex.
+3. Kaeberlein, M. Professor of Laboratory Medicine and Pathology, University of Washington. Led the Dog Aging Project. Known skeptic of both NMN and NR supplementation claims.
+4. NR human trials: Trammell et al. (2016) - NR pharmacokinetics, NAD+ elevation up to 2.7-fold with single 1000mg dose. Airhart et al. (2017) - dose-dependent NAD+ increase, 35-168% from baseline at 1000mg 2x/day. Martens et al. (2018) - 500mg 2x/day for 6 weeks raised NAD+ and improved cardiovascular parameters.
+5. NMN human trial: Yoshino et al. (2021). 25 postmenopausal women with prediabetes. 250mg/day NMN improved muscle insulin sensitivity. Published in Science. https://pubmed.ncbi.nlm.nih.gov/33888596/
+6. Liao et al. (2021). NMN improved aerobic capacity in amateur runners. Published in Journal of the International Society of Sports Nutrition.
+7. NAD+ decline with age (~50% between ages 20-60): This is a commonly cited figure in the NAD+ biology literature. The exact rate varies by tissue and measurement method.

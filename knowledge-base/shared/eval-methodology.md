@@ -146,3 +146,9 @@ This is why eval design deserves serious investment upfront.
 5. Rotate 15-20% of edge cases quarterly to prevent overfitting.
 6. Always run the same eval across all models you're comparing. Never compare scores from different eval sets.
 7. Document your methodology so results are reproducible.
+
+---
+
+## References
+
+1. Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R., & Zhu, C. (2023). "G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment." Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP), pp. 2511-2522. https://arxiv.org/abs/2303.16634

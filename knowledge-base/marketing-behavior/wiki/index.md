@@ -11,13 +11,13 @@ Research and analysis for building AI evals in the marketing/behavioral domain.
 - (Linked within behavioral-frameworks.md)
 
 ### Content Strategy
-- (Placeholder: content-strategy.md - coming soon)
+- [Content Strategy and What Makes Content Convert](content-strategy.md) - Viral content science (Berger's STEPPS), X/Twitter format performance data, hook formulas, AI vs human content A/B results, and the gap between engagement and conversion
 
 ### AI Marketing Research
 - [Current State of AI in Marketing](ai-marketing-state.md) - The "sounds good vs converts" gap, EQ-Bench3, what's missing
 
 ### Conversion Optimization
-- (Placeholder: conversion-optimization.md - coming soon)
+- [Conversion Optimization and Behavioral Triggers](conversion-optimization.md) - CRO fundamentals, Fogg behavior model, Cialdini applied to CRO, copywriting psychology, A/B testing methodology, funnel diagnostics, and AI's role in optimization
 
 ## Key Questions This Wiki Should Answer
 

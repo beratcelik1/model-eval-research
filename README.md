@@ -1,8 +1,8 @@
 # AI Model Usefulness Evaluation
 
-A research project evaluating how useful current AI models are across three high-value domains. Not just "can the model answer questions" but "is it actually useful for real work in these areas."
+A research project evaluating how useful Grok is across three high-value domains. Not just "can the model answer questions" but "is it actually useful for real work in these areas."
 
-Each domain has its own Karpathy-style knowledge base (research wiki), a structured evaluation protocol, and a proposed evaluation framework. Models are compared head-to-head where data exists.
+Grok is the primary model under evaluation, with comparisons to other models where data exists. Each domain has its own Karpathy-style knowledge base (research wiki), a structured evaluation protocol, and a proposed evaluation framework.
 
 ## Structure
 
@@ -50,9 +50,9 @@ Each domain has its own Karpathy-style knowledge base (research wiki), a structu
 
 ## Areas of Focus
 
-1. **Investment Decision-Making** - Can AI reason about markets, extract signals from social data, and make decisions that generate returns? Tested from the perspective of someone running live trading bots on Kalshi and Polymarket.
-2. **Marketing and Human Behavior** - Can AI understand what makes people act, not just write grammatically correct copy? Tested from the perspective of running an AI agent on X that produces content but fails to convert.
-3. **Health Optimization and Longevity** - Can AI personalize health protocols based on individual biomarkers and genetics, and navigate scientific uncertainty safely? Tested from the perspective of following an AI-designed supplement and fitness protocol daily.
+1. **Investment Decision-Making** - Can Grok reason about markets, extract signals from X data, and make decisions that generate returns? Tested from the perspective of someone running live trading bots on Kalshi and Polymarket.
+2. **Marketing and Human Behavior** - Can Grok understand what makes people act, not just write grammatically correct copy? Tested from the perspective of running an AI agent on X that produces content but fails to convert.
+3. **Health Optimization and Longevity** - Can Grok personalize health protocols based on individual biomarkers and genetics, and navigate scientific uncertainty safely? Tested from the perspective of following an AI-designed supplement and fitness protocol daily.
 
 ## Running Experiments
 

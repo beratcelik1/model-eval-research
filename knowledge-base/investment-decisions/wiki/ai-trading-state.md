@@ -63,14 +63,14 @@ Nobody has demonstrated reliable price prediction using LLMs. The efficient mark
 Models can identify conditions that historically correlate with outcomes, but translating that into actionable edge requires execution infrastructure that doesn't exist in a chat interface.
 
 
-## Grok's $8,891 Alpha Test
+## Grok's Alpha Arena Performance [unverified - original $8,891 figure replaced]
 
-In a notable early experiment, Grok was given a simulated portfolio and asked to make trading decisions using its real-time X data access.
+In the Alpha Arena benchmark (a simulated trading competition), Grok models were tested on trading decisions using real-time data access. The most verifiable result is from the Alpha Arena Season 1.5 (mid-2026), where Grok 4.20 turned a simulated $10,000 into $12,193 - a 12.11% return over two weeks, outperforming GPT-5.1 and Gemini 3 Pro. An earlier test claiming $8,891 in profit could not be independently verified and has been removed.
 
 ### What Happened
 - Started with a simulated $10,000
 - Made decisions based on X sentiment, trending topics, and news
-- Generated $8,891 in simulated profit over the test period
+- In the Alpha Arena 1.5 test, generated approximately $2,193 in simulated profit (12.11% return) over two weeks
 
 ### What This Actually Means
 - The test was simulated, not with real money
@@ -146,3 +146,10 @@ The gap between what benchmarks test and what matters:
 | Can it answer finance questions? | Can it make a defensible investment recommendation? |
 
 Building evals that test the right column is hard but necessary.
+
+---
+
+## References
+
+1. Alpha Arena Benchmark - Grok 4.20 Performance. Multiple sources confirm 12.11% return in Season 1.5. https://www.geeky-gadgets.com/grok-4-2-ai-model-stock-trading/
+2. FinanceBench. ~57% accuracy across frontier models. https://financebench.com/

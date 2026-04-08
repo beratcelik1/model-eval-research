@@ -1,4 +1,4 @@
-# Area of Usefulness #1: AI-Powered Investment Decision-Making
+# Area 1: Evaluating Grok for Investment Decision-Making
 
 **Priority:** Highest
 **User Group:** Quantitative traders, algorithmic traders, prediction market operators, and retail investors using AI for market signal detection and portfolio decisions.
@@ -19,7 +19,7 @@ This is not something I'm curious about in theory. I have live capital on the li
 
 ---
 
-## 2. Current Assessment of Grok in Finance
+## 2. How Good Is Grok at Finance Right Now?
 
 ### Strengths
 

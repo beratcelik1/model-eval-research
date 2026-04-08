@@ -1,4 +1,4 @@
-# Area of Usefulness #3: Personalized Health Optimization & Longevity
+# Area 3: Evaluating Grok for Health Optimization & Longevity
 
 **Priority:** Third
 **User Group:** Biohackers, longevity enthusiasts, wellness optimizers  - people making daily decisions about supplements, diet, sleep protocols, bloodwork interpretation, and stacking regimens to extend healthspan.
@@ -33,7 +33,7 @@ I'll be upfront: based on my research, health is probably Grok's weakest domain.
 
 ---
 
-## 2. Current Assessment of Grok in Health
+## 2. How Good Is Grok at Health Optimization Right Now?
 
 ### Strengths
 

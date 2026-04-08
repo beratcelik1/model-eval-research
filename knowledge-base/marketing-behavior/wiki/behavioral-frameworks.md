@@ -214,3 +214,10 @@ These eval rubrics test whether a model understands and applies persuasion frame
 - Longitudinal engagement data
 
 The eval is a proxy. A good proxy, but still a proxy. The RLVR signal will eventually need to come from real conversion outcomes.
+
+---
+
+## References
+
+1. Cialdini, R.B. (1984). "Influence: The Psychology of Persuasion." Originally published with six principles. A seventh principle (Unity) was added in "Pre-Suasion" (2016).
+2. Kahneman, D. & Tversky, A. (1979). "Prospect Theory: An Analysis of Decision under Risk." Econometrica, 47(2), pp. 263-291. The finding that losses are felt roughly twice as strongly as equivalent gains is a well-established result of prospect theory.

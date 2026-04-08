@@ -150,3 +150,13 @@ A comprehensive comparison needs to include these operational factors, not just 
 4. Track performance over time. Models get updated. Today's winner might not be tomorrow's.
 5. Weight recent results more heavily. A comparison from 6 months ago is ancient in this field.
 6. When in doubt, run both models and measure which produces better outcomes for your users.
+
+---
+
+## References
+
+1. LMArena (formerly Chatbot Arena). LMSYS Org. https://lmarena.ai/ - Elo ratings are approximate and shift frequently; the ranges cited here reflect early 2026 snapshots and should not be treated as fixed values.
+2. HELM: Holistic Evaluation of Language Models. Stanford CRFM. https://crfm.stanford.edu/helm/
+3. Open LLM Leaderboard. HuggingFace. https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard
+4. OpenAI Simple Evals. https://github.com/openai/simple-evals
+5. EQ-Bench3 Leaderboard. https://eqbench.com/ - Grok models have ranked #1; current leaderboard shows Grok-4.1 Thinking leading with an Elo of 1586.

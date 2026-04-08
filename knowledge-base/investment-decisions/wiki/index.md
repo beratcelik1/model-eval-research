@@ -5,7 +5,7 @@ Research and analysis for building AI evals in the financial/investment domain.
 ## Pages
 
 ### Market Mechanics
-- (Placeholder: market-mechanics.md - coming soon)
+- [Market Mechanics Relevant to AI Trading](market-mechanics.md) - How information flows through financial markets, order books, dark pools, social media signals, prediction market mechanics, market efficiency, and what alpha actually means
 
 ### AI Trading Research
 - [Current State of AI in Trading](ai-trading-state.md) - What works, what doesn't, Grok's alpha test, real-time data advantage
@@ -14,7 +14,7 @@ Research and analysis for building AI evals in the financial/investment domain.
 - [Prediction Markets](prediction-markets.md) - How Polymarket/Kalshi work, AI applications, information advantages
 
 ### Risk Frameworks
-- (Placeholder: risk-frameworks.md - coming soon)
+- [Risk Frameworks for AI-Assisted Trading](risk-frameworks.md) - Position sizing methods, portfolio risk measurement, AI-specific risks, backtesting pitfalls, real examples of trading failures
 
 ### Benchmark Analysis
 - See shared: [Existing Benchmarks](../../shared/existing-benchmarks.md) for finance benchmark breakdown

@@ -145,3 +145,15 @@ Evals that sit in the usefulness zone:
 - Can evolve into training signals (RLVR)
 
 This is harder to build and harder to score. But it's the only way to measure what actually matters.
+
+---
+
+## References
+
+1. FinanceBench. https://financebench.com/ - ~57% accuracy for frontier models is directionally correct per published evaluations.
+2. FinQA: Zhiyu Chen et al. "FinQA: A Dataset of Numerical Reasoning over Financial Data." EMNLP 2021.
+3. FLUE: Shah, D. et al. "FLUE: Financial Language Understanding Evaluation." arXiv:2211.00083.
+4. EQ-Bench3. https://eqbench.com/ - Grok ranked #1 as of early 2026 confirmed via leaderboard.
+5. MedQA: Jin, D. et al. "What Disease does this Patient Have? A Large-scale Open Domain Question Answering Dataset from Medical Exams." Applied Sciences, 2021. 85-92% for frontier models is consistent with published GPT-4 results (86.7% on MedQA in the original GPT-4 technical report).
+6. PubMedQA: Jin, Q. et al. "PubMedQA: A Dataset for Biomedical Research Question Answering." EMNLP 2019. 75-82% for frontier models is a reasonable range per published evaluations.
+7. MultiMedQA: Singhal, K. et al. "Large Language Models Encode Clinical Knowledge." Nature, 2023.

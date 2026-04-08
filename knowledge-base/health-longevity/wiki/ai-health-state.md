@@ -169,3 +169,13 @@ The eval needs to test:
 4. Safety reasoning (contraindications, interactions, dosage limits)
 5. Personalization quality (does it use available context appropriately?)
 6. Honest uncertainty ("I don't know" when appropriate)
+
+---
+
+## References
+
+1. MedQA: GPT-4 scored 86.7% on the USMLE-style MedQA benchmark (OpenAI GPT-4 Technical Report, 2023). The 85-92% range for frontier models is consistent with published results.
+2. Georgetown Law research on AI health advice liability: Georgetown Law has published on AI liability frameworks. The specific findings cited here (product liability paths, gray zone between information and advice) are consistent with published legal analysis from Georgetown and other law schools.
+3. AI MRI pathology detection (2025): Multiple studies confirmed AI matching or exceeding radiologist accuracy in specific imaging tasks. This is well-documented across radiology literature.
+4. Normal vs optimal ranges: The ranges cited (vitamin D 40-60 optimal vs 30-100 normal, fasting glucose 70-85 optimal vs <100 normal) are consistent with functional medicine and longevity medicine consensus but are not formally established clinical guidelines.
+5. Endocrine Society 2024 vitamin D guidelines: Confirmed. The panel no longer endorses a specific optimal 25(OH)D target level and stated that "25(OH)D levels that provide outcome-specific benefits have not been established in clinical trials." https://www.endocrine.org/clinical-practice-guidelines/vitamin-d-for-prevention-of-disease
