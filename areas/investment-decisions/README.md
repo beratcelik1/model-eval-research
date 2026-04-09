@@ -60,8 +60,6 @@ Final published results for this area are summarized in `experiments/final/final
 
 ### 3 X profiles I'd want feedback from
 
-These are proposed validation targets for a next eval iteration, not claimed outreach from this submission. The point is to show which kind of taste I would want shaping prompts, rubrics, and post-training validation.
-
 - Tarek Mansour for live prediction-market workflow realism, what counts as tradable signal, and where provenance standards need to be stricter
 - Nate Silver for calibration, probabilistic honesty, and whether the model expresses uncertainty in a way a forecaster would respect
 - Matt Levine for market-structure clarity, narrative sharpness, and whether the answer is actually useful to a financially literate fast reader

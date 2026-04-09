@@ -58,8 +58,6 @@ Final published results for this area are summarized in `experiments/final/final
 
 ### 3 X profiles I'd want feedback from
 
-These are proposed validation targets for future eval shaping, not claimed outreach in this submission. What I care about here is borrowing the right taste: who would make the benchmark harder, less generic, and more commercially real?
-
 - George Mack for sharp audience psychology, contrarian framing, and whether the model is seeing the hidden behavioral bottleneck
 - Dickie Bush for creator-system workflows, content packaging, and whether the output is growth-useful rather than just readable
 - Katelyn Bourgoin for buying-trigger diagnosis, customer-research rigor, and whether the model is identifying real reasons people act

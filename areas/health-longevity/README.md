@@ -63,8 +63,6 @@ Final published results for this area are summarized in `experiments/final/final
 
 ### 3 X profiles I'd want feedback from
 
-These are proposed validation targets for a future loop, not people I am claiming to have already engaged. The goal is to show what kinds of disagreement and taste I would want feeding back into the evals.
-
 - Peter Attia for evidence hierarchy, intervention prioritization, and whether recommendations clear the bar of a clinically serious optimizer
 - David Sinclair for frontier longevity discourse, contested NAD-related claims, and whether the model can navigate controversy without overclaiming
 - Bryan Johnson for obsessive protocol iteration, longitudinal self-tracking, and whether the output is useful to someone who would actually act on it daily

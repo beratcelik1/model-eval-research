@@ -3,6 +3,7 @@
 __pycache__/
 *.pyc
 .DS_Store
+*.swp
 experiments/**/*.json
 node_modules/
 .claude/
