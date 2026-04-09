@@ -15,11 +15,14 @@ This repo is organized so a reader can quickly understand the target user groups
 - **Why I care about each area + how good I think Grok is there**
   - At the top of each area README
 - **Representative Grok conversation artifacts and eval-building direction**
-  - Summarized in the area READMEs and the final report
+  - Summarized in the area READMEs, [experiments/final/conversation_artifacts.md](experiments/final/conversation_artifacts.md), and the final report
 - **Power-user X profiles to guide future eval work**
   - Listed in each area README
 - **Final research report**
   - [Evaluating Grok's Usefulness (PDF)](Evaluating_Groks_Usefulness_Berat_Celik_April_2026.pdf)
+- **Canonical final-run audit trail**
+  - [experiments/final/README.md](experiments/final/README.md)
+  - [experiments/final/improvement_loop.md](experiments/final/improvement_loop.md)
 
 ## Canonical Results
 
@@ -40,6 +43,7 @@ Canonical artifacts:
 - [Evaluating Grok's Usefulness (PDF)](Evaluating_Groks_Usefulness_Berat_Celik_April_2026.pdf)
 - [report/main.tex](report/main.tex)
 - [final_grades.md](experiments/final/final_grades.md)
+- [experiments/final/README.md](experiments/final/README.md)
 
 ## Structure
 
@@ -64,13 +68,15 @@ Canonical artifacts:
 │   │   └── prompts/             # Individual prompt files for API testing
 │   ├── marketing-behavior/
 │   └── health-longevity/
-├── experiments/                 # API test runs (gitignored JSONs)
+├── experiments/                 # API test runs and final audit artifacts
 │   ├── validate/                # Cheap model prompt validation
-│   └── final/                   # Production model evaluation runs
+│   └── final/                   # Production model runs, summaries, and audit docs
 ├── scripts/                     # Testing and analysis tools
 │   ├── run_eval.py              # Run eval with optional --challenge for Phase 2
-│   ├── fact_check.py            # Verify factual claims in responses
-│   └── extract_prompts.py       # Extract prompts from README files
+│   ├── extract_prompts.py       # Extract prompts from README files
+│   ├── grade_responses.py       # Checklist-based scoring with weighted rubrics
+│   ├── eval_schema.py           # Shared parsing helpers and data models
+│   └── fact_check.py            # Verify factual claims in responses
 └── report/                      # Final research report (LaTeX)
     └── main.tex
 ```
@@ -128,5 +134,6 @@ python scripts/fact_check.py \
 - Prompt files are generated from the area README files. Use `scripts/extract_prompts.py` after editing any prompt battery.
 - Each prompt is evaluated in its own fresh conversation. In challenge mode, the follow-up stays in the same prompt-level thread so answer-key evidence does not leak into later prompts.
 - Challenge review is part of the published scoring logic. The cold response remains dominant, but second-round behavior can still move the final prompt score.
+- The tracked raw final-run JSONs live in `experiments/final/`. File hashes, challenge coverage, conversation excerpts, and score-provenance notes are documented in `experiments/final/README.md`.
 - `python -m unittest discover -s tests -v` is the minimum local integrity check before trusting regenerated prompts or scoring output.
 - The current canonical published score is the April 8, 2026 final run result: `57.2/100` overall (`56.2` investment, `54.1` marketing, `61.4` health).

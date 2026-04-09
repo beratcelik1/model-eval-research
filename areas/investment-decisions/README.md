@@ -48,7 +48,7 @@ Final published results for this area are summarized in `experiments/final/final
 
 ### Representative Grok conversation artifacts
 
-- Representative investment conversations are summarized in `report/main.pdf` and reflected in the final score summary.
+- Representative investment conversations are summarized in `report/main.pdf`, reflected in the final score summary, and excerpted in `experiments/final/conversation_artifacts.md`.
 - Best prompt for eval design signal: Prompt 9 (exact financial math)
 - Most useful failure prompts: Prompt 1 (real-time X signal extraction), Prompt 3 (prediction-market spread reasoning), Prompt 10 (hallucination resistance)
 
@@ -60,9 +60,11 @@ Final published results for this area are summarized in `experiments/final/final
 
 ### 3 X profiles I'd want feedback from
 
-- Kalshi traders and market-structure operators around the Kalshi ecosystem
-- Nate Silver for prediction-market calibration and probabilistic reasoning
-- Matt Levine for market-mechanics clarity and whether the model is actually useful to a fast reader of finance
+These are proposed validation targets for a next eval iteration, not claimed outreach from this submission. The point is to show which kind of taste I would want shaping prompts, rubrics, and post-training validation.
+
+- Tarek Mansour for live prediction-market workflow realism, what counts as tradable signal, and where provenance standards need to be stricter
+- Nate Silver for calibration, probabilistic honesty, and whether the model expresses uncertainty in a way a forecaster would respect
+- Matt Levine for market-structure clarity, narrative sharpness, and whether the answer is actually useful to a financially literate fast reader
 
 ---
 

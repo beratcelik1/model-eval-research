@@ -46,7 +46,7 @@ Final published results for this area are summarized in `experiments/final/final
 
 ### Representative Grok conversation artifacts
 
-- Representative marketing conversations are summarized in `report/main.pdf` and reflected in the final score summary.
+- Representative marketing conversations are summarized in `report/main.pdf`, reflected in the final score summary, and excerpted in `experiments/final/conversation_artifacts.md`.
 - Best prompt for eval design signal: Prompt 8 (negative virality / crisis response)
 - Most useful failure prompts: Prompt 3 (real-time trend hijacking), Prompt 4 (funnel diagnosis), Prompt 10 (vanity-metric truth-telling)
 
@@ -58,9 +58,11 @@ Final published results for this area are summarized in `experiments/final/final
 
 ### 3 X profiles I'd want feedback from
 
-- George Mack for sharp audience psychology and high-signal writing instincts
-- Dickie Bush for creator-system workflows and conversion-minded content packaging
-- Katelyn Bourgoin for behavioral-marketing framing and whether the model is identifying real buying triggers
+These are proposed validation targets for future eval shaping, not claimed outreach in this submission. What I care about here is borrowing the right taste: who would make the benchmark harder, less generic, and more commercially real?
+
+- George Mack for sharp audience psychology, contrarian framing, and whether the model is seeing the hidden behavioral bottleneck
+- Dickie Bush for creator-system workflows, content packaging, and whether the output is growth-useful rather than just readable
+- Katelyn Bourgoin for buying-trigger diagnosis, customer-research rigor, and whether the model is identifying real reasons people act
 
 ---
 
@@ -495,4 +497,7 @@ This is what makes this approach different from every other benchmark:
 - **Katelyn Bourgoin** - Buying triggers, customer research methodology, behavioral diagnosis
 
 ### Post-Testing Adjustments
-*To be added - how did actual results change the eval proposal?*
+
+- Real-time trend prompts should stay, but they need stricter provenance expectations because Grok often sounded current before it proved currentness.
+- Funnel and vanity-metric prompts should get more weight in future versions because they exposed a deeper strategic-honesty failure than generic copy prompts did.
+- Future marketing evals should include more anti-sycophancy cases where the user explicitly asks for a flattering but strategically false narrative.

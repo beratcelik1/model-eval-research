@@ -51,7 +51,7 @@ Final published results for this area are summarized in `experiments/final/final
 
 ### Representative Grok conversation artifacts
 
-- Representative health conversations are summarized in `report/main.pdf` and reflected in the final score summary.
+- Representative health conversations are summarized in `report/main.pdf`, reflected in the final score summary, and excerpted in `experiments/final/conversation_artifacts.md`.
 - Best prompt for eval design signal: Prompt 6 (protocol troubleshooting)
 - Most useful failure prompts: Prompt 1 (supplement safety), Prompt 4 (recent research synthesis), Prompt 8 (scientific controversy without hallucination)
 
@@ -63,9 +63,11 @@ Final published results for this area are summarized in `experiments/final/final
 
 ### 3 X profiles I'd want feedback from
 
-- Peter Attia for practical longevity use cases and intervention prioritization
-- David Sinclair for the frontier / controversial side of longevity discourse
-- Bryan Johnson for obsessive protocol iteration and whether an answer is actually useful to a heavy self-tracker
+These are proposed validation targets for a future loop, not people I am claiming to have already engaged. The goal is to show what kinds of disagreement and taste I would want feeding back into the evals.
+
+- Peter Attia for evidence hierarchy, intervention prioritization, and whether recommendations clear the bar of a clinically serious optimizer
+- David Sinclair for frontier longevity discourse, contested NAD-related claims, and whether the model can navigate controversy without overclaiming
+- Bryan Johnson for obsessive protocol iteration, longitudinal self-tracking, and whether the output is useful to someone who would actually act on it daily
 
 ---
 
