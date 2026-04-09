@@ -584,26 +584,28 @@ That changes the next eval iteration in concrete ways. In investment, power-user
 
 \section{From Eval Failures To Training Environments}
 
-The evaluation would be incomplete if it stopped at scores. The more useful output is a concrete map from observed failure to environment design. The table below summarizes how each domain's central weakness would translate into an RL environment or reward signal.
+Scores are diagnostic, not the deliverable. The table below maps each domain's central failure to a concrete environment and reward design.
 
+\vspace{-0.3em}
 \begin{table}[H]
 \centering
 \small
-\begin{tabular}{@{}p{2.4cm}p{3.2cm}p{3.0cm}p{4.0cm}@{}}
+\begin{tabular}{@{}p{1.6cm}p{2.8cm}p{2.4cm}p{3.0cm}p{3.0cm}@{}}
 \toprule
-\textbf{Domain} & \textbf{Observed failure} & \textbf{Hypothesized cause} & \textbf{Environment design direction} \\
+\textbf{Domain} & \textbf{Failure} & \textbf{Root cause} & \textbf{Environment} & \textbf{Reward signal} \\
 \midrule
-Investment & Live claims presented without provenance & Weak runtime verification habits & Replay timestamped X posts and price data. Require the model to label each claim as \texttt{observed}, \texttt{inferred}, or \texttt{unknown} with retrieval path. Reward calibrated uncertainty, penalize precise unsupported numbers. \\
+Investment & Live claims without provenance & Weak verification habits & Replay timestamped X posts + price data; require \texttt{observed}/\texttt{inferred}/\texttt{unknown} labels & +calibrated uncertainty, $-$precise unsupported numbers \\
 \addlinespace
-Marketing & Accepted strategically false framing before challenge forced honesty & Helpfulness preference overriding strategic truth & Paired tasks where the user asks for a deceptive framing. Reward identifying the real objective and replacing vanity metrics with actionable ones. Penalize compliant but harmful output. \\
+Marketing & Accepted false framing; honesty only after challenge & Helpfulness preference over strategic truth & Paired tasks: user requests deceptive frame, model must redirect to real metrics & +identifying real objective, $-$compliant but harmful output \\
 \addlinespace
-Health & Mixed evidence tiers without disciplined ranking on first pass & Calibration weakness around evidence hierarchy & Mixed evidence bundles containing human RCTs, observational studies, and mouse data. Reward correct tier ranking and conservative protocol updates. Large asymmetric penalties for unsafe recommendations. \\
+Health & Mixed evidence tiers without ranking & Calibration weakness & Bundles of human RCTs, observational studies, mouse data; rank and recommend & +correct tier ranking, large $-$for unsafe recommendations \\
 \bottomrule
 \end{tabular}
-\caption{How the central failure in each domain maps to an RL environment or reward design.}
+\caption{Central failure per domain mapped to RL environment and reward design.}
 \end{table}
 
-Each of these designs closes the same loop: the eval identifies the failure, the environment reproduces it at scale, the reward signal teaches the model to handle it differently, and power users validate that the fix works in a real workflow. The full environment sketches, including reward functions and validation strategies, are documented in the repository alongside the raw run data.
+\vspace{-0.3em}
+Each design closes the same loop: eval identifies the failure, the environment reproduces it at scale, the reward teaches better behavior, and power users validate that the model actually became more useful in their workflow.
 
 \section{Conclusion}
 
