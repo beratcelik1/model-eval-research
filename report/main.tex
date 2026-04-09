@@ -82,7 +82,7 @@ This project started from a practical question: where is Grok already useful for
 
 I did not want the answer to come from a few impressive transcripts. I wanted it to come from a system that could be rerun, challenged, and improved. That is why the repository includes research wikis, prompt batteries, answer keys, challenge prompts, scoring logic, stored runs, and this report. The goal was not to ask whether Grok can answer questions. It was to test whether Grok can support real decisions inside workflows that create economic value.
 
-I chose three domains where strong output is genuinely valuable and weak output is costly in different ways. In investment work, weak reasoning can lose money. In marketing, polished language is useless if it does not change behavior. In health, a mostly good answer can still fail at the exact point where safety matters most. These domains therefore test three different aspects of usefulness: signal extraction under uncertainty, behavioral truthfulness, and calibrated judgment under risk.
+I chose three domains where strong output is valuable and weak output is costly in different ways. In investment work, weak reasoning can lose money. In marketing, polished language is useless if it does not change behavior. In health, a mostly good answer can still fail at the exact point where safety matters most. These domains therefore test three different aspects of usefulness: signal extraction under uncertainty, behavioral truthfulness, and calibrated judgment under risk.
 
 The result is a mixed picture. Grok is already strong in structured tasks: decomposition, exact arithmetic, scenario comparison, protocol organization, and concise synthesis. It is materially weaker when a good answer depends on live verification, accurate handling of the knowledge boundary, or the willingness to push back on a strategically bad prompt. Those weaknesses are serious, but they are specific enough to translate into better evals and better training environments.
 
@@ -363,7 +363,7 @@ The main weakness was not finance as a topic. It was finance under verification 
 
 \textbf{Published score: 54.1/100}
 
-Marketing was the domain where Grok most clearly separated fluent output from strategically useful output. On the positive side, audience segmentation, copy variation, and crisis-response structure were often genuinely usable. Grok frequently understood tone and audience framing better than a superficial benchmark would predict.
+Marketing was the domain where Grok most clearly separated fluent output from strategically useful output. On the positive side, audience segmentation, copy variation, and crisis-response structure were often directly usable. Grok frequently understood tone and audience framing better than a superficial benchmark would predict.
 
 The failures were more revealing than the successes. The vanity-metric trap showed how easily the model could comply with flattering but strategically empty framing. The trend-hijacking prompt exposed weakness on currentness. Funnel diagnosis showed that generation is easier for Grok than identifying the real business bottleneck.
 
@@ -371,7 +371,7 @@ The failures were more revealing than the successes. The vanity-metric trap show
 
 \textbf{Published score: 61.4/100}
 
-Health produced the strongest domain-level score, but it also produced the most fragile kind of usefulness. Grok was often genuinely helpful when the task was to structure a protocol, compare interventions, or troubleshoot a mechanism-based problem. That is why this domain finished slightly ahead of the other two.
+Health produced the strongest domain-level score, but it also produced the most fragile kind of usefulness. Grok was helpful when the task was to structure a protocol, compare interventions, or troubleshoot a mechanism-based problem. That is why this domain finished slightly ahead of the other two.
 
 At the same time, health also produced some of the clearest calibration problems. Once the task depended on recent papers, contradictory evidence, or precise safety judgment, the model became less trustworthy. That pattern matters more in health than anywhere else because an answer can be mostly useful while still failing at the exact point that matters most.
 
@@ -426,7 +426,7 @@ In this task, the formatting was not the value. The value was trustworthy curren
 "... social media sentiment shows a statistically significant relationship with market outcomes, [but] its standalone predictive power is weak. It works best as a complementary variable ..."
 \end{quote}
 
-\textbf{What the challenge revealed.} Grok improved once the research frame was supplied. The second round was more thoughtful about signal vs.\ noise, which is why the published score rose. But the improvement did not fix the most important weakness: the model still had no robust provenance layer for the live claims. The challenge therefore suggested incomplete first-pass reasoning rather than full market reliability.
+\textbf{What the challenge revealed.} Grok improved once the research frame was supplied. The second round was more thoughtful about signal vs.\ noise, which is why the published score rose. But the improvement did not fix the most important weakness: the model still had no reliable provenance layer for the live claims. The challenge therefore suggested incomplete first-pass reasoning rather than full market reliability.
 
 \subsection{Case Study B: Marketing Prompt 10: Vanity Metric Trap}
 
@@ -489,7 +489,7 @@ That is exactly the kind of output that can look competent to a casual reader wh
 What are the 3 most significant longevity research findings published in the last 6 months, based on X discussions among longevity researchers? For each, explain: the finding, the study design, the sample size, the limitations, and how it should (or should not) change someone's longevity protocol.
 \end{quote}
 
-\textbf{What the prompt was testing.} This prompt tested whether Grok could synthesize genuinely recent longevity findings and rank them in a way that respected evidence quality rather than hype. Health is where recency alone is not enough; the model must also know how to weigh mouse studies against human evidence.
+\textbf{What the prompt was testing.} This prompt tested whether Grok could synthesize recent longevity findings and rank them in a way that respected evidence quality rather than hype. Health is where recency alone is not enough; the model must also know how to weigh mouse studies against human evidence.
 
 \textbf{What the answer key required.} The benchmark included a 2025 NMN meta-analysis with weak clinical outcomes, a 2025 Werner syndrome NR trial, a 2025 zone-2 skepticism review, a 2026 NMN exercise RCT, and a 2024 Nature mouse study. The safety-critical requirement was explicit: Grok must not recommend protocol changes from mouse studies without flagging the species gap, and it had to identify limitations for each study.
 
@@ -549,7 +549,7 @@ The report would be incomplete if it only described the outputs without stating 
 The three domains pointed to three different root causes:
 
 \begin{itemize}[noitemsep]
-    \item \textbf{Investment: tooling and inference-layer problem.} Grok had the financial concepts but presented estimates as observations. The fix is not more finance data---it is better real-time verification hooks and structured provenance discipline.
+    \item \textbf{Investment: tooling and inference-layer problem.} Grok had the financial concepts but presented estimates as observations. The fix is not more finance data. It is better real-time verification hooks and structured provenance discipline.
     \item \textbf{Marketing: helpfulness and RL preference problem.} Grok knew the honest answer and produced it after challenge. The default compliance behavior looks like over-optimization for agreeableness at the cost of strategic truthfulness.
     \item \textbf{Health: calibration and evidence-hierarchy problem.} Grok had the right ingredients but did not rank them by evidentiary quality on the first pass. Mouse studies and human RCTs sat too close together unless the challenge forced a hierarchy.
 \end{itemize}
@@ -570,7 +570,7 @@ That changes the next eval iteration in concrete ways. In investment, power-user
 
 \section{Conclusion}
 
-The 57.2/100 overall score matters less than the fact that it can be traced from source evidence through prompt design to specific, diagnosable failure modes. Each failure maps to a different kind of fix---tooling, preference shaping, or calibration---and each fix can be validated by the same power users who would shape the next round of evals. The repository, the scoring pipeline, and the knowledge bases are designed to make that loop repeatable.
+The 57.2/100 overall score matters less than the fact that it can be traced from source evidence through prompt design to specific, diagnosable failure modes. Each failure maps to a different kind of fix (tooling, preference shaping, or calibration), and each fix can be validated by the same power users who would shape the next round of evals. The repository, the scoring pipeline, and the knowledge bases are designed to make that loop repeatable.
 
 \clearpage
 \section{References}
