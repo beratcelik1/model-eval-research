@@ -321,7 +321,7 @@ Health Longevity & 61.0/100 & 61.4/100 & +0.4 \\
 \caption{Domain-level usefulness before and after challenge review weighting.}
 \end{table}
 
-The phase-one baseline of 54.2/100 is the cleanest measure of what Grok volunteered on its own. The published score of 57.2/100 shows that the challenge step surfaced enough additional useful reasoning to matter, but not enough to change the broader diagnosis. Grok is not failing because it knows nothing. It is failing because it still handles knowledge boundaries, verification, and pushback inconsistently.
+The phase-one baseline of 54.2/100 is what Grok volunteered on its own. The published score of 57.2/100 shows that the challenge step surfaced additional useful reasoning, but not enough to change the broader diagnosis.
 
 \begin{figure}[H]
 \centering
@@ -359,8 +359,6 @@ The investment battery produced the clearest split between genuine usefulness an
 
 The main weakness was not finance as a topic. It was finance under verification pressure. Once the task depended on current market conditions, recent evidence, or platform-specific detail, quality dropped sharply. That matters because those are precisely the places where a financial model becomes most valuable and most risky.
 
-The most important improvement requirement in this domain is better provenance around live claims. If Grok is going to present current market information, it needs to show stronger grounding discipline about what is live, what is estimated, and what it cannot verify.
-
 \subsection{Marketing Behavior}
 
 \textbf{Published score: 54.1/100}
@@ -369,8 +367,6 @@ Marketing was the domain where Grok most clearly separated fluent output from st
 
 The failures were more revealing than the successes. The vanity-metric trap showed how easily the model could comply with flattering but strategically empty framing. The trend-hijacking prompt exposed weakness on currentness. Funnel diagnosis showed that generation is easier for Grok than identifying the real business bottleneck.
 
-The most important improvement requirement here is truthful strategic pushback. A useful marketing model should not merely write appealing copy. It should tell the user when the brief itself is hiding the real problem.
-
 \subsection{Health Longevity}
 
 \textbf{Published score: 61.4/100}
@@ -378,8 +374,6 @@ The most important improvement requirement here is truthful strategic pushback. 
 Health produced the strongest domain-level score, but it also produced the most fragile kind of usefulness. Grok was often genuinely helpful when the task was to structure a protocol, compare interventions, or troubleshoot a mechanism-based problem. That is why this domain finished slightly ahead of the other two.
 
 At the same time, health also produced some of the clearest calibration problems. Once the task depended on recent papers, contradictory evidence, or precise safety judgment, the model became less trustworthy. That pattern matters more in health than anywhere else because an answer can be mostly useful while still failing at the exact point that matters most.
-
-The main improvement requirement in this domain is better recency handling and safer uncertainty expression. A strong health model needs to know when it is synthesizing stable mechanism-level knowledge and when it is near a boundary that requires firmer hedging or verification.
 
 \section{Worked Examples: From Research Benchmark to Score}
 
@@ -552,21 +546,13 @@ Third, it made the model's default behavior legible. In marketing, the challenge
 
 The report would be incomplete if it only described the outputs without stating what I think produced them. The points below are \textbf{inferences from behavior}, not claims about Grok's internal implementation. But for eval design, these causal hypotheses matter because they determine what kind of training or environment change is most likely to help.
 
-\subsection{What Looks Like a Tooling or Inference-Layer Problem}
+The three domains pointed to three different root causes:
 
-Some failures look less like missing world knowledge and more like missing runtime support or weak answer-construction discipline. The investment live-data prompts are the clearest example. Grok often produced structured market commentary and sometimes improved materially after challenge, which suggests that the model had relevant financial concepts. The failure was that it presented current-seeming claims without a strong provenance layer. My interpretation is that these are primarily \textbf{tool-use and inference-layer weaknesses}: the model needs better real-time verification hooks and stronger default habits around labeling what is live, estimated, or unknown.
-
-\subsection{What Looks Like a Helpfulness or RL Preference Problem}
-
-The marketing vanity-metric trap points in a different direction. Grok knew how to write the honest version once challenged. The issue was the default behavior: it was too willing to satisfy the user's implied desire for a success narrative. That looks much more like a \textbf{preference-shaping problem} than a knowledge problem. In other words, the model appears to be over-optimizing for being agreeable or helpful at the cost of strategic truthfulness. This is exactly why the anti-sycophancy challenge design mattered.
-
-\subsection{What Looks Like a Calibration and Evidence-Hierarchy Problem}
-
-The health synthesis prompts suggest a third kind of weakness. Grok often had the relevant ingredients, but it did not reliably weight them by evidentiary quality on the first pass. Mouse studies, small human trials, and broad claims could sit too close together unless the challenge forced a hierarchy. My interpretation is that this is primarily a \textbf{calibration and reasoning-prioritization problem}: the model can recall many facts, but it does not always rank them with the right clinical or scientific discipline.
-
-\subsection{What Looks Like a Genuine Strength}
-
-The strengths also tell a story. Grok performed best when the task rewarded decomposition, bounded reasoning, exact arithmetic, or mechanism-based troubleshooting. That pattern suggests a model that is already strong at \textbf{structured intermediate reasoning} and compact synthesis. The weakness is not that it cannot think at all. The weakness is that the transition from reasoning to trustworthy action still breaks when verification, disagreement, or evidence ranking becomes central.
+\begin{itemize}[noitemsep]
+    \item \textbf{Investment: tooling and inference-layer problem.} Grok had the financial concepts but presented estimates as observations. The fix is not more finance data---it is better real-time verification hooks and structured provenance discipline.
+    \item \textbf{Marketing: helpfulness and RL preference problem.} Grok knew the honest answer and produced it after challenge. The default compliance behavior looks like over-optimization for agreeableness at the cost of strategic truthfulness.
+    \item \textbf{Health: calibration and evidence-hierarchy problem.} Grok had the right ingredients but did not rank them by evidentiary quality on the first pass. Mouse studies and human RCTs sat too close together unless the challenge forced a hierarchy.
+\end{itemize}
 
 \section{Power Users and Next Evals}
 
@@ -582,26 +568,9 @@ I would use them at three stages of the eval cycle. First, I would mine their pu
 
 That changes the next eval iteration in concrete ways. In investment, power-user feedback should push the battery toward provenance, regime sensitivity, and honest treatment of uncertainty under live conditions. In marketing, it should push prompts toward bottleneck diagnosis, audience truth, and disagreement with bad briefs. In health, it should push the eval toward evidence hierarchy, intervention prioritization, and conflict handling when frontier claims run ahead of the literature. Used that way, power users are not just examples of target users. They become instruments for deciding what to test, how to grade it, and whether an apparent model improvement is actually meaningful.
 
-\section{From Eval Failures To Training Environments}
-
-Sections 7 and 8 diagnosed what went wrong. This section is about what to do about it: how each failure mode would become a training environment.
-
-\textbf{Investment: provenance as a structured output requirement.}
-The problem was not that Grok lacked market knowledge. It was that the model presented estimates as observations. The fix is not more finance data. It is a structured output layer: every live claim must carry a provenance tag (\texttt{observed}, \texttt{inferred}, or \texttt{unknown}) with a retrieval path. The environment would replay timestamped X posts alongside price feeds, and the reward would penalize precise unsupported numbers more harshly than honest uncertainty. That changes the model's default from ``sound current'' to ``prove current.''
-
-\textbf{Marketing: adversarial honesty training.}
-The vanity-metric failure was not a knowledge gap. Grok knew the honest answer and produced it after challenge. The default behavior was the problem: the model optimized for satisfying the prompt's implied desire rather than the user's actual objective. Standard helpfulness training reinforces exactly this. The fix is paired adversarial tasks where the user explicitly requests a flattering but false frame, and the model must refuse the frame while preserving the client relationship. The key reward design: a polished, strategically harmful answer receives a \emph{larger} penalty than a blunt refusal, because the first failure mode is harder for a user to catch.
-
-\textbf{Health: asymmetric safety penalties.}
-The evidence-hierarchy weakness was a calibration problem: Grok had the right ingredients but did not rank them with enough discipline on the first pass. The environment would present mixed evidence bundles---human RCTs, observational studies, mouse data, and noisy X discourse---and ask for protocol recommendations. The critical design choice is asymmetric loss: recommending a protocol change from a mouse study without flagging the species gap should be penalized far more heavily than being overly conservative. In health, a cautious answer that misses one useful detail is much cheaper than a confident answer that gets one safety-critical call wrong.
-
 \section{Conclusion}
 
-The main result in this report is not simply that Grok scored 57.2/100 across these three domains. It is the shape of that score.
-
-Grok is already useful in structured analytical work. It can decompose, compare, calculate, and organize better than many casual model evaluations would suggest. But its usefulness still degrades too sharply when the task depends on live verification, precise handling of the knowledge boundary, or pushback against a flawed user frame.
-
-That is why the methodology matters as much as the number. The project began from real user groups, built benchmarks from knowledge bases rather than instinct, hardened the evals on \texttt{grok-4-1-fast-reasoning}, ran the final battery on \texttt{grok-4.20-0309-reasoning}, and used challenge to diagnose the real source of error. The outcome is more useful than a leaderboard-style score. It shows where Grok is already viable, where it remains unreliable, and what kinds of eval environments would most likely improve it.
+The 57.2/100 overall score matters less than the fact that it can be traced from source evidence through prompt design to specific, diagnosable failure modes. Each failure maps to a different kind of fix---tooling, preference shaping, or calibration---and each fix can be validated by the same power users who would shape the next round of evals. The repository, the scoring pipeline, and the knowledge bases are designed to make that loop repeatable.
 
 \clearpage
 \section{References}
