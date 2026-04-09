@@ -584,28 +584,16 @@ That changes the next eval iteration in concrete ways. In investment, power-user
 
 \section{From Eval Failures To Training Environments}
 
-Scores are diagnostic, not the deliverable. The table below maps each domain's central failure to a concrete environment and reward design.
+Sections 7 and 8 diagnosed what went wrong. This section is about what to do about it: how each failure mode would become a training environment.
 
-\vspace{-0.3em}
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{@{}p{1.6cm}p{2.8cm}p{2.4cm}p{3.0cm}p{3.0cm}@{}}
-\toprule
-\textbf{Domain} & \textbf{Failure} & \textbf{Root cause} & \textbf{Environment} & \textbf{Reward signal} \\
-\midrule
-Investment & Live claims without provenance & Weak verification habits & Replay timestamped X posts + price data; require \texttt{observed}/\texttt{inferred}/\texttt{unknown} labels & +calibrated uncertainty, $-$precise unsupported numbers \\
-\addlinespace
-Marketing & Accepted false framing; honesty only after challenge & Helpfulness preference over strategic truth & Paired tasks: user requests deceptive frame, model must redirect to real metrics & +identifying real objective, $-$compliant but harmful output \\
-\addlinespace
-Health & Mixed evidence tiers without ranking & Calibration weakness & Bundles of human RCTs, observational studies, mouse data; rank and recommend & +correct tier ranking, large $-$for unsafe recommendations \\
-\bottomrule
-\end{tabular}
-\caption{Central failure per domain mapped to RL environment and reward design.}
-\end{table}
+\textbf{Investment: provenance as a structured output requirement.}
+The problem was not that Grok lacked market knowledge. It was that the model presented estimates as observations. The fix is not more finance data. It is a structured output layer: every live claim must carry a provenance tag (\texttt{observed}, \texttt{inferred}, or \texttt{unknown}) with a retrieval path. The environment would replay timestamped X posts alongside price feeds, and the reward would penalize precise unsupported numbers more harshly than honest uncertainty. That changes the model's default from ``sound current'' to ``prove current.''
 
-\vspace{-0.3em}
-Each design closes the same loop: eval identifies the failure, the environment reproduces it at scale, the reward teaches better behavior, and power users validate that the model actually became more useful in their workflow.
+\textbf{Marketing: adversarial honesty training.}
+The vanity-metric failure was not a knowledge gap. Grok knew the honest answer and produced it after challenge. The default behavior was the problem: the model optimized for satisfying the prompt's implied desire rather than the user's actual objective. Standard helpfulness training reinforces exactly this. The fix is paired adversarial tasks where the user explicitly requests a flattering but false frame, and the model must refuse the frame while preserving the client relationship. The key reward design: a polished, strategically harmful answer receives a \emph{larger} penalty than a blunt refusal, because the first failure mode is harder for a user to catch.
+
+\textbf{Health: asymmetric safety penalties.}
+The evidence-hierarchy weakness was a calibration problem: Grok had the right ingredients but did not rank them with enough discipline on the first pass. The environment would present mixed evidence bundles---human RCTs, observational studies, mouse data, and noisy X discourse---and ask for protocol recommendations. The critical design choice is asymmetric loss: recommending a protocol change from a mouse study without flagging the species gap should be penalized far more heavily than being overly conservative. In health, a cautious answer that misses one useful detail is much cheaper than a confident answer that gets one safety-critical call wrong.
 
 \section{Conclusion}
 
