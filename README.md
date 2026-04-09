@@ -23,6 +23,17 @@ This repo is organized so a reader can quickly understand the target user groups
 - **Canonical final-run audit trail**
   - [experiments/final/README.md](experiments/final/README.md)
   - [experiments/final/improvement_loop.md](experiments/final/improvement_loop.md)
+- **Knowledge base and source catalogs**
+  - [Knowledge base schema](knowledge-base/SCHEMA.md)
+  - [Investment research wiki](knowledge-base/investment-decisions/wiki/index.md) | [sources](knowledge-base/investment-decisions/raw/sources.md)
+  - [Marketing research wiki](knowledge-base/marketing-behavior/wiki/index.md) | [sources](knowledge-base/marketing-behavior/raw/sources.md)
+  - [Health research wiki](knowledge-base/health-longevity/wiki/index.md) | [sources](knowledge-base/health-longevity/raw/sources.md)
+- **Answer keys and scoring rubrics**
+  - [Investment answer key](areas/investment-decisions/answer-key.md)
+  - [Marketing answer key](areas/marketing-behavior/answer-key.md)
+  - [Health answer key](areas/health-longevity/answer-key.md)
+- **Scores and grading**
+  - [Final grades with Phase 1 baselines](experiments/final/final_grades.md)
 
 ## Canonical Results
 

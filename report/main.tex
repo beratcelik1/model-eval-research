@@ -582,6 +582,29 @@ I would use them at three stages of the eval cycle. First, I would mine their pu
 
 That changes the next eval iteration in concrete ways. In investment, power-user feedback should push the battery toward provenance, regime sensitivity, and honest treatment of uncertainty under live conditions. In marketing, it should push prompts toward bottleneck diagnosis, audience truth, and disagreement with bad briefs. In health, it should push the eval toward evidence hierarchy, intervention prioritization, and conflict handling when frontier claims run ahead of the literature. Used that way, power users are not just examples of target users. They become instruments for deciding what to test, how to grade it, and whether an apparent model improvement is actually meaningful.
 
+\section{From Eval Failures To Training Environments}
+
+The evaluation would be incomplete if it stopped at scores. The more useful output is a concrete map from observed failure to environment design. The table below summarizes how each domain's central weakness would translate into an RL environment or reward signal.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}p{2.4cm}p{3.2cm}p{3.0cm}p{4.0cm}@{}}
+\toprule
+\textbf{Domain} & \textbf{Observed failure} & \textbf{Hypothesized cause} & \textbf{Environment design direction} \\
+\midrule
+Investment & Live claims presented without provenance & Weak runtime verification habits & Replay timestamped X posts and price data. Require the model to label each claim as \texttt{observed}, \texttt{inferred}, or \texttt{unknown} with retrieval path. Reward calibrated uncertainty, penalize precise unsupported numbers. \\
+\addlinespace
+Marketing & Accepted strategically false framing before challenge forced honesty & Helpfulness preference overriding strategic truth & Paired tasks where the user asks for a deceptive framing. Reward identifying the real objective and replacing vanity metrics with actionable ones. Penalize compliant but harmful output. \\
+\addlinespace
+Health & Mixed evidence tiers without disciplined ranking on first pass & Calibration weakness around evidence hierarchy & Mixed evidence bundles containing human RCTs, observational studies, and mouse data. Reward correct tier ranking and conservative protocol updates. Large asymmetric penalties for unsafe recommendations. \\
+\bottomrule
+\end{tabular}
+\caption{How the central failure in each domain maps to an RL environment or reward design.}
+\end{table}
+
+Each of these designs closes the same loop: the eval identifies the failure, the environment reproduces it at scale, the reward signal teaches the model to handle it differently, and power users validate that the fix works in a real workflow. The full environment sketches, including reward functions and validation strategies, are documented in the repository alongside the raw run data.
+
 \section{Conclusion}
 
 The main result in this report is not simply that Grok scored 57.2/100 across these three domains. It is the shape of that score.
