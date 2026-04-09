@@ -15,6 +15,7 @@ This directory contains the tracked April 8, 2026 final challenge-mode runs, the
 - Raw prompt-by-prompt responses for the final April 8 run
 - Challenge prompts and second-round responses when a challenge was sent
 - Public score summary in [final_grades.md](final_grades.md)
+- Machine-readable reviewer inputs in [manual_review_scores.json](manual_review_scores.json)
 - Representative conversation excerpts in [conversation_artifacts.md](conversation_artifacts.md)
 - Root-cause to RL-environment translation notes in [improvement_loop.md](improvement_loop.md)
 - Prompt-level reconstruction notes in [rescoring_notes.md](rescoring_notes.md)
@@ -33,11 +34,20 @@ It is not the same thing as the published Phase 1 baseline shown in the report a
   - The challenge text sent for challenged prompts
   - The inline checklist gate score used for challenge routing (`phase1_score_pct`)
   - File hashes and final-run provenance
-- Not fully reproducible from tracked code alone:
-  - The full set of prompt-level published Phase 1 review scores
-  - The full set of prompt-level challenge-review scores used in the final public summary
+  - The full public score summary in [final_grades.md](final_grades.md) via `python scripts/build_final_scores.py`
+- Still manual rather than code-derived:
+  - The reviewer judgments stored in [manual_review_scores.json](manual_review_scores.json)
+  - The retrospective completion decisions documented in [rescoring_notes.md](rescoring_notes.md)
 
-Those published scores are preserved in the report and summary artifacts, but the repo does not currently contain a one-command regeneration script for every manual review value.
+The important distinction is that the public score sheet is now one-command reproducible from tracked raw runs plus tracked reviewer inputs. The manual review judgments themselves are preserved as explicit inputs, not re-derived automatically from the raw responses.
+
+## One-Command Score Regeneration
+
+```bash
+python scripts/build_final_scores.py
+```
+
+That command validates challenge coverage against the raw April 8 run JSONs and rewrites [final_grades.md](final_grades.md) from [manual_review_scores.json](manual_review_scores.json).
 
 ## Challenge Coverage In The Canonical Final Run
 

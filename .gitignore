@@ -5,6 +5,7 @@ __pycache__/
 .DS_Store
 *.swp
 experiments/**/*.json
+!experiments/final/manual_review_scores.json
 node_modules/
 .claude/
 *.log

@@ -34,6 +34,7 @@ This repo is organized so a reader can quickly understand the target user groups
   - [Health answer key](areas/health-longevity/answer-key.md)
 - **Scores and grading**
   - [Final grades with Phase 1 baselines](experiments/final/final_grades.md)
+  - [Machine-readable manual review inputs](experiments/final/manual_review_scores.json)
 
 ## Canonical Results
 
@@ -87,6 +88,7 @@ Canonical artifacts:
 │   ├── extract_prompts.py       # Extract prompts from README files
 │   ├── grade_responses.py       # Checklist-based scoring with weighted rubrics
 │   ├── eval_schema.py           # Shared parsing helpers and data models
+│   ├── build_final_scores.py    # Rebuild final_grades.md from tracked reviewer inputs
 │   └── fact_check.py            # Verify factual claims in responses
 └── report/                      # Final research report (LaTeX)
     └── main.tex
@@ -138,6 +140,9 @@ python scripts/grade_responses.py \
 # Fact-check responses
 python scripts/fact_check.py \
   --run experiments/final/investment-decisions_challenge_YYYYMMDD_HHMMSS.json
+
+# Rebuild the canonical final score sheet from tracked reviewer inputs
+python scripts/build_final_scores.py
 ```
 
 ## Reliability Notes
@@ -146,5 +151,6 @@ python scripts/fact_check.py \
 - Each prompt is evaluated in its own fresh conversation. In challenge mode, the follow-up stays in the same prompt-level thread so answer-key evidence does not leak into later prompts.
 - Challenge review is part of the published scoring logic. The cold response remains dominant, but second-round behavior can still move the final prompt score.
 - The tracked raw final-run JSONs live in `experiments/final/`. File hashes, challenge coverage, conversation excerpts, and score-provenance notes are documented in `experiments/final/README.md`.
+- The canonical public score sheet can now be regenerated in one command from tracked raw runs plus tracked reviewer inputs: `python scripts/build_final_scores.py`.
 - `python -m unittest discover -s tests -v` is the minimum local integrity check before trusting regenerated prompts or scoring output.
 - The current canonical published score is the April 8, 2026 final run result: `57.2/100` overall (`56.2` investment, `54.1` marketing, `61.4` health).
